@@ -1,0 +1,9 @@
+.next
+node_modules
+out
+*.log
+.DS_Store
+extracted/
+.env
+.env.local
+data/inquiries.json

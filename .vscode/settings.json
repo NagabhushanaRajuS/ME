@@ -1,0 +1,8 @@
+{
+    "chat.tools.terminal.autoApprove": {
+        "/^cd /workspaces/ME && npx create-next-app@14 portfolio --typescript --tailwind --eslint --app --src-dir --no-import-alias --use-npm 2>&1 \\| tail -20$/": {
+            "approve": true,
+            "matchCommandLine": true
+        }
+    }
+}
