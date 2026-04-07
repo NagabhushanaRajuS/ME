@@ -62,12 +62,14 @@ export function ContactSection() {
             ))}
           </motion.div>
 
-          <motion.p className="mt-8 text-sm text-muted" variants={staggerItem}>
-            Or reach me directly at{" "}
-            <a href={`mailto:${personalInfo.email}`} className="font-medium text-accent underline underline-offset-4 transition-colors hover:text-accent2">
-              {personalInfo.email}
-            </a>
-          </motion.p>
+          {personalInfo.email ? (
+            <motion.p className="mt-8 text-sm text-muted" variants={staggerItem}>
+              Or reach me directly at{" "}
+              <a href={`mailto:${personalInfo.email}`} className="font-medium text-accent underline underline-offset-4 transition-colors hover:text-accent2">
+                {personalInfo.email}
+              </a>
+            </motion.p>
+          ) : null}
         </motion.div>
 
         {/* Right: Form */}

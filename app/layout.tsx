@@ -24,8 +24,8 @@ const terminal = IBM_Plex_Mono({
 })
 
 export const metadata: Metadata = {
-  title: "Nagabhushana Raju | Frontend Architect",
-  description: "Premium multi-theme personal portfolio powered by Next.js 14 and Framer Motion"
+  title: "Nagabhushana Raju S | Software Engineer | AI & Data Science",
+  description: "Portfolio of Nagabhushana Raju S — Software Engineering student at MIT Mysore specializing in AI, Data Science, and full-stack development."
 }
 
 export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {

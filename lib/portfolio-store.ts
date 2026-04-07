@@ -26,7 +26,7 @@ function hasMeaningfulText(value: string | undefined | null) {
 }
 
 function withAdvancedFallback(data: PortfolioData): PortfolioData {
-  const ownerName = hasMeaningfulText(data.owner.name) ? data.owner.name.trim() : "Nagabhushana Raju"
+  const ownerName = hasMeaningfulText(data.owner.name) ? data.owner.name.trim() : "Nagabhushana Raju S"
 
   const headline = hasMeaningfulText(data.owner.headline)
     ? data.owner.headline.trim()

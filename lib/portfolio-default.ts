@@ -2,8 +2,8 @@ import type { PortfolioData } from "@/lib/portfolio-types"
 
 export const defaultPortfolioData: PortfolioData = {
   owner: {
-    name: "Nagabhushana Raju",
-    headline: "Engineer",
+    name: "Nagabhushana Raju S",
+    headline: "Software Engineer | AI & Data Science",
     shortIntro: "Coming Soon",
     profilePhotoUrl: "",
     hologramPhotoUrls: ["", "", "", "", ""],

@@ -51,6 +51,15 @@ function looksNoisyTitle(title: string) {
   if (letters < 4) return true
   if (symbols > letters * 0.25) return true
 
+  if (/^[^A-Za-z]*[\])}]/.test(cleaned)) return true
+  if (/\.(pdf|png|jpg|jpeg|gif|webp)\b/i.test(cleaned)) return true
+  if (/\b(has successfully completed the|this is to certify that)\b/i.test(cleaned)) return true
+  if (/\bfrom\s+(maharaja|institute|university|college|school)\b/i.test(cleaned)) return true
+
+  const words = cleaned.trim().split(/\s+/)
+  const longGibberishWords = words.filter((w) => w.length > 3 && !/[aeiou]/i.test(w))
+  if (longGibberishWords.length >= 2) return true
+
   return false
 }
 

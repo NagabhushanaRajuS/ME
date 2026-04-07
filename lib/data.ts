@@ -1,99 +1,97 @@
 export const personalInfo = {
-  name: "Nagabhushana Raju",
+  name: "Nagabhushana Raju S",
   initials: "NR",
-  role: "Senior Frontend Architect",
-  tagline: "Crafting interfaces that blur the line between art and engineering.",
+  role: "Software Engineer | AI & Data Science",
+  tagline: "Building intelligent systems at the intersection of software engineering and applied AI.",
   bio: [
-    "I architect premium digital experiences at the intersection of design, motion, and engineering. Over 7+ years, I\u2019ve shipped product interfaces across fintech, SaaS, and enterprise \u2014 each built with obsessive attention to craft, accessibility, and scale.",
-    "My work is defined by three principles: every pixel earns its place, every animation serves a purpose, and every interaction builds trust. I don\u2019t just write code \u2014 I compose experiences.",
-    "Currently focused on design systems, micro-interaction frameworks, and pushing the boundaries of what\u2019s possible with modern web technologies."
+    "I am a final-year B.E. student in Computer Science (Data Science) at Maharaja Institute of Technology, Mysore, focused on building practical software and AI-driven applications.",
+    "I have earned the Google AI Professional Certificate and completed multiple specializations in machine learning, data analytics, and prompt engineering through Coursera, Infosys Springboard, and other platforms.",
+    "My work spans full-stack development, AI tooling, and data science — with a consistent focus on building projects that solve real problems and are ready for production."
   ],
-  email: "nagabhushana.raju@example.com",
+  email: "",
   github: "https://github.com/NagabhushanaRajuS",
   linkedin: "https://linkedin.com/in/nagabhushanaraju"
 }
 
 export const experience = [
   {
-    year: "2022 \u2014 Present",
-    role: "Senior Frontend Architect",
-    company: "TechVista Labs",
-    description: "Leading frontend platform strategy across 4 product verticals. Introduced design token architecture and performance budgets that reduced bundle size by 38%."
+    year: "2022 — 2026",
+    role: "B.E. in Computer Science (Data Science)",
+    company: "Maharaja Institute of Technology, Mysore",
+    description: "Pursuing a Bachelor of Engineering degree with specialization in Data Science. Coursework spans machine learning, data analytics, AI applications, and software engineering fundamentals."
   },
   {
-    year: "2020 \u2014 2022",
-    role: "Lead Frontend Engineer",
-    company: "FinScale Systems",
-    description: "Built real-time trading dashboards handling 50k+ concurrent WebSocket connections. Pioneered micro-frontend architecture for cross-team deployment."
+    year: "2026",
+    role: "Google AI Professional Certificate",
+    company: "Google / Coursera",
+    description: "Completed the full Google AI Professional Certificate program on Coursera, covering generative AI, machine learning fundamentals, and practical AI application development."
   },
   {
-    year: "2018 \u2014 2020",
-    role: "Frontend Developer",
-    company: "Creative Nexus",
-    description: "Developed award-winning marketing platforms with cinematic scroll experiences. Reduced time-to-interactive by 60% through code splitting."
+    year: "2025 — 2026",
+    role: "Infosys Springboard Certifications",
+    company: "Infosys",
+    description: "Completed multiple industry certifications through Infosys Springboard, including Advanced Statistics for Machine Learning and software engineering best practices."
   }
 ]
 
 export const skills = [
-  { name: "TypeScript", level: 97, category: "core" },
-  { name: "React / Next.js", level: 96, category: "core" },
-  { name: "TailwindCSS", level: 95, category: "core" },
-  { name: "Framer Motion", level: 93, category: "motion" },
-  { name: "Node.js", level: 88, category: "backend" },
-  { name: "GraphQL", level: 85, category: "backend" },
-  { name: "Design Systems", level: 94, category: "design" },
-  { name: "Web Accessibility", level: 91, category: "design" },
-  { name: "Performance Eng.", level: 92, category: "core" },
-  { name: "Testing", level: 87, category: "core" },
-  { name: "CI/CD & DevOps", level: 82, category: "backend" },
-  { name: "WebGL / Three.js", level: 75, category: "motion" }
+  { name: "Python", level: 85, category: "core" },
+  { name: "Machine Learning", level: 82, category: "core" },
+  { name: "Data Science", level: 80, category: "core" },
+  { name: "TypeScript / JavaScript", level: 78, category: "core" },
+  { name: "React / Next.js", level: 75, category: "core" },
+  { name: "Power BI", level: 72, category: "design" },
+  { name: "Data Analytics", level: 80, category: "design" },
+  { name: "Prompt Engineering", level: 78, category: "motion" },
+  { name: "SQL / Databases", level: 70, category: "backend" },
+  { name: "Node.js", level: 68, category: "backend" },
+  { name: "Git / GitHub", level: 75, category: "backend" },
+  { name: "AI Tools & APIs", level: 80, category: "motion" }
 ]
 
 export const projects = [
   {
-    title: "Neural Commerce OS",
+    title: "Portfolio Operating System",
     number: "01",
-    summary: "Next-gen composable storefront with edge personalization, realtime pricing overlays, and AI-driven product recommendations.",
-    impact: "Cut page load by 41%, raised conversion by 23%, and reduced cart abandonment by 18% within the first quarter.",
-    stack: ["Next.js 14", "TypeScript", "Edge Functions", "Framer Motion", "Stripe"],
+    summary: "Built a modular Next.js portfolio platform with admin controls, dynamic content APIs, and deploy-ready architecture.",
+    impact: "Demonstrates full-stack engineering capability: backend APIs, database management, and polished frontend delivery.",
+    stack: ["Next.js", "TypeScript", "Tailwind", "REST API"],
     color: "#3af2d4"
   },
   {
-    title: "Pulse Board",
+    title: "AI Resume Intelligence Pipeline",
     number: "02",
-    summary: "Immersive team analytics dashboard with kinetic data timelines, predictive signals, and real-time collaboration features.",
-    impact: "Reduced decision latency from days to minutes. Adopted by 12 enterprise clients within 6 months of launch.",
-    stack: ["React", "D3.js", "WebSockets", "PostgreSQL", "Redis"],
+    summary: "Implemented a resume ingestion flow with PDF parsing, contact extraction, and profile auto-population.",
+    impact: "Eliminates manual updates and keeps public profile data current through automated content pipelines.",
+    stack: ["Node.js", "Data Parsing", "Automation", "PDF Processing"],
     color: "#ff5a36"
   },
   {
-    title: "Aurora Design Engine",
+    title: "Certificate Ingestion & Validation",
     number: "03",
-    summary: "Token-driven design system platform powering live documentation, visual regression snapshots, and multi-brand rollout controls.",
-    impact: "Unified UI delivery across 9 product teams. Cut design-to-dev handoff time by 70%.",
-    stack: ["Monorepo", "Storybook", "Figma API", "CI/CD", "Chromatic"],
+    summary: "Engineered a certificate ingestion workflow supporting local media, normalized metadata, and verification links.",
+    impact: "Improves trust signals and reduces profile maintenance effort through automated data quality workflows.",
+    stack: ["Data Modeling", "Validation", "File Processing"],
     color: "#7c3aed"
   },
   {
-    title: "Meridian Weather",
+    title: "Lead Capture & Inquiry Gateway",
     number: "04",
-    summary: "Cinematic weather visualization app with fluid animations, location-aware forecasting, and ambient sound integration.",
-    impact: "Featured in \u2018Best of Web\u2019 collections. 200k+ users in first month of public beta.",
-    stack: ["Next.js", "Three.js", "Weather API", "Geolocation", "Web Audio"],
+    summary: "Designed a lightweight inquiry API with input validation, persistence, and rate-limit protections.",
+    impact: "Securely captures inbound opportunities from hiring teams and clients with production-grade reliability.",
+    stack: ["API Design", "Security", "Rate Limiting", "Backend"],
     color: "#38d6ff"
   }
 ]
 
 export const socialLinks = [
   { label: "GitHub", href: "https://github.com/NagabhushanaRajuS" },
-  { label: "LinkedIn", href: "https://linkedin.com/in/nagabhushanaraju" },
-  { label: "Twitter / X", href: "#" },
-  { label: "Email", href: "mailto:nagabhushana.raju@example.com" }
+  { label: "LinkedIn", href: "https://linkedin.com/in/nagabhushanaraju" }
 ]
 
 export const stats = [
-  { value: "7+", label: "Years Experience" },
-  { value: "40+", label: "Projects Shipped" },
-  { value: "9", label: "Design Systems Built" },
-  { value: "99", label: "Lighthouse Score" }
+  { value: "2026", label: "Graduation Year" },
+  { value: "20+", label: "Certificates" },
+  { value: "AI", label: "Specialization" },
+  { value: "MIT", label: "Mysore" }
 ]
