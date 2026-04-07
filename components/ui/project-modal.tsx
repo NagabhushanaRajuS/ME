@@ -1,6 +1,7 @@
 "use client"
 
 import { AnimatePresence, motion } from "framer-motion"
+import { Github } from "lucide-react"
 
 type Project = {
   title: string
@@ -9,6 +10,8 @@ type Project = {
   impact: string
   stack: string[]
   color: string
+  date?: string
+  github?: string
 }
 
 type ProjectModalProps = {
@@ -54,6 +57,9 @@ export function ProjectModal({ open, onClose, project }: ProjectModalProps) {
                     {project.number}
                   </span>
                   <h3 className="mt-1 font-heading text-2xl font-bold text-text md:text-3xl">{project.title}</h3>
+                  {project.date && (
+                    <p className="mt-2 text-xs text-muted">{project.date}</p>
+                  )}
                 </div>
                 <button
                   onClick={onClose}
@@ -85,6 +91,21 @@ export function ProjectModal({ open, onClose, project }: ProjectModalProps) {
                   ))}
                 </div>
               </div>
+
+              {/* GitHub Link */}
+              {project.github && (
+                <div className="mt-6">
+                  <a
+                    href={project.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 rounded-full border border-accent px-4 py-2 text-sm font-semibold text-accent transition-all hover:bg-accent/10"
+                  >
+                    <Github className="h-4 w-4" />
+                    View on GitHub
+                  </a>
+                </div>
+              )}
             </div>
           </motion.div>
         </>

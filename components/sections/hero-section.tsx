@@ -6,7 +6,7 @@ import { MagneticButton } from "@/components/ui/magnetic-button"
 import { useThemeMode } from "@/components/providers/theme-provider"
 import { personalInfo, stats } from "@/lib/data"
 
-const headlineWords = ["Designing", "futuristic", "digital", "experiences", "that", "perform."]
+const headlineWords = ["Building", "intelligent", "systems", "with", "Machine", "Learning."]
 
 function FloatingShape({ className, delay }: { className: string; delay: number }) {
   return (
@@ -69,7 +69,7 @@ export function HeroSection() {
             <motion.span
               key={`${word}-${i}`}
               className={`mr-3 inline-block md:mr-4 ${
-                i === 0 || i === 3 ? "gradient-text-animate" : "text-text"
+                i === 1 || i === 5 ? "gradient-text-animate" : "text-text"
               }`}
               initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
               animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}

@@ -17,8 +17,8 @@ const body = Sora({
 })
 
 export const metadata: Metadata = {
-  title: "Nagabhushana Raju | Frontend Architect",
-  description: "Premium multi-theme personal portfolio powered by Next.js 14 and Framer Motion"
+  title: "Nagabhushana Raju | AI/ML Engineer & Developer",
+  description: "Multi-talented portfolio showcasing AI/ML projects, full-stack development, and data visualization expertise. Built with Next.js 14 and advanced animations."
 }
 
 export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {

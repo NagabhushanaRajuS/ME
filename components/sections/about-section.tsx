@@ -4,7 +4,7 @@ import { motion, useScroll, useTransform } from "framer-motion"
 import { useRef } from "react"
 import { Reveal } from "@/components/ui/reveal"
 import { useThemeMode } from "@/components/providers/theme-provider"
-import { personalInfo, experience } from "@/lib/data"
+import { personalInfo, experience, stats } from "@/lib/data"
 import { staggerContainer, staggerItem } from "@/lib/motion"
 
 export function AboutSection() {
@@ -30,8 +30,8 @@ export function AboutSection() {
           <div className="glow-line flex-1" />
         </div>
         <h2 className="mt-6 max-w-4xl font-heading text-3xl font-bold leading-tight text-text md:text-5xl lg:text-6xl">
-          Product-minded engineer shaping{" "}
-          <span className="gradient-text">intentional</span>, high-performance frontend ecosystems.
+          Building intelligent systems with{" "}
+          <span className="gradient-text">Machine Learning</span> and crafting seamless web experiences
         </h2>
       </Reveal>
 
@@ -74,7 +74,7 @@ export function AboutSection() {
             <div className="mt-5">
               <div className="glow-line" />
               <p className="mt-4 text-sm italic text-muted">
-                &ldquo;Every pixel earns its place. Every animation serves a purpose.&rdquo;
+                &ldquo;Eager to learn and contribute to innovative projects that make a real impact.&rdquo;
               </p>
             </div>
             {/* Mini bar chart decorative */}
@@ -93,6 +93,26 @@ export function AboutSection() {
           </div>
         </motion.div>
       </div>
+
+      {/* Stats Grid */}
+      <motion.div
+        className="mt-20 grid gap-6 md:grid-cols-2 lg:grid-cols-4"
+        variants={staggerContainer}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-5%" }}
+      >
+        {stats.map((stat, i) => (
+          <motion.div
+            key={stat.label}
+            className="glass-card p-6 text-center"
+            variants={staggerItem}
+          >
+            <p className="font-heading text-4xl font-bold text-accent">{stat.value}</p>
+            <p className="mt-2 text-sm text-muted">{stat.label}</p>
+          </motion.div>
+        ))}
+      </motion.div>
 
       {/* Experience Timeline */}
       <Reveal className="mt-24">
@@ -123,10 +143,58 @@ export function AboutSection() {
               <h3 className="font-heading text-lg font-bold text-text">{exp.role}</h3>
               <p className="mt-1 text-sm font-medium text-accent/70">{exp.company}</p>
               <p className="mt-3 text-sm leading-relaxed text-muted">{exp.description}</p>
+              {exp.highlights && exp.highlights.length > 0 && (
+                <ul className="mt-3 space-y-2 text-sm text-muted">
+                  {exp.highlights.map((highlight, i) => (
+                    <li key={i} className="flex gap-3">
+                      <span className="mt-1.5 inline-block h-1.5 w-1.5 flex-shrink-0 rounded-full bg-accent" />
+                      {highlight}
+                    </li>
+                  ))}
+                </ul>
+              )}
+              {exp.tags && exp.tags.length > 0 && (
+                <div className="mt-4 flex flex-wrap gap-2">
+                  {exp.tags.map((tag) => (
+                    <span key={tag} className="inline-block rounded-full border border-accent/30 px-3 py-1 text-xs text-accent">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              )}
             </div>
           </motion.div>
         ))}
       </div>
+
+      {/* Education Section */}
+      <Reveal className="mt-24">
+        <div className="flex items-center gap-4">
+          <span className="glow-dot" />
+          <p className="text-xs font-semibold uppercase tracking-[0.24em] text-accent">Education</p>
+          <div className="glow-line flex-1" />
+        </div>
+      </Reveal>
+
+      <motion.div
+        className="mt-10 glass-card p-8"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-5%" }}
+      >
+        <div className="grid gap-6 md:grid-cols-2">
+          <div>
+            <h3 className="font-heading text-lg font-bold text-text">B.E. Computer Science & Engineering (Data Science)</h3>
+            <p className="mt-2 text-sm text-accent/70">Maharaja Institute of Technology Mysuru (MITM)</p>
+            <p className="mt-3 text-sm text-muted">Expected Graduation: Jun 2026</p>
+            <p className="mt-2 text-sm text-muted">Current GPA: 7.2 (Improved from 6.6)</p>
+          </div>
+          <div className="flex flex-col justify-between">
+            <p className="text-sm text-muted">7th Semester Ongoing • Demonstrating consistent upward growth</p>
+            <p className="mt-4 text-xs text-accent">Location: {personalInfo.location}</p>
+          </div>
+        </div>
+      </motion.div>
     </section>
   )
 }
