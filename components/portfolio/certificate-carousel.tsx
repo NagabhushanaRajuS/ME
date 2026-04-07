@@ -18,7 +18,7 @@ export function CertificateCarousel({ certificates }: CertificateCarouselProps) 
 
   return (
     <div className="relative mx-auto w-full max-w-5xl overflow-hidden py-8 [perspective:1200px]">
-      <div className="relative h-[360px] w-full">
+      <div className="relative h-[380px] w-full">
         {certificates.map((item, index) => {
           const offset = index - active
           const absOffset = Math.abs(offset)
@@ -27,7 +27,9 @@ export function CertificateCarousel({ certificates }: CertificateCarouselProps) 
           return (
             <motion.article
               key={item.id}
-              className="absolute left-1/2 top-1/2 w-[86%] max-w-xl -translate-x-1/2 -translate-y-1/2 rounded-3xl border border-line bg-surface/85 p-6 shadow-card backdrop-blur"
+              className={`absolute left-1/2 top-1/2 w-[86%] max-w-xl -translate-x-1/2 -translate-y-1/2 rounded-3xl border border-line bg-surface/85 p-6 shadow-card backdrop-blur ${
+                !isActive ? "cursor-pointer" : ""
+              }`}
               animate={{
                 x: offset * 180,
                 rotateY: offset * -22,
@@ -36,6 +38,10 @@ export function CertificateCarousel({ certificates }: CertificateCarouselProps) 
                 zIndex: 100 - absOffset
               }}
               transition={{ duration: 0.45, ease: "easeOut" }}
+              onClick={() => {
+                if (!isActive) setActive(index)
+              }}
+              aria-label={isActive ? undefined : `View ${item.title}`}
             >
               <p className="text-xs uppercase tracking-[0.18em] text-accent">Certificate</p>
               <h3 className="mt-2 font-heading text-2xl text-text">{item.title || "Coming Soon"}</h3>
@@ -47,6 +53,7 @@ export function CertificateCarousel({ certificates }: CertificateCarouselProps) 
                   target="_blank"
                   rel="noopener noreferrer"
                   className="mt-5 inline-block rounded-full border border-line px-4 py-2 text-xs font-semibold text-text transition hover:border-accent hover:text-accent"
+                  onClick={(e) => e.stopPropagation()}
                 >
                   View Credential
                 </a>
@@ -58,13 +65,30 @@ export function CertificateCarousel({ certificates }: CertificateCarouselProps) 
         })}
       </div>
 
-      <div className="mt-6 flex items-center justify-center gap-3">
+      {/* Pagination dots */}
+      <div className="mt-2 flex items-center justify-center gap-2">
+        {certificates.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => setActive(index)}
+            aria-label={`Go to certificate ${index + 1}`}
+            className={`h-1.5 rounded-full transition-all duration-300 ${
+              index === active ? "w-6 bg-accent" : "w-1.5 bg-line hover:bg-accent/50"
+            }`}
+          />
+        ))}
+      </div>
+
+      <div className="mt-4 flex items-center justify-center gap-3">
         <button
           onClick={() => setActive((prev) => (prev - 1 + certificates.length) % certificates.length)}
           className="rounded-full border border-line px-4 py-2 text-xs font-semibold text-text transition hover:border-accent"
         >
           Prev
         </button>
+        <span className="text-xs text-muted tabular-nums">
+          {active + 1} / {certificates.length}
+        </span>
         <button
           onClick={() => setActive((prev) => (prev + 1) % certificates.length)}
           className="rounded-full border border-line px-4 py-2 text-xs font-semibold text-text transition hover:border-accent"
