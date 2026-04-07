@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useCallback } from "react"
 import { useThemeMode } from "@/components/providers/theme-provider"
+import type { ThemeMode } from "@/lib/themes"
 
 interface Particle {
   x: number
@@ -12,18 +13,46 @@ interface Particle {
   opacity: number
   life: number
   maxLife: number
+  rotation: number
+  spin: number
+  tint: number
+  shape: "circle" | "diamond" | "pixel"
 }
 
-const PARTICLE_COLORS: Record<string, string> = {
-  light: "0, 104, 255",
-  medium: "255, 90, 54",
-  dark: "24, 248, 154"
+type ParticleConfig = {
+  count: number
+  sizeMin: number
+  sizeMax: number
+  colorA: string
+  colorB: string
+  shape: Particle["shape"]
 }
 
-const PARTICLE_COUNT: Record<string, number> = {
-  light: 30,
-  medium: 40,
-  dark: 55
+const PARTICLE_CONFIG: Record<ThemeMode, ParticleConfig> = {
+  light: {
+    count: 28,
+    sizeMin: 1.2,
+    sizeMax: 3.5,
+    colorA: "27, 123, 255",
+    colorB: "61, 202, 249",
+    shape: "circle"
+  },
+  medium: {
+    count: 42,
+    sizeMin: 1,
+    sizeMax: 2.8,
+    colorA: "255, 94, 51",
+    colorB: "255, 176, 56",
+    shape: "diamond"
+  },
+  dark: {
+    count: 72,
+    sizeMin: 0.75,
+    sizeMax: 2,
+    colorA: "42, 248, 141",
+    colorB: "41, 216, 255",
+    shape: "pixel"
+  }
 }
 
 export function ParticleField() {
@@ -35,16 +64,29 @@ export function ParticleField() {
 
   themeRef.current = theme
 
-  const createParticle = useCallback((canvas: HTMLCanvasElement): Particle => ({
-    x: Math.random() * canvas.width,
-    y: Math.random() * canvas.height,
-    vx: (Math.random() - 0.5) * 0.4,
-    vy: -Math.random() * 0.3 - 0.1,
-    size: Math.random() * 2 + 0.5,
-    opacity: Math.random() * 0.5 + 0.15,
-    life: 0,
-    maxLife: Math.random() * 300 + 200
-  }), [])
+  const createParticle = useCallback((mode: ThemeMode): Particle => {
+    const cfg = PARTICLE_CONFIG[mode]
+    const width = window.innerWidth
+    const height = window.innerHeight
+
+    const speed = mode === "dark" ? 0.36 : mode === "medium" ? 0.28 : 0.22
+    const drift = mode === "dark" ? 0.22 : mode === "medium" ? 0.25 : 0.16
+
+    return {
+      x: Math.random() * width,
+      y: Math.random() * height,
+      vx: (Math.random() - 0.5) * drift,
+      vy: -Math.random() * speed - 0.04,
+      size: Math.random() * (cfg.sizeMax - cfg.sizeMin) + cfg.sizeMin,
+      opacity: mode === "dark" ? Math.random() * 0.5 + 0.18 : Math.random() * 0.45 + 0.2,
+      life: 0,
+      maxLife: Math.random() * 320 + 180,
+      rotation: Math.random() * Math.PI,
+      spin: (Math.random() - 0.5) * (mode === "dark" ? 0.035 : 0.025),
+      tint: Math.random(),
+      shape: cfg.shape
+    }
+  }, [])
 
   useEffect(() => {
     const canvas = canvasRef.current
@@ -54,28 +96,40 @@ export function ParticleField() {
     if (!ctx) return
 
     const resize = () => {
-      canvas.width = window.innerWidth
-      canvas.height = window.innerHeight
+      const ratio = window.devicePixelRatio || 1
+      canvas.width = Math.floor(window.innerWidth * ratio)
+      canvas.height = Math.floor(window.innerHeight * ratio)
+      ctx.setTransform(ratio, 0, 0, ratio, 0, 0)
     }
     resize()
     window.addEventListener("resize", resize)
 
-    const count = PARTICLE_COUNT[theme] ?? 40
-    particlesRef.current = Array.from({ length: count }, () => createParticle(canvas))
+    const count = PARTICLE_CONFIG[theme].count
+    particlesRef.current = Array.from({ length: count }, () => createParticle(theme))
 
     const animate = () => {
       const currentTheme = themeRef.current
-      const color = PARTICLE_COLORS[currentTheme] ?? PARTICLE_COLORS.dark
-      ctx.clearRect(0, 0, canvas.width, canvas.height)
+      const config = PARTICLE_CONFIG[currentTheme]
+      const now = performance.now()
+
+      const width = window.innerWidth
+      const height = window.innerHeight
+
+      ctx.clearRect(0, 0, width, height)
 
       for (const p of particlesRef.current) {
         p.x += p.vx
         p.y += p.vy
         p.life++
+        p.rotation += p.spin
 
-        if (p.life > p.maxLife || p.y < -10 || p.x < -10 || p.x > canvas.width + 10) {
-          Object.assign(p, createParticle(canvas))
-          p.y = canvas.height + 10
+        if (currentTheme === "dark") {
+          p.x += Math.sin(now * 0.001 + p.y * 0.02) * 0.14
+        }
+
+        if (p.life > p.maxLife || p.y < -18 || p.x < -18 || p.x > width + 18) {
+          Object.assign(p, createParticle(currentTheme))
+          p.y = height + 16
         }
 
         const fade = p.life < 30
@@ -84,13 +138,48 @@ export function ParticleField() {
           ? (p.maxLife - p.life) / 30
           : 1
 
-        ctx.beginPath()
-        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2)
-        ctx.fillStyle = `rgba(${color}, ${p.opacity * fade})`
-        ctx.fill()
+        const color = p.tint > 0.52 ? config.colorA : config.colorB
+        const alpha = p.opacity * fade
+
+        if (p.shape === "circle") {
+          ctx.beginPath()
+          ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2)
+          ctx.fillStyle = `rgba(${color}, ${alpha})`
+          ctx.fill()
+
+          ctx.beginPath()
+          ctx.arc(p.x, p.y, p.size * 1.8, 0, Math.PI * 2)
+          ctx.fillStyle = `rgba(${color}, ${alpha * 0.2})`
+          ctx.fill()
+          continue
+        }
+
+        if (p.shape === "diamond") {
+          ctx.save()
+          ctx.translate(p.x, p.y)
+          ctx.rotate(p.rotation)
+          ctx.fillStyle = `rgba(${color}, ${alpha})`
+          ctx.beginPath()
+          ctx.moveTo(0, -p.size)
+          ctx.lineTo(p.size * 0.85, 0)
+          ctx.lineTo(0, p.size)
+          ctx.lineTo(-p.size * 0.85, 0)
+          ctx.closePath()
+          ctx.fill()
+          ctx.restore()
+          continue
+        }
+
+        const side = Math.max(1, p.size)
+        ctx.fillStyle = `rgba(${color}, ${alpha})`
+        ctx.fillRect(p.x - side / 2, p.y - side / 2, side, side)
+
+        if (p.life % 18 === 0) {
+          ctx.strokeStyle = `rgba(${color}, ${alpha * 0.45})`
+          ctx.strokeRect(p.x - side, p.y - side, side * 2, side * 2)
+        }
       }
 
-      // Draw connections for dark theme
       if (currentTheme === "dark") {
         const particles = particlesRef.current
         for (let i = 0; i < particles.length; i++) {
@@ -98,17 +187,25 @@ export function ParticleField() {
             const dx = particles[i].x - particles[j].x
             const dy = particles[i].y - particles[j].y
             const dist = Math.sqrt(dx * dx + dy * dy)
-            if (dist < 120) {
-              const alpha = (1 - dist / 120) * 0.08
+            if (dist < 95) {
+              const alpha = (1 - dist / 95) * 0.1
               ctx.beginPath()
               ctx.moveTo(particles[i].x, particles[i].y)
               ctx.lineTo(particles[j].x, particles[j].y)
-              ctx.strokeStyle = `rgba(${color}, ${alpha})`
+              ctx.strokeStyle = `rgba(42, 248, 141, ${alpha})`
               ctx.lineWidth = 0.5
               ctx.stroke()
             }
           }
         }
+
+        const scanY = (now * 0.08) % height
+        const scanGradient = ctx.createLinearGradient(0, scanY - 22, 0, scanY + 22)
+        scanGradient.addColorStop(0, "rgba(42, 248, 141, 0)")
+        scanGradient.addColorStop(0.5, "rgba(42, 248, 141, 0.12)")
+        scanGradient.addColorStop(1, "rgba(42, 248, 141, 0)")
+        ctx.fillStyle = scanGradient
+        ctx.fillRect(0, scanY - 22, width, 44)
       }
 
       animationRef.current = requestAnimationFrame(animate)

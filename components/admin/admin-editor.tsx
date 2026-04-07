@@ -4,13 +4,40 @@ import { useEffect, useState } from "react"
 import type { InquiryItem, PortfolioData } from "@/lib/portfolio-types"
 
 type SaveState = "idle" | "saving" | "saved" | "error"
+type ImportTarget = "intro" | "project" | "channel"
 
-type YoutubeImportResult =
-  | { ok: true; item: { id: string; name: string; url: string; description: string } }
-  | { ok: false; error: string }
+type YoutubeImportSuccess = {
+  ok: true
+  target: ImportTarget
+  normalizedUrl: string
+  payload: {
+    title: string
+    description: string
+    tags: string[]
+  }
+}
+
+type YoutubeImportFailure = {
+  error: string
+}
+
+type YoutubeImportResponse = YoutubeImportSuccess | YoutubeImportFailure
 
 function pretty(value: unknown) {
   return JSON.stringify(value, null, 2)
+}
+
+function parseJsonList<T>(value: string) {
+  try {
+    const parsed = JSON.parse(value) as unknown
+    return Array.isArray(parsed) ? (parsed as T[]) : null
+  } catch {
+    return null
+  }
+}
+
+function newId(prefix: string) {
+  return `${prefix}-${Date.now()}-${Math.random().toString(16).slice(2, 8)}`
 }
 
 export function AdminEditor() {
@@ -25,11 +52,18 @@ export function AdminEditor() {
   const [educationJson, setEducationJson] = useState("[]")
   const [channelsJson, setChannelsJson] = useState("[]")
 
+  const [youtubeTarget, setYoutubeTarget] = useState<ImportTarget>("project")
   const [youtubeUrl, setYoutubeUrl] = useState("")
-  const [youtubeName, setYoutubeName] = useState("")
+  const [youtubeTitle, setYoutubeTitle] = useState("")
   const [youtubeDescription, setYoutubeDescription] = useState("")
+  const [youtubeTags, setYoutubeTags] = useState("")
+  const [youtubeImportLoading, setYoutubeImportLoading] = useState(false)
   const [youtubeImportError, setYoutubeImportError] = useState("")
   const [youtubeImportSuccess, setYoutubeImportSuccess] = useState("")
+
+  const [certificateImportLoading, setCertificateImportLoading] = useState(false)
+  const [certificateImportError, setCertificateImportError] = useState("")
+  const [certificateImportSuccess, setCertificateImportSuccess] = useState("")
 
   useEffect(() => {
     const load = async () => {
@@ -65,69 +99,214 @@ export function AdminEditor() {
     setSaveState("saving")
     setError("")
 
-    try {
-      const payload: PortfolioData = {
-        ...data,
-        projects: JSON.parse(projectsJson) as PortfolioData["projects"],
-        certificates: JSON.parse(certificatesJson) as PortfolioData["certificates"],
-        goals: JSON.parse(goalsJson) as PortfolioData["goals"],
-        education: JSON.parse(educationJson) as PortfolioData["education"],
-        channels: JSON.parse(channelsJson) as PortfolioData["channels"]
-      }
+    const parsedProjects = parseJsonList<PortfolioData["projects"][number]>(projectsJson)
+    const parsedCertificates = parseJsonList<PortfolioData["certificates"][number]>(certificatesJson)
+    const parsedGoals = parseJsonList<PortfolioData["goals"][number]>(goalsJson)
+    const parsedEducation = parseJsonList<PortfolioData["education"][number]>(educationJson)
+    const parsedChannels = parseJsonList<PortfolioData["channels"][number]>(channelsJson)
 
-      const response = await fetch("/api/admin/portfolio", {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload)
-      })
-
-      if (!response.ok) {
-        setSaveState("error")
-        setError("Save failed")
-        return
-      }
-
-      const saved = (await response.json()) as PortfolioData
-      setData(saved)
-      setSaveState("saved")
-    } catch {
+    if (!parsedProjects || !parsedCertificates || !parsedGoals || !parsedEducation || !parsedChannels) {
       setSaveState("error")
-      setError("Invalid JSON in one of the list sections")
-    }
-  }
-
-  const importYoutubeLink = () => {
-    setYoutubeImportError("")
-    setYoutubeImportSuccess("")
-
-    const result = parseYoutubeImport(youtubeUrl, {
-      name: youtubeName.trim(),
-      description: youtubeDescription.trim()
-    })
-
-    if (!result.ok) {
-      setYoutubeImportError(result.error)
+      setError("One of the list sections has invalid JSON")
       return
     }
 
-    try {
-      const current = JSON.parse(channelsJson) as unknown
-      if (!Array.isArray(current)) {
-        setYoutubeImportError("Channels JSON is not a list")
+    const payload: PortfolioData = {
+      ...data,
+      projects: parsedProjects,
+      certificates: parsedCertificates,
+      goals: parsedGoals,
+      education: parsedEducation,
+      channels: parsedChannels
+    }
+
+    const response = await fetch("/api/admin/portfolio", {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload)
+    })
+
+    if (!response.ok) {
+      setSaveState("error")
+      setError("Save failed")
+      return
+    }
+
+    const saved = (await response.json()) as PortfolioData
+    setData(saved)
+    setSaveState("saved")
+  }
+
+  const importYoutubeLink = async () => {
+    setYoutubeImportError("")
+    setYoutubeImportSuccess("")
+
+    if (!youtubeUrl.trim()) {
+      setYoutubeImportError("Paste a YouTube link first")
+      return
+    }
+
+    setYoutubeImportLoading(true)
+
+    const tags = youtubeTags
+      .split(",")
+      .map((item) => item.trim())
+      .filter(Boolean)
+
+    const response = await fetch("/api/admin/youtube/import", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        url: youtubeUrl,
+        target: youtubeTarget,
+        title: youtubeTitle,
+        description: youtubeDescription,
+        tags
+      })
+    })
+
+    const result = (await response.json().catch(() => null)) as YoutubeImportResponse | null
+
+    if (!response.ok || !result || !("ok" in result)) {
+      setYoutubeImportError(result && "error" in result ? result.error : "Unable to import YouTube link")
+      setYoutubeImportLoading(false)
+      return
+    }
+
+    if (result.target === "intro") {
+      setData((prev) => {
+        if (!prev) return prev
+        return {
+          ...prev,
+          owner: {
+            ...prev.owner,
+            introVideoUrl: result.normalizedUrl
+          }
+        }
+      })
+      setYoutubeImportSuccess("Intro video updated. Click Save Changes to publish.")
+      setYoutubeImportLoading(false)
+      return
+    }
+
+    if (result.target === "project") {
+      const currentProjects = parseJsonList<PortfolioData["projects"][number]>(projectsJson)
+      if (!currentProjects) {
+        setYoutubeImportError("Projects JSON is invalid. Fix it before importing.")
+        setYoutubeImportLoading(false)
         return
       }
 
-      const next = upsertChannelItem(current, result.item)
-      setChannelsJson(pretty(next))
-      setYoutubeImportSuccess("Imported and added to YouTube Channels list")
-    } catch {
-      setYoutubeImportError("Channels JSON is invalid; fix it before importing")
+      const nextProject: PortfolioData["projects"][number] = {
+        id: newId("project"),
+        title: result.payload.title || "YouTube Project",
+        description: result.payload.description || "Imported from YouTube",
+        ytDemoUrl: result.normalizedUrl,
+        tags: result.payload.tags
+      }
+
+      const duplicate = currentProjects.find((item) => item.ytDemoUrl === result.normalizedUrl)
+      const nextProjects = duplicate
+        ? currentProjects.map((item) => (item.ytDemoUrl === result.normalizedUrl ? { ...item, ...nextProject, id: item.id } : item))
+        : [nextProject, ...currentProjects]
+
+      setProjectsJson(pretty(nextProjects))
+      setYoutubeImportSuccess(
+        duplicate
+          ? "Existing project video updated. Click Save Changes to publish."
+          : "Project added from YouTube link. Click Save Changes to publish."
+      )
+      setYoutubeImportLoading(false)
+      return
     }
+
+    const currentChannels = parseJsonList<PortfolioData["channels"][number]>(channelsJson)
+    if (!currentChannels) {
+      setYoutubeImportError("Channels JSON is invalid. Fix it before importing.")
+      setYoutubeImportLoading(false)
+      return
+    }
+
+    const nextChannel: PortfolioData["channels"][number] = {
+      id: newId("channel"),
+      name: result.payload.title || "YouTube Channel",
+      url: result.normalizedUrl,
+      description: result.payload.description || "Imported from YouTube"
+    }
+
+    const duplicate = currentChannels.find((item) => item.url === result.normalizedUrl)
+    const nextChannels = duplicate
+      ? currentChannels.map((item) => (item.url === result.normalizedUrl ? { ...item, ...nextChannel, id: item.id } : item))
+      : [nextChannel, ...currentChannels]
+
+    setChannelsJson(pretty(nextChannels))
+    setYoutubeImportSuccess(
+      duplicate
+        ? "Existing channel updated. Click Save Changes to publish."
+        : "Channel added from YouTube link. Click Save Changes to publish."
+    )
+    setYoutubeImportLoading(false)
   }
 
   const logout = async () => {
     await fetch("/api/admin/logout", { method: "POST" })
-    window.location.href = "/admin/login"
+    window.location.href = "/access"
+  }
+
+  const importCertificatesFromFolder = async () => {
+    setCertificateImportLoading(true)
+    setCertificateImportError("")
+    setCertificateImportSuccess("")
+
+    const response = await fetch("/api/admin/certificates/import-local", {
+      method: "POST"
+    })
+
+    const payload = (await response.json().catch(() => null)) as
+      | {
+          error?: string
+          importedCount?: number
+          renamedCount?: number
+          skippedFiles?: string[]
+          certificates?: PortfolioData["certificates"]
+        }
+      | null
+
+    if (!response.ok || !payload?.certificates) {
+      setCertificateImportError(payload?.error ?? "Unable to import certificate images")
+      setCertificateImportLoading(false)
+      return
+    }
+
+    const nextCertificates = payload.certificates
+    setCertificatesJson(pretty(nextCertificates))
+    setData((prev) => (prev ? { ...prev, certificates: nextCertificates } : prev))
+
+    const importedCount = payload.importedCount ?? nextCertificates.length
+    const renamedCount = payload.renamedCount ?? 0
+    const skippedCount = payload.skippedFiles?.length ?? 0
+
+    setCertificateImportSuccess(
+      `Imported ${importedCount} certificate image(s). Renamed ${renamedCount}. Skipped ${skippedCount}.`
+    )
+    setCertificateImportLoading(false)
+  }
+
+  const setHologramPhoto = (index: number, value: string) => {
+    setData((prev) => {
+      if (!prev) return prev
+      const next = [...(prev.owner.hologramPhotoUrls ?? [])]
+      while (next.length < 5) next.push("")
+      next[index] = value
+
+      return {
+        ...prev,
+        owner: {
+          ...prev.owner,
+          hologramPhotoUrls: next.slice(0, 5)
+        }
+      }
+    })
   }
 
   if (!data) {
@@ -137,7 +316,7 @@ export function AdminEditor() {
   return (
     <main className="mx-auto w-full max-w-6xl px-5 pb-20 pt-28 md:px-8">
       <div className="flex flex-wrap items-center justify-between gap-4">
-        <h1 className="font-heading text-4xl text-text">Admin Portfolio Editor</h1>
+        <h1 className="font-heading text-4xl text-text">Portfolio Control Studio</h1>
         <div className="flex gap-3">
           <button
             onClick={save}
@@ -155,7 +334,7 @@ export function AdminEditor() {
       </div>
 
       <p className="mt-3 text-sm text-muted">
-        Future updates are form-like. Fill fields below. Leave empty to auto-show Coming Soon.
+        Fill details like a form. Keep fields empty to auto-show Coming Soon on the public site.
       </p>
       {saveState === "saved" ? <p className="mt-2 text-sm text-accent">Saved successfully</p> : null}
       {error ? <p className="mt-2 text-sm text-red-400">{error}</p> : null}
@@ -181,6 +360,15 @@ export function AdminEditor() {
             placeholder="Profile photo URL"
             className="rounded-xl border border-line bg-bg/50 px-4 py-3 text-text md:col-span-2"
           />
+          {Array.from({ length: 5 }).map((_, index) => (
+            <input
+              key={`holo-${index}`}
+              value={data.owner.hologramPhotoUrls?.[index] ?? ""}
+              onChange={(event) => setHologramPhoto(index, event.target.value)}
+              placeholder={`Hologram photo URL ${index + 1}`}
+              className={`rounded-xl border border-line bg-bg/50 px-4 py-3 text-text ${index === 4 ? "md:col-span-2" : ""}`}
+            />
+          ))}
           <input
             value={data.owner.introVideoUrl}
             onChange={(event) => setData((prev) => prev ? { ...prev, owner: { ...prev.owner, introVideoUrl: event.target.value } } : prev)}
@@ -198,51 +386,71 @@ export function AdminEditor() {
 
       <section className="mt-8 grid gap-6">
         <JsonEditor title="Projects" value={projectsJson} onChange={setProjectsJson} />
-        <JsonEditor title="Certificates" value={certificatesJson} onChange={setCertificatesJson} />
-        <JsonEditor title="Goals" value={goalsJson} onChange={setGoalsJson} />
-        <JsonEditor title="Education" value={educationJson} onChange={setEducationJson} />
 
         <section className="rounded-3xl border border-line bg-surface/70 p-6 shadow-card">
           <h3 className="font-heading text-2xl text-text">Import from YouTube link</h3>
           <p className="mt-2 text-xs text-muted">
-            Paste a YouTube channel link, handle link, or video link. It will add an entry into the YouTube Channels JSON list.
+            Choose target, paste a YouTube URL, and it auto-fills Intro Video, Project Demo, or Channel entry.
           </p>
 
           <div className="mt-4 grid gap-4 md:grid-cols-2">
+            <label className="text-xs text-muted">
+              Target
+              <select
+                value={youtubeTarget}
+                onChange={(event) => setYoutubeTarget(event.target.value as ImportTarget)}
+                className="mt-1 w-full rounded-xl border border-line bg-bg/50 px-4 py-3 text-sm text-text"
+              >
+                <option value="intro">Owner Intro Video</option>
+                <option value="project">Project Demo Video</option>
+                <option value="channel">YouTube Channel</option>
+              </select>
+            </label>
+
             <input
               value={youtubeUrl}
-              onChange={(e) => setYoutubeUrl(e.target.value)}
-              placeholder="YouTube URL (channel/@handle/video)"
-              className="rounded-xl border border-line bg-bg/50 px-4 py-3 text-text md:col-span-2"
+              onChange={(event) => setYoutubeUrl(event.target.value)}
+              placeholder="YouTube URL"
+              className="rounded-xl border border-line bg-bg/50 px-4 py-3 text-text"
             />
+
             <input
-              value={youtubeName}
-              onChange={(e) => setYoutubeName(e.target.value)}
-              placeholder="Display name (optional)"
+              value={youtubeTitle}
+              onChange={(event) => setYoutubeTitle(event.target.value)}
+              placeholder="Title / Name override (optional)"
               className="rounded-xl border border-line bg-bg/50 px-4 py-3 text-text"
             />
             <input
+              value={youtubeTags}
+              onChange={(event) => setYoutubeTags(event.target.value)}
+              placeholder="Tags comma separated (project only)"
+              className="rounded-xl border border-line bg-bg/50 px-4 py-3 text-text"
+            />
+
+            <textarea
               value={youtubeDescription}
-              onChange={(e) => setYoutubeDescription(e.target.value)}
-              placeholder="Description (optional)"
-              className="rounded-xl border border-line bg-bg/50 px-4 py-3 text-text"
+              onChange={(event) => setYoutubeDescription(event.target.value)}
+              placeholder="Description override (optional)"
+              className="min-h-24 rounded-xl border border-line bg-bg/50 px-4 py-3 text-text md:col-span-2"
             />
           </div>
 
           <div className="mt-4 flex flex-wrap gap-3">
             <button
               type="button"
-              onClick={importYoutubeLink}
-              className="rounded-full bg-accent px-5 py-2 text-sm font-semibold text-black"
+              onClick={() => void importYoutubeLink()}
+              disabled={youtubeImportLoading}
+              className="rounded-full bg-accent px-5 py-2 text-sm font-semibold text-black disabled:opacity-60"
             >
-              Import & Add
+              {youtubeImportLoading ? "Importing..." : "Import from YouTube"}
             </button>
             <button
               type="button"
               onClick={() => {
                 setYoutubeUrl("")
-                setYoutubeName("")
+                setYoutubeTitle("")
                 setYoutubeDescription("")
+                setYoutubeTags("")
                 setYoutubeImportError("")
                 setYoutubeImportSuccess("")
               }}
@@ -256,6 +464,29 @@ export function AdminEditor() {
           {youtubeImportError ? <p className="mt-3 text-sm text-red-400">{youtubeImportError}</p> : null}
         </section>
 
+        <section className="rounded-3xl border border-line bg-surface/70 p-6 shadow-card">
+          <h3 className="font-heading text-2xl text-text">Smart Certificate Import</h3>
+          <p className="mt-2 text-xs text-muted">
+            Reads images in CONTENT/Certificates, extracts text, auto-sets title/issuer/date, renames files cleanly,
+            and updates the Certificates list.
+          </p>
+          <div className="mt-4 flex flex-wrap gap-3">
+            <button
+              type="button"
+              onClick={() => void importCertificatesFromFolder()}
+              disabled={certificateImportLoading}
+              className="rounded-full bg-accent px-5 py-2 text-sm font-semibold text-black disabled:opacity-60"
+            >
+              {certificateImportLoading ? "Importing..." : "Scan + Import From CONTENT/Certificates"}
+            </button>
+          </div>
+          {certificateImportSuccess ? <p className="mt-3 text-sm text-accent">{certificateImportSuccess}</p> : null}
+          {certificateImportError ? <p className="mt-3 text-sm text-red-400">{certificateImportError}</p> : null}
+        </section>
+
+        <JsonEditor title="Certificates" value={certificatesJson} onChange={setCertificatesJson} />
+        <JsonEditor title="Goals" value={goalsJson} onChange={setGoalsJson} />
+        <JsonEditor title="Education" value={educationJson} onChange={setEducationJson} />
         <JsonEditor title="YouTube Channels" value={channelsJson} onChange={setChannelsJson} />
       </section>
 
@@ -295,103 +526,6 @@ export function AdminEditor() {
       </section>
     </main>
   )
-}
-
-function normalizeYoutubeUrl(input: string): string {
-  const trimmed = input.trim()
-  if (!trimmed) return ""
-
-  let urlString = trimmed
-  if (!/^https?:\/\//i.test(urlString)) {
-    urlString = `https://${urlString}`
-  }
-
-  let url: URL
-  try {
-    url = new URL(urlString)
-  } catch {
-    return ""
-  }
-
-  const host = url.hostname.replace(/^www\./i, "").toLowerCase()
-  const isYoutube = host === "youtube.com" || host === "m.youtube.com" || host === "youtu.be"
-  if (!isYoutube) return ""
-
-  url.hash = ""
-
-  if (host === "youtu.be") {
-    const videoId = url.pathname.split("/").filter(Boolean)[0] ?? ""
-    if (!videoId) return ""
-    return `https://www.youtube.com/watch?v=${encodeURIComponent(videoId)}`
-  }
-
-  const pathname = url.pathname.replace(/\/+$/, "")
-  const allowedPrefixes = ["/watch", "/shorts/", "/channel/", "/@", "/c/", "/user/"]
-  const ok = allowedPrefixes.some((prefix) => pathname === prefix || pathname.startsWith(prefix))
-  if (!ok) return ""
-
-  url.hostname = "www.youtube.com"
-  url.pathname = pathname
-
-  if (pathname === "/watch") {
-    const v = url.searchParams.get("v")?.trim() ?? ""
-    if (!v) return ""
-    url.search = `?v=${encodeURIComponent(v)}`
-  } else {
-    url.search = ""
-  }
-
-  return url.toString()
-}
-
-function parseYoutubeImport(
-  inputUrl: string,
-  fields: { name?: string; description?: string }
-): YoutubeImportResult {
-  const url = normalizeYoutubeUrl(inputUrl)
-  if (!url) {
-    return { ok: false, error: "Enter a valid YouTube URL (channel/@handle/video/shorts)" }
-  }
-
-  const id = `yt-${Date.now()}-${Math.random().toString(16).slice(2, 8)}`
-  const name = fields.name && fields.name.length ? fields.name : "YouTube"
-  const description = fields.description && fields.description.length ? fields.description : "Imported from YouTube link"
-
-  return {
-    ok: true,
-    item: {
-      id,
-      name,
-      url,
-      description
-    }
-  }
-}
-
-function upsertChannelItem(
-  current: unknown[],
-  nextItem: { id: string; name: string; url: string; description: string }
-): unknown[] {
-  const normalizedUrl = normalizeYoutubeUrl(nextItem.url)
-  const existingIndex = current.findIndex((item) => {
-    if (!item || typeof item !== "object") return false
-    const maybeUrl = (item as { url?: unknown }).url
-    if (typeof maybeUrl !== "string") return false
-    return normalizeYoutubeUrl(maybeUrl) === normalizedUrl
-  })
-
-  if (existingIndex === -1) {
-    return [nextItem, ...current]
-  }
-
-  const existing = current[existingIndex]
-  const merged = {
-    ...(typeof existing === "object" && existing ? existing : {}),
-    ...nextItem,
-    url: normalizedUrl || nextItem.url
-  }
-
-  return current.map((item, index) => (index === existingIndex ? merged : item))
 }
 
 type JsonEditorProps = {

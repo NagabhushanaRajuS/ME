@@ -1,0 +1,358 @@
+standlone-proto/extracted/portfolio-from-resume (1)/.gitignore
+standlone-proto/extracted/portfolio-from-resume (1)/app/globals.css
+standlone-proto/extracted/portfolio-from-resume (1)/app/layout.tsx
+standlone-proto/extracted/portfolio-from-resume (1)/app/page.tsx
+standlone-proto/extracted/portfolio-from-resume (1)/components.json
+standlone-proto/extracted/portfolio-from-resume (1)/components/about-section.tsx
+standlone-proto/extracted/portfolio-from-resume (1)/components/certifications-section.tsx
+standlone-proto/extracted/portfolio-from-resume (1)/components/contact-section.tsx
+standlone-proto/extracted/portfolio-from-resume (1)/components/experience-section.tsx
+standlone-proto/extracted/portfolio-from-resume (1)/components/hero-3d.tsx
+standlone-proto/extracted/portfolio-from-resume (1)/components/hero-section.tsx
+standlone-proto/extracted/portfolio-from-resume (1)/components/navigation.tsx
+standlone-proto/extracted/portfolio-from-resume (1)/components/projects-section.tsx
+standlone-proto/extracted/portfolio-from-resume (1)/components/skills-section.tsx
+standlone-proto/extracted/portfolio-from-resume (1)/components/theme-provider.tsx
+standlone-proto/extracted/portfolio-from-resume (1)/hooks/use-mobile.ts
+standlone-proto/extracted/portfolio-from-resume (1)/hooks/use-toast.ts
+standlone-proto/extracted/portfolio-from-resume (1)/lib/utils.ts
+standlone-proto/extracted/portfolio-from-resume (1)/next.config.mjs
+standlone-proto/extracted/portfolio-from-resume (1)/package.json
+standlone-proto/extracted/portfolio-from-resume (1)/pnpm-lock.yaml
+standlone-proto/extracted/portfolio-from-resume (1)/postcss.config.mjs
+standlone-proto/extracted/portfolio-from-resume (1)/public/apple-icon.png
+standlone-proto/extracted/portfolio-from-resume (1)/public/icon-dark-32x32.png
+standlone-proto/extracted/portfolio-from-resume (1)/public/icon-light-32x32.png
+standlone-proto/extracted/portfolio-from-resume (1)/public/icon.svg
+standlone-proto/extracted/portfolio-from-resume (1)/public/placeholder-logo.png
+standlone-proto/extracted/portfolio-from-resume (1)/public/placeholder-logo.svg
+standlone-proto/extracted/portfolio-from-resume (1)/public/placeholder-user.jpg
+standlone-proto/extracted/portfolio-from-resume (1)/public/placeholder.jpg
+standlone-proto/extracted/portfolio-from-resume (1)/public/placeholder.svg
+standlone-proto/extracted/portfolio-from-resume (1)/public/professional-developer-avatar.png
+standlone-proto/extracted/portfolio-from-resume (1)/styles/globals.css
+standlone-proto/extracted/portfolio-from-resume (1)/tsconfig.json
+standlone-proto/extracted/portfolio-from-resume (2)/.gitignore
+standlone-proto/extracted/portfolio-from-resume (2)/app/globals.css
+standlone-proto/extracted/portfolio-from-resume (2)/app/layout.tsx
+standlone-proto/extracted/portfolio-from-resume (2)/app/page.tsx
+standlone-proto/extracted/portfolio-from-resume (2)/components.json
+standlone-proto/extracted/portfolio-from-resume (2)/components/about-section.tsx
+standlone-proto/extracted/portfolio-from-resume (2)/components/certifications-section.tsx
+standlone-proto/extracted/portfolio-from-resume (2)/components/contact-section.tsx
+standlone-proto/extracted/portfolio-from-resume (2)/components/experience-section.tsx
+standlone-proto/extracted/portfolio-from-resume (2)/components/hero-3d.tsx
+standlone-proto/extracted/portfolio-from-resume (2)/components/hero-section.tsx
+standlone-proto/extracted/portfolio-from-resume (2)/components/navigation.tsx
+standlone-proto/extracted/portfolio-from-resume (2)/components/projects-section.tsx
+standlone-proto/extracted/portfolio-from-resume (2)/components/skills-section.tsx
+standlone-proto/extracted/portfolio-from-resume (2)/components/theme-provider.tsx
+standlone-proto/extracted/portfolio-from-resume (2)/components/theme-toggle.tsx
+standlone-proto/extracted/portfolio-from-resume (2)/hooks/use-mobile.ts
+standlone-proto/extracted/portfolio-from-resume (2)/hooks/use-toast.ts
+standlone-proto/extracted/portfolio-from-resume (2)/lib/utils.ts
+standlone-proto/extracted/portfolio-from-resume (2)/next.config.mjs
+standlone-proto/extracted/portfolio-from-resume (2)/package.json
+standlone-proto/extracted/portfolio-from-resume (2)/pnpm-lock.yaml
+standlone-proto/extracted/portfolio-from-resume (2)/postcss.config.mjs
+standlone-proto/extracted/portfolio-from-resume (2)/public/apple-icon.png
+standlone-proto/extracted/portfolio-from-resume (2)/public/icon-dark-32x32.png
+standlone-proto/extracted/portfolio-from-resume (2)/public/icon-light-32x32.png
+standlone-proto/extracted/portfolio-from-resume (2)/public/icon.svg
+standlone-proto/extracted/portfolio-from-resume (2)/public/placeholder-logo.png
+standlone-proto/extracted/portfolio-from-resume (2)/public/placeholder-logo.svg
+standlone-proto/extracted/portfolio-from-resume (2)/public/placeholder-user.jpg
+standlone-proto/extracted/portfolio-from-resume (2)/public/placeholder.jpg
+standlone-proto/extracted/portfolio-from-resume (2)/public/placeholder.svg
+standlone-proto/extracted/portfolio-from-resume (2)/public/professional-developer-avatar.png
+standlone-proto/extracted/portfolio-from-resume (2)/styles/globals.css
+standlone-proto/extracted/portfolio-from-resume (2)/tsconfig.json
+standlone-proto/extracted/portfolio-from-resume (3)/.gitignore
+standlone-proto/extracted/portfolio-from-resume (3)/app/globals.css
+standlone-proto/extracted/portfolio-from-resume (3)/app/layout.tsx
+standlone-proto/extracted/portfolio-from-resume (3)/app/page.tsx
+standlone-proto/extracted/portfolio-from-resume (3)/components.json
+standlone-proto/extracted/portfolio-from-resume (3)/components/about-section.tsx
+standlone-proto/extracted/portfolio-from-resume (3)/components/certifications-section.tsx
+standlone-proto/extracted/portfolio-from-resume (3)/components/contact-section.tsx
+standlone-proto/extracted/portfolio-from-resume (3)/components/cursor-trail.tsx
+standlone-proto/extracted/portfolio-from-resume (3)/components/experience-section.tsx
+standlone-proto/extracted/portfolio-from-resume (3)/components/floating-shapes.tsx
+standlone-proto/extracted/portfolio-from-resume (3)/components/hero-3d.tsx
+standlone-proto/extracted/portfolio-from-resume (3)/components/hero-section.tsx
+standlone-proto/extracted/portfolio-from-resume (3)/components/navigation.tsx
+standlone-proto/extracted/portfolio-from-resume (3)/components/particle-background.tsx
+standlone-proto/extracted/portfolio-from-resume (3)/components/projects-section.tsx
+standlone-proto/extracted/portfolio-from-resume (3)/components/skills-section.tsx
+standlone-proto/extracted/portfolio-from-resume (3)/components/theme-provider.tsx
+standlone-proto/extracted/portfolio-from-resume (3)/components/theme-toggle.tsx
+standlone-proto/extracted/portfolio-from-resume (3)/hooks/use-mobile.ts
+standlone-proto/extracted/portfolio-from-resume (3)/hooks/use-toast.ts
+standlone-proto/extracted/portfolio-from-resume (3)/lib/utils.ts
+standlone-proto/extracted/portfolio-from-resume (3)/next.config.mjs
+standlone-proto/extracted/portfolio-from-resume (3)/package.json
+standlone-proto/extracted/portfolio-from-resume (3)/pnpm-lock.yaml
+standlone-proto/extracted/portfolio-from-resume (3)/postcss.config.mjs
+standlone-proto/extracted/portfolio-from-resume (3)/public/apple-icon.png
+standlone-proto/extracted/portfolio-from-resume (3)/public/icon-dark-32x32.png
+standlone-proto/extracted/portfolio-from-resume (3)/public/icon-light-32x32.png
+standlone-proto/extracted/portfolio-from-resume (3)/public/icon.svg
+standlone-proto/extracted/portfolio-from-resume (3)/public/placeholder-logo.png
+standlone-proto/extracted/portfolio-from-resume (3)/public/placeholder-logo.svg
+standlone-proto/extracted/portfolio-from-resume (3)/public/placeholder-user.jpg
+standlone-proto/extracted/portfolio-from-resume (3)/public/placeholder.jpg
+standlone-proto/extracted/portfolio-from-resume (3)/public/placeholder.svg
+standlone-proto/extracted/portfolio-from-resume (3)/public/professional-developer-avatar.png
+standlone-proto/extracted/portfolio-from-resume (3)/styles/globals.css
+standlone-proto/extracted/portfolio-from-resume (3)/tsconfig.json
+standlone-proto/extracted/portfolio-from-resume (4)/.gitignore
+standlone-proto/extracted/portfolio-from-resume (4)/app/globals.css
+standlone-proto/extracted/portfolio-from-resume (4)/app/layout.tsx
+standlone-proto/extracted/portfolio-from-resume (4)/app/page.tsx
+standlone-proto/extracted/portfolio-from-resume (4)/components.json
+standlone-proto/extracted/portfolio-from-resume (4)/components/about-section.tsx
+standlone-proto/extracted/portfolio-from-resume (4)/components/certifications-section.tsx
+standlone-proto/extracted/portfolio-from-resume (4)/components/contact-section.tsx
+standlone-proto/extracted/portfolio-from-resume (4)/components/cursor-trail.tsx
+standlone-proto/extracted/portfolio-from-resume (4)/components/experience-section.tsx
+standlone-proto/extracted/portfolio-from-resume (4)/components/floating-shapes.tsx
+standlone-proto/extracted/portfolio-from-resume (4)/components/hero-3d.tsx
+standlone-proto/extracted/portfolio-from-resume (4)/components/hero-section.tsx
+standlone-proto/extracted/portfolio-from-resume (4)/components/navigation.tsx
+standlone-proto/extracted/portfolio-from-resume (4)/components/particle-background.tsx
+standlone-proto/extracted/portfolio-from-resume (4)/components/projects-section.tsx
+standlone-proto/extracted/portfolio-from-resume (4)/components/skills-section.tsx
+standlone-proto/extracted/portfolio-from-resume (4)/components/theme-provider.tsx
+standlone-proto/extracted/portfolio-from-resume (4)/components/theme-toggle.tsx
+standlone-proto/extracted/portfolio-from-resume (4)/hooks/use-mobile.ts
+standlone-proto/extracted/portfolio-from-resume (4)/hooks/use-toast.ts
+standlone-proto/extracted/portfolio-from-resume (4)/lib/utils.ts
+standlone-proto/extracted/portfolio-from-resume (4)/next.config.mjs
+standlone-proto/extracted/portfolio-from-resume (4)/package.json
+standlone-proto/extracted/portfolio-from-resume (4)/pnpm-lock.yaml
+standlone-proto/extracted/portfolio-from-resume (4)/postcss.config.mjs
+standlone-proto/extracted/portfolio-from-resume (4)/public/apple-icon.png
+standlone-proto/extracted/portfolio-from-resume (4)/public/icon-dark-32x32.png
+standlone-proto/extracted/portfolio-from-resume (4)/public/icon-light-32x32.png
+standlone-proto/extracted/portfolio-from-resume (4)/public/icon.svg
+standlone-proto/extracted/portfolio-from-resume (4)/public/placeholder-logo.png
+standlone-proto/extracted/portfolio-from-resume (4)/public/placeholder-logo.svg
+standlone-proto/extracted/portfolio-from-resume (4)/public/placeholder-user.jpg
+standlone-proto/extracted/portfolio-from-resume (4)/public/placeholder.jpg
+standlone-proto/extracted/portfolio-from-resume (4)/public/placeholder.svg
+standlone-proto/extracted/portfolio-from-resume (4)/public/professional-developer-avatar.png
+standlone-proto/extracted/portfolio-from-resume (4)/styles/globals.css
+standlone-proto/extracted/portfolio-from-resume (4)/tsconfig.json
+standlone-proto/extracted/portfolio-from-resume (5)/.gitignore
+standlone-proto/extracted/portfolio-from-resume (5)/app/globals.css
+standlone-proto/extracted/portfolio-from-resume (5)/app/layout.tsx
+standlone-proto/extracted/portfolio-from-resume (5)/app/page.tsx
+standlone-proto/extracted/portfolio-from-resume (5)/components.json
+standlone-proto/extracted/portfolio-from-resume (5)/components/about-section.tsx
+standlone-proto/extracted/portfolio-from-resume (5)/components/certifications-section.tsx
+standlone-proto/extracted/portfolio-from-resume (5)/components/contact-section.tsx
+standlone-proto/extracted/portfolio-from-resume (5)/components/cursor-trail.tsx
+standlone-proto/extracted/portfolio-from-resume (5)/components/experience-section.tsx
+standlone-proto/extracted/portfolio-from-resume (5)/components/floating-shapes.tsx
+standlone-proto/extracted/portfolio-from-resume (5)/components/hero-3d.tsx
+standlone-proto/extracted/portfolio-from-resume (5)/components/hero-section.tsx
+standlone-proto/extracted/portfolio-from-resume (5)/components/navigation.tsx
+standlone-proto/extracted/portfolio-from-resume (5)/components/particle-background.tsx
+standlone-proto/extracted/portfolio-from-resume (5)/components/projects-section.tsx
+standlone-proto/extracted/portfolio-from-resume (5)/components/skills-section.tsx
+standlone-proto/extracted/portfolio-from-resume (5)/components/theme-provider.tsx
+standlone-proto/extracted/portfolio-from-resume (5)/components/theme-toggle.tsx
+standlone-proto/extracted/portfolio-from-resume (5)/hooks/use-mobile.ts
+standlone-proto/extracted/portfolio-from-resume (5)/hooks/use-toast.ts
+standlone-proto/extracted/portfolio-from-resume (5)/lib/utils.ts
+standlone-proto/extracted/portfolio-from-resume (5)/next.config.mjs
+standlone-proto/extracted/portfolio-from-resume (5)/package.json
+standlone-proto/extracted/portfolio-from-resume (5)/pnpm-lock.yaml
+standlone-proto/extracted/portfolio-from-resume (5)/postcss.config.mjs
+standlone-proto/extracted/portfolio-from-resume (5)/public/apple-icon.png
+standlone-proto/extracted/portfolio-from-resume (5)/public/icon-dark-32x32.png
+standlone-proto/extracted/portfolio-from-resume (5)/public/icon-light-32x32.png
+standlone-proto/extracted/portfolio-from-resume (5)/public/icon.svg
+standlone-proto/extracted/portfolio-from-resume (5)/public/placeholder-logo.png
+standlone-proto/extracted/portfolio-from-resume (5)/public/placeholder-logo.svg
+standlone-proto/extracted/portfolio-from-resume (5)/public/placeholder-user.jpg
+standlone-proto/extracted/portfolio-from-resume (5)/public/placeholder.jpg
+standlone-proto/extracted/portfolio-from-resume (5)/public/placeholder.svg
+standlone-proto/extracted/portfolio-from-resume (5)/public/professional-developer-avatar.png
+standlone-proto/extracted/portfolio-from-resume (5)/styles/globals.css
+standlone-proto/extracted/portfolio-from-resume (5)/tsconfig.json
+standlone-proto/extracted/portfolio-from-resume (6)/.gitignore
+standlone-proto/extracted/portfolio-from-resume (6)/app/globals.css
+standlone-proto/extracted/portfolio-from-resume (6)/app/layout.tsx
+standlone-proto/extracted/portfolio-from-resume (6)/app/page.tsx
+standlone-proto/extracted/portfolio-from-resume (6)/components.json
+standlone-proto/extracted/portfolio-from-resume (6)/components/about-section.tsx
+standlone-proto/extracted/portfolio-from-resume (6)/components/certifications-section.tsx
+standlone-proto/extracted/portfolio-from-resume (6)/components/contact-section.tsx
+standlone-proto/extracted/portfolio-from-resume (6)/components/cursor-trail.tsx
+standlone-proto/extracted/portfolio-from-resume (6)/components/experience-section.tsx
+standlone-proto/extracted/portfolio-from-resume (6)/components/floating-shapes.tsx
+standlone-proto/extracted/portfolio-from-resume (6)/components/hero-3d.tsx
+standlone-proto/extracted/portfolio-from-resume (6)/components/hero-section.tsx
+standlone-proto/extracted/portfolio-from-resume (6)/components/navigation.tsx
+standlone-proto/extracted/portfolio-from-resume (6)/components/particle-background.tsx
+standlone-proto/extracted/portfolio-from-resume (6)/components/projects-section.tsx
+standlone-proto/extracted/portfolio-from-resume (6)/components/scroll-reveal.tsx
+standlone-proto/extracted/portfolio-from-resume (6)/components/skills-section.tsx
+standlone-proto/extracted/portfolio-from-resume (6)/components/theme-provider.tsx
+standlone-proto/extracted/portfolio-from-resume (6)/components/theme-toggle.tsx
+standlone-proto/extracted/portfolio-from-resume (6)/hooks/use-mobile.ts
+standlone-proto/extracted/portfolio-from-resume (6)/hooks/use-toast.ts
+standlone-proto/extracted/portfolio-from-resume (6)/lib/utils.ts
+standlone-proto/extracted/portfolio-from-resume (6)/next.config.mjs
+standlone-proto/extracted/portfolio-from-resume (6)/package.json
+standlone-proto/extracted/portfolio-from-resume (6)/pnpm-lock.yaml
+standlone-proto/extracted/portfolio-from-resume (6)/postcss.config.mjs
+standlone-proto/extracted/portfolio-from-resume (6)/public/apple-icon.png
+standlone-proto/extracted/portfolio-from-resume (6)/public/icon-dark-32x32.png
+standlone-proto/extracted/portfolio-from-resume (6)/public/icon-light-32x32.png
+standlone-proto/extracted/portfolio-from-resume (6)/public/icon.svg
+standlone-proto/extracted/portfolio-from-resume (6)/public/placeholder-logo.png
+standlone-proto/extracted/portfolio-from-resume (6)/public/placeholder-logo.svg
+standlone-proto/extracted/portfolio-from-resume (6)/public/placeholder-user.jpg
+standlone-proto/extracted/portfolio-from-resume (6)/public/placeholder.jpg
+standlone-proto/extracted/portfolio-from-resume (6)/public/placeholder.svg
+standlone-proto/extracted/portfolio-from-resume (6)/public/professional-developer-avatar.png
+standlone-proto/extracted/portfolio-from-resume (6)/styles/globals.css
+standlone-proto/extracted/portfolio-from-resume (6)/tsconfig.json
+standlone-proto/extracted/portfolio-from-resume (7)/.gitignore
+standlone-proto/extracted/portfolio-from-resume (7)/app/globals.css
+standlone-proto/extracted/portfolio-from-resume (7)/app/layout.tsx
+standlone-proto/extracted/portfolio-from-resume (7)/app/page.tsx
+standlone-proto/extracted/portfolio-from-resume (7)/components.json
+standlone-proto/extracted/portfolio-from-resume (7)/components/3d-flip-card.tsx
+standlone-proto/extracted/portfolio-from-resume (7)/components/about-section.tsx
+standlone-proto/extracted/portfolio-from-resume (7)/components/certifications-section.tsx
+standlone-proto/extracted/portfolio-from-resume (7)/components/contact-section.tsx
+standlone-proto/extracted/portfolio-from-resume (7)/components/cursor-trail.tsx
+standlone-proto/extracted/portfolio-from-resume (7)/components/experience-section.tsx
+standlone-proto/extracted/portfolio-from-resume (7)/components/floating-shapes.tsx
+standlone-proto/extracted/portfolio-from-resume (7)/components/hero-3d.tsx
+standlone-proto/extracted/portfolio-from-resume (7)/components/hero-section.tsx
+standlone-proto/extracted/portfolio-from-resume (7)/components/magnetic-button.tsx
+standlone-proto/extracted/portfolio-from-resume (7)/components/navigation.tsx
+standlone-proto/extracted/portfolio-from-resume (7)/components/parallax-section.tsx
+standlone-proto/extracted/portfolio-from-resume (7)/components/particle-background.tsx
+standlone-proto/extracted/portfolio-from-resume (7)/components/projects-section.tsx
+standlone-proto/extracted/portfolio-from-resume (7)/components/scroll-progress.tsx
+standlone-proto/extracted/portfolio-from-resume (7)/components/scroll-reveal.tsx
+standlone-proto/extracted/portfolio-from-resume (7)/components/skills-section.tsx
+standlone-proto/extracted/portfolio-from-resume (7)/components/split-text-reveal.tsx
+standlone-proto/extracted/portfolio-from-resume (7)/components/theme-provider.tsx
+standlone-proto/extracted/portfolio-from-resume (7)/components/theme-toggle.tsx
+standlone-proto/extracted/portfolio-from-resume (7)/components/webgl-network.tsx
+standlone-proto/extracted/portfolio-from-resume (7)/hooks/use-mobile.ts
+standlone-proto/extracted/portfolio-from-resume (7)/hooks/use-toast.ts
+standlone-proto/extracted/portfolio-from-resume (7)/lib/utils.ts
+standlone-proto/extracted/portfolio-from-resume (7)/next.config.mjs
+standlone-proto/extracted/portfolio-from-resume (7)/package.json
+standlone-proto/extracted/portfolio-from-resume (7)/pnpm-lock.yaml
+standlone-proto/extracted/portfolio-from-resume (7)/postcss.config.mjs
+standlone-proto/extracted/portfolio-from-resume (7)/public/apple-icon.png
+standlone-proto/extracted/portfolio-from-resume (7)/public/icon-dark-32x32.png
+standlone-proto/extracted/portfolio-from-resume (7)/public/icon-light-32x32.png
+standlone-proto/extracted/portfolio-from-resume (7)/public/icon.svg
+standlone-proto/extracted/portfolio-from-resume (7)/public/placeholder-logo.png
+standlone-proto/extracted/portfolio-from-resume (7)/public/placeholder-logo.svg
+standlone-proto/extracted/portfolio-from-resume (7)/public/placeholder-user.jpg
+standlone-proto/extracted/portfolio-from-resume (7)/public/placeholder.jpg
+standlone-proto/extracted/portfolio-from-resume (7)/public/placeholder.svg
+standlone-proto/extracted/portfolio-from-resume (7)/public/professional-developer-avatar.png
+standlone-proto/extracted/portfolio-from-resume (7)/styles/globals.css
+standlone-proto/extracted/portfolio-from-resume (7)/tsconfig.json
+standlone-proto/extracted/portfolio-from-resume (8)/.gitignore
+standlone-proto/extracted/portfolio-from-resume (8)/app/globals.css
+standlone-proto/extracted/portfolio-from-resume (8)/app/layout.tsx
+standlone-proto/extracted/portfolio-from-resume (8)/app/page.tsx
+standlone-proto/extracted/portfolio-from-resume (8)/components.json
+standlone-proto/extracted/portfolio-from-resume (8)/components/3d-flip-card.tsx
+standlone-proto/extracted/portfolio-from-resume (8)/components/about-section.tsx
+standlone-proto/extracted/portfolio-from-resume (8)/components/certifications-section.tsx
+standlone-proto/extracted/portfolio-from-resume (8)/components/contact-section.tsx
+standlone-proto/extracted/portfolio-from-resume (8)/components/cursor-trail.tsx
+standlone-proto/extracted/portfolio-from-resume (8)/components/experience-section.tsx
+standlone-proto/extracted/portfolio-from-resume (8)/components/floating-shapes.tsx
+standlone-proto/extracted/portfolio-from-resume (8)/components/hero-3d.tsx
+standlone-proto/extracted/portfolio-from-resume (8)/components/hero-section.tsx
+standlone-proto/extracted/portfolio-from-resume (8)/components/magnetic-button.tsx
+standlone-proto/extracted/portfolio-from-resume (8)/components/navigation.tsx
+standlone-proto/extracted/portfolio-from-resume (8)/components/parallax-section.tsx
+standlone-proto/extracted/portfolio-from-resume (8)/components/particle-background.tsx
+standlone-proto/extracted/portfolio-from-resume (8)/components/projects-section.tsx
+standlone-proto/extracted/portfolio-from-resume (8)/components/scroll-progress.tsx
+standlone-proto/extracted/portfolio-from-resume (8)/components/scroll-reveal.tsx
+standlone-proto/extracted/portfolio-from-resume (8)/components/skills-section.tsx
+standlone-proto/extracted/portfolio-from-resume (8)/components/split-text-reveal.tsx
+standlone-proto/extracted/portfolio-from-resume (8)/components/theme-provider.tsx
+standlone-proto/extracted/portfolio-from-resume (8)/components/theme-toggle.tsx
+standlone-proto/extracted/portfolio-from-resume (8)/components/webgl-network.tsx
+standlone-proto/extracted/portfolio-from-resume (8)/hooks/use-mobile.ts
+standlone-proto/extracted/portfolio-from-resume (8)/hooks/use-toast.ts
+standlone-proto/extracted/portfolio-from-resume (8)/lib/utils.ts
+standlone-proto/extracted/portfolio-from-resume (8)/next.config.mjs
+standlone-proto/extracted/portfolio-from-resume (8)/package.json
+standlone-proto/extracted/portfolio-from-resume (8)/pnpm-lock.yaml
+standlone-proto/extracted/portfolio-from-resume (8)/postcss.config.mjs
+standlone-proto/extracted/portfolio-from-resume (8)/public/apple-icon.png
+standlone-proto/extracted/portfolio-from-resume (8)/public/icon-dark-32x32.png
+standlone-proto/extracted/portfolio-from-resume (8)/public/icon-light-32x32.png
+standlone-proto/extracted/portfolio-from-resume (8)/public/icon.svg
+standlone-proto/extracted/portfolio-from-resume (8)/public/placeholder-logo.png
+standlone-proto/extracted/portfolio-from-resume (8)/public/placeholder-logo.svg
+standlone-proto/extracted/portfolio-from-resume (8)/public/placeholder-user.jpg
+standlone-proto/extracted/portfolio-from-resume (8)/public/placeholder.jpg
+standlone-proto/extracted/portfolio-from-resume (8)/public/placeholder.svg
+standlone-proto/extracted/portfolio-from-resume (8)/public/professional-developer-avatar.png
+standlone-proto/extracted/portfolio-from-resume (8)/styles/globals.css
+standlone-proto/extracted/portfolio-from-resume (8)/tsconfig.json
+standlone-proto/extracted/portfolio-from-resume/.gitignore
+standlone-proto/extracted/portfolio-from-resume/app/globals.css
+standlone-proto/extracted/portfolio-from-resume/app/layout.tsx
+standlone-proto/extracted/portfolio-from-resume/app/page.tsx
+standlone-proto/extracted/portfolio-from-resume/components.json
+standlone-proto/extracted/portfolio-from-resume/components/about-section.tsx
+standlone-proto/extracted/portfolio-from-resume/components/certifications-section.tsx
+standlone-proto/extracted/portfolio-from-resume/components/contact-section.tsx
+standlone-proto/extracted/portfolio-from-resume/components/experience-section.tsx
+standlone-proto/extracted/portfolio-from-resume/components/hero-section.tsx
+standlone-proto/extracted/portfolio-from-resume/components/navigation.tsx
+standlone-proto/extracted/portfolio-from-resume/components/projects-section.tsx
+standlone-proto/extracted/portfolio-from-resume/components/skills-section.tsx
+standlone-proto/extracted/portfolio-from-resume/components/theme-provider.tsx
+standlone-proto/extracted/portfolio-from-resume/hooks/use-mobile.ts
+standlone-proto/extracted/portfolio-from-resume/hooks/use-toast.ts
+standlone-proto/extracted/portfolio-from-resume/lib/utils.ts
+standlone-proto/extracted/portfolio-from-resume/next.config.mjs
+standlone-proto/extracted/portfolio-from-resume/package.json
+standlone-proto/extracted/portfolio-from-resume/pnpm-lock.yaml
+standlone-proto/extracted/portfolio-from-resume/postcss.config.mjs
+standlone-proto/extracted/portfolio-from-resume/public/apple-icon.png
+standlone-proto/extracted/portfolio-from-resume/public/icon-dark-32x32.png
+standlone-proto/extracted/portfolio-from-resume/public/icon-light-32x32.png
+standlone-proto/extracted/portfolio-from-resume/public/icon.svg
+standlone-proto/extracted/portfolio-from-resume/public/placeholder-logo.png
+standlone-proto/extracted/portfolio-from-resume/public/placeholder-logo.svg
+standlone-proto/extracted/portfolio-from-resume/public/placeholder-user.jpg
+standlone-proto/extracted/portfolio-from-resume/public/placeholder.jpg
+standlone-proto/extracted/portfolio-from-resume/public/placeholder.svg
+standlone-proto/extracted/portfolio-from-resume/styles/globals.css
+standlone-proto/extracted/portfolio-from-resume/tsconfig.json
+standlone-proto/notes/inventory.txt
+standlone-proto/old-code/f6e39e4/app/globals.css
+standlone-proto/old-code/f6e39e4/app/layout.tsx
+standlone-proto/old-code/f6e39e4/app/page.tsx
+standlone-proto/old-code/f6e39e4/app/template.tsx
+standlone-proto/old-zips/portfolio-from-resume (1).zip
+standlone-proto/old-zips/portfolio-from-resume (2).zip
+standlone-proto/old-zips/portfolio-from-resume (3).zip
+standlone-proto/old-zips/portfolio-from-resume (4).zip
+standlone-proto/old-zips/portfolio-from-resume (5).zip
+standlone-proto/old-zips/portfolio-from-resume (6).zip
+standlone-proto/old-zips/portfolio-from-resume (7).zip
+standlone-proto/old-zips/portfolio-from-resume (8).zip
+standlone-proto/old-zips/portfolio-from-resume.zip

@@ -6,22 +6,33 @@ const COOKIE_NAME = "portfolio_admin_session"
 const SESSION_TTL_MS = 1000 * 60 * 60 * 12
 
 function getSecret() {
-  return process.env.ADMIN_SECRET ?? "change-this-secret-in-env"
+  const secret = process.env.ADMIN_SECRET?.trim() ?? ""
+  if (!secret) return null
+  if (secret.length < 16) return null
+  return secret
 }
 
 function sign(value: string) {
-  return createHmac("sha256", getSecret()).update(value).digest("hex")
+  const secret = getSecret()
+  if (!secret) return null
+  return createHmac("sha256", secret).update(value).digest("hex")
 }
 
 function getCredentials() {
-  return {
-    username: process.env.ADMIN_USERNAME ?? "admin",
-    password: process.env.ADMIN_PASSWORD ?? "admin123"
-  }
+  const username = process.env.ADMIN_USERNAME?.trim() ?? ""
+  const password = process.env.ADMIN_PASSWORD?.trim() ?? ""
+
+  if (!username || !password) return null
+  return { username, password }
+}
+
+export function isAdminConfigured() {
+  return Boolean(getSecret()) && Boolean(getCredentials())
 }
 
 export function validateAdminCredentials(username: string, password: string) {
   const valid = getCredentials()
+  if (!valid) return false
   return username === valid.username && password === valid.password
 }
 
@@ -29,6 +40,9 @@ export function createSessionToken(username: string) {
   const expiresAt = Date.now() + SESSION_TTL_MS
   const payload = `${username}:${expiresAt}`
   const signature = sign(payload)
+  if (!signature) {
+    throw new Error("Admin auth is not configured")
+  }
   return Buffer.from(`${payload}:${signature}`).toString("base64url")
 }
 
@@ -42,6 +56,7 @@ export function verifySessionToken(token: string | undefined | null) {
 
     const payload = `${username}:${expiresAtRaw}`
     const expected = sign(payload)
+    if (!expected) return false
     const left = Buffer.from(signature)
     const right = Buffer.from(expected)
 

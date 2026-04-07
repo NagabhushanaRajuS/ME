@@ -3,6 +3,7 @@
 import { motion } from "framer-motion"
 import { personalInfo, socialLinks } from "@/lib/data"
 import { useThemeMode } from "@/components/providers/theme-provider"
+import { BrandLoopIcon } from "@/components/layout/brand-loop-icon"
 
 export function Footer() {
   const { theme } = useThemeMode()
@@ -14,8 +15,8 @@ export function Footer() {
       <div className="mx-auto flex w-full max-w-7xl flex-col gap-8 px-5 md:px-8 lg:flex-row lg:items-end lg:justify-between lg:px-12">
         {/* Left */}
         <div>
-          <a href="/" className="font-heading text-lg font-bold tracking-[0.2em] text-text">
-            {personalInfo.initials}
+          <a href="/" className="inline-flex items-center" aria-label="Home">
+            <BrandLoopIcon title={`${personalInfo.name} icon`} />
           </a>
           <p className="mt-3 max-w-xs text-sm text-muted">
             Crafted with precision, motion, and intent.

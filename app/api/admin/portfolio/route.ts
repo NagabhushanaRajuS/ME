@@ -9,7 +9,11 @@ export async function GET(request: import("next/server").NextRequest) {
   }
 
   const data = await getPortfolioData()
-  return NextResponse.json(data)
+  return NextResponse.json(data, {
+    headers: {
+      "Cache-Control": "no-store"
+    }
+  })
 }
 
 export async function PUT(request: import("next/server").NextRequest) {
@@ -23,5 +27,9 @@ export async function PUT(request: import("next/server").NextRequest) {
   }
 
   const saved = await savePortfolioData(body)
-  return NextResponse.json(saved)
+  return NextResponse.json(saved, {
+    headers: {
+      "Cache-Control": "no-store"
+    }
+  })
 }

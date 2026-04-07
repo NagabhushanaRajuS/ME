@@ -1,21 +1,28 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { THEME_LABELS, type ThemeMode } from "@/lib/themes"
+import { Aperture, Sun, TerminalSquare } from "lucide-react"
+import { type ThemeMode } from "@/lib/themes"
 import { useThemeMode } from "@/components/providers/theme-provider"
 
-const themes: ThemeMode[] = ["light", "medium", "dark"]
+const themes: Array<{ mode: ThemeMode; label: string; Icon: typeof Sun }> = [
+  { mode: "light", label: "Light Studio", Icon: Sun },
+  { mode: "medium", label: "Prism Editorial", Icon: Aperture },
+  { mode: "dark", label: "Terminal Core", Icon: TerminalSquare }
+]
 
 export function ThemeSwitcher() {
   const { theme, setTheme } = useThemeMode()
 
   return (
-    <div className="relative inline-flex rounded-full border border-line bg-surface/70 p-1 backdrop-blur">
-      {themes.map((mode) => (
+    <div className="theme-switcher-shell relative inline-flex items-center gap-1 rounded-full border border-line bg-surface/70 p-1 backdrop-blur">
+      {themes.map(({ mode, label, Icon }) => (
         <button
           key={mode}
+          title={label}
+          aria-label={`Switch to ${label}`}
           onClick={() => setTheme(mode)}
-          className="relative rounded-full px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.14em] text-muted"
+          className="theme-switcher-option relative grid h-8 w-8 place-items-center rounded-full text-muted transition-colors hover:text-text"
         >
           {theme === mode ? (
             <motion.span
@@ -24,7 +31,7 @@ export function ThemeSwitcher() {
               transition={{ type: "spring", stiffness: 260, damping: 22 }}
             />
           ) : null}
-          <span className={theme === mode ? "text-black" : "text-muted"}>{THEME_LABELS[mode]}</span>
+          <Icon size={14} className={theme === mode ? "text-black" : "text-muted"} />
         </button>
       ))}
     </div>

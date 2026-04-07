@@ -1,14 +1,191 @@
 {
   "owner": {
     "name": "Nagabhushana Raju",
-    "headline": "Frontend Engineer",
+    "headline": "Engineer",
     "shortIntro": "Coming Soon",
     "profilePhotoUrl": "",
+    "hologramPhotoUrls": [
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
     "introVideoUrl": "",
     "geometricAvatarNote": "Wireframe geometric avatar - coming soon"
   },
   "projects": [],
-  "certificates": [],
+  "certificates": [
+    {
+      "id": "cert-10m-officemaster-al-workshop-certifi-1",
+      "title": "10M] OfficeMaster Al Workshop",
+      "issuer": "Certificate Authority",
+      "date": "2025-05-11",
+      "credentialUrl": "",
+      "previewImage": "/api/certificates/local-image?name=10m-officemaster-al-workshop-certificate-authority-2025-05-11.png"
+    },
+    {
+      "id": "cert-advanced-statistics-for-machine-lear-2",
+      "title": "Advanced Statistics for Machine Learning",
+      "issuer": "Infosys",
+      "date": "December 6, 2025",
+      "credentialUrl": "",
+      "previewImage": "/api/certificates/local-image?name=advanced-statistics-for-machine-learning-infosys-december-6-2025.jpeg"
+    },
+    {
+      "id": "cert-af-i-certificate-authority-date-not--3",
+      "title": "[AF == I :",
+      "issuer": "Certificate Authority",
+      "date": "Date Not Specified",
+      "credentialUrl": "",
+      "previewImage": "/api/certificates/local-image?name=af-i-certificate-authority-date-not-specified.png"
+    },
+    {
+      "id": "cert-al-data-science-applications-certifi-4",
+      "title": "Al & DATA SCIENCE APPLICATIONS",
+      "issuer": "Certificate Authority",
+      "date": "Date Not Specified",
+      "credentialUrl": "",
+      "previewImage": "/api/certificates/local-image?name=al-data-science-applications-certificate-authority-date-not-specified.jpeg"
+    },
+    {
+      "id": "cert-ana-ee-government-date-not-specified-5",
+      "title": "ana | Ee",
+      "issuer": "Government",
+      "date": "Date Not Specified",
+      "credentialUrl": "",
+      "previewImage": "/api/certificates/local-image?name=ana-ee-government-date-not-specified.jpeg"
+    },
+    {
+      "id": "cert-crarorr-chatgpt-prompt-engineering-f-6",
+      "title": "crarorr ChatGPT Prompt Engineering for Developers",
+      "issuer": "Certificate Authority",
+      "date": "March 31, 2026",
+      "credentialUrl": "",
+      "previewImage": "/api/certificates/local-image?name=crarorr-chatgpt-prompt-engineering-for-developers-certificate-authority-march-31-2026.jpeg"
+    },
+    {
+      "id": "cert-data-analytics-using-power-bi-worksh-7",
+      "title": "Data Analytics Using POWER BI Workshop",
+      "issuer": "Certificate Authority",
+      "date": "2025-05-11",
+      "credentialUrl": "",
+      "previewImage": "/api/certificates/local-image?name=data-analytics-using-power-bi-workshop-certificate-authority-2025-05-11.png"
+    },
+    {
+      "id": "cert-data-science-certificate-authority-2-8",
+      "title": "Data Science",
+      "issuer": "Certificate Authority",
+      "date": "2025-05-11",
+      "credentialUrl": "",
+      "previewImage": "/api/certificates/local-image?name=data-science-certificate-authority-2025-05-11.png"
+    },
+    {
+      "id": "cert-dept-of-cse-data-science-mitm-mit-my-9",
+      "title": "Dept. of CSE (Data Science), MITM MIT MYSORE",
+      "issuer": "Certificate Authority",
+      "date": "Date Not Specified",
+      "credentialUrl": "",
+      "previewImage": "/api/certificates/local-image?name=dept-of-cse-data-science-mitm-mit-mysore-certificate-authority-date-not-specified.jpeg"
+    },
+    {
+      "id": "cert-from-maharaja-institute-of-technolog-10",
+      "title": "from Maharaja Institute of Technology (MIT), Mysore",
+      "issuer": "from Maharaja Institute of Technology (MIT), Mysore",
+      "date": "2025-05-11",
+      "credentialUrl": "",
+      "previewImage": "/api/certificates/local-image?name=from-maharaja-institute-of-technology-mit-mysore-from-maharaja-institute-of-technology-mit-mysore-2025-05-11.png"
+    },
+    {
+      "id": "cert-google-ai-google-mar-30-2026-11",
+      "title": "Google AI",
+      "issuer": "Google",
+      "date": "Mar 30, 2026",
+      "credentialUrl": "https://coursera.org/verify/professional-cert/BY56EG6NY11L",
+      "courseLinks": [
+        "https://coursera.org/share/021ae5d0876d16c9d6142f2461ce9a74",
+        "https://coursera.org/share/b78b1d3b54a407813bb28dc8fbff2527",
+        "https://coursera.org/share/74f05229401d92729926bc1d4b0f8b42",
+        "https://coursera.org/share/75a86f79c043051a9a17cd0e55c500f0",
+        "https://coursera.org/share/3bcf87d7282bff3d5b663a72c26ceecd",
+        "https://coursera.org/share/bacf27be775ab2859f606f28f0eb1c37",
+        "https://coursera.org/share/2d021f9aede33085bd439d0931ed26f9"
+      ],
+      "previewImage": "/api/certificates/local-image?name=google-ai-google-mar-30-2026.png"
+    },
+    {
+      "id": "cert-has-successfully-completed-the-e-lea-12",
+      "title": "Has Successfully Completed The E-Learning Course Of",
+      "issuer": "Certificate Authority",
+      "date": "2025-05-11",
+      "credentialUrl": "",
+      "previewImage": "/api/certificates/local-image?name=has-successfully-completed-the-e-learning-course-of-certificate-authority-2025-05-11.png"
+    },
+    {
+      "id": "cert-hm-department-of-cse-data-science-5--13",
+      "title": "] (hm) DEPARTMENT OF CSE - DATA SCIENCE (5) | au",
+      "issuer": "Certificate Authority",
+      "date": "2026-02-16",
+      "credentialUrl": "",
+      "previewImage": "/api/certificates/local-image?name=hm-department-of-cse-data-science-5-au-certificate-authority-2026-02-16.jpeg"
+    },
+    {
+      "id": "cert-infosys-infosys-2026-04-05-14",
+      "title": "Infosys",
+      "issuer": "Infosys",
+      "date": "2026-04-05",
+      "credentialUrl": "",
+      "previewImage": "/api/certificates/local-image?name=infosys-infosys-2026-04-05.png"
+    },
+    {
+      "id": "cert-ministry-of-youth-affairs-sports-gov-15",
+      "title": "Ministry of Youth Affairs & Sports",
+      "issuer": "Government",
+      "date": "16 February 2026",
+      "credentialUrl": "",
+      "previewImage": "/api/certificates/local-image?name=ministry-of-youth-affairs-sports-government-16-february-2026-2.jpeg"
+    },
+    {
+      "id": "cert-ministry-of-youth-affairs-sports-gov-16",
+      "title": "Ministry of Youth Affairs & Sports",
+      "issuer": "Government",
+      "date": "16 February 2026",
+      "credentialUrl": "",
+      "previewImage": "/api/certificates/local-image?name=ministry-of-youth-affairs-sports-government-16-february-2026.jpeg"
+    },
+    {
+      "id": "cert-nagabhushanarajus-pdf-qq-certificate-17",
+      "title": "¢ NagabhushanaRajuS.pdf [QQ &",
+      "issuer": "Certificate Authority",
+      "date": "Date Not Specified",
+      "credentialUrl": "",
+      "previewImage": "/api/certificates/local-image?name=nagabhushanarajus-pdf-qq-certificate-authority-date-not-specified.jpeg"
+    },
+    {
+      "id": "cert-nonlin-couse-aborzd-by-universo-de-b-18",
+      "title": "nonlin couse aborzd by Universo de Breen ad fred heh Csern i (coursera -):",
+      "issuer": "Coursera",
+      "date": "Date Not Specified",
+      "credentialUrl": "",
+      "previewImage": "/api/certificates/local-image?name=nonlin-couse-aborzd-by-universo-de-breen-ad-fred-heh-csern-i-coursera-coursera-date-not-specified.jpeg"
+    },
+    {
+      "id": "cert-os-ey-infosys-springtivard-infosys-d-19",
+      "title": "Os ey Infosys | Springtivard",
+      "issuer": "Infosys",
+      "date": "December 10, 2025",
+      "credentialUrl": "",
+      "previewImage": "/api/certificates/local-image?name=os-ey-infosys-springtivard-infosys-december-10-2025.jpeg"
+    },
+    {
+      "id": "cert-ve-tr-maharaja-institute-of-technolo-20",
+      "title": "Ve TR MAHARAJA INSTITUTE OF TECHNOLOGY MYSORE 3",
+      "issuer": "Certificate Authority",
+      "date": "2025-05-11",
+      "credentialUrl": "",
+      "previewImage": "/api/certificates/local-image?name=ve-tr-maharaja-institute-of-technology-mysore-3-certificate-authority-2025-05-11.png"
+    }
+  ],
   "goals": [],
   "education": [],
   "channels": [],
@@ -16,5 +193,5 @@
     "email": "",
     "phone": ""
   },
-  "updatedAt": "1970-01-01T00:00:00.000Z"
+  "updatedAt": "2026-04-04T21:24:15.553Z"
 }
