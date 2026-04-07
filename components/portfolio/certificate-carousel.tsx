@@ -86,7 +86,11 @@ export function CertificateCarousel({ certificates }: CertificateCarouselProps) 
         >
           Prev
         </button>
-        <span className="text-xs text-muted tabular-nums">
+        <span
+          className="text-xs text-muted tabular-nums"
+          aria-label={`Certificate ${active + 1} of ${certificates.length}`}
+          aria-live="polite"
+        >
           {active + 1} / {certificates.length}
         </span>
         <button
