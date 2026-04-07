@@ -1,5 +1,5 @@
 import type { Metadata } from "next"
-import { Space_Grotesk, Sora } from "next/font/google"
+import { IBM_Plex_Mono, Sora, Space_Grotesk } from "next/font/google"
 import type { ReactNode } from "react"
 import "./globals.css"
 import { ThemeProvider } from "@/components/providers/theme-provider"
@@ -16,15 +16,22 @@ const body = Sora({
   display: "swap"
 })
 
+const terminal = IBM_Plex_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500", "700"],
+  variable: "--font-terminal",
+  display: "swap"
+})
+
 export const metadata: Metadata = {
-  title: "Nagabhushana Raju | Frontend Architect",
-  description: "Premium multi-theme personal portfolio powered by Next.js 14 and Framer Motion"
+  title: "Nagabhushana Raju S | Software Engineer | AI & Data Science",
+  description: "Portfolio of Nagabhushana Raju S — Software Engineering student at MIT Mysore specializing in AI, Data Science, and full-stack development."
 }
 
 export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
   return (
     <html lang="en" data-theme="dark">
-      <body className={`${heading.variable} ${body.variable}`}>
+      <body className={`${heading.variable} ${body.variable} ${terminal.variable}`}>
         <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>

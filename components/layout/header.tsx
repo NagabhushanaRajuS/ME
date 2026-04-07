@@ -2,18 +2,31 @@
 
 import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
+import Link from "next/link"
+import { usePathname, useRouter } from "next/navigation"
 import { ThemeSwitcher } from "@/components/ui/theme-switcher"
 import { MagneticButton } from "@/components/ui/magnetic-button"
+import { LiveSyncIndicator } from "@/components/effects/live-sync-indicator"
+import { BrandLoopIcon } from "@/components/layout/brand-loop-icon"
+import { useThemeMode } from "@/components/providers/theme-provider"
 
 const links = [
   { href: "/", label: "Home" },
+  { href: "/resume", label: "Resume" },
   { href: "/certificates", label: "Certificates" },
   { href: "/goals", label: "Goals" },
   { href: "/education", label: "Education" },
   { href: "/channels", label: "Channels" }
 ]
 
-export function Header() {
+type HeaderProps = {
+  ownerName?: string
+}
+
+export function Header({ ownerName }: HeaderProps) {
+  const { theme } = useThemeMode()
+  const pathname = usePathname()
+  const router = useRouter()
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
 
@@ -26,7 +39,7 @@ export function Header() {
   return (
     <>
       <motion.header
-        className={`fixed left-0 right-0 top-0 z-40 transition-all duration-500 ${
+        className={`header-shell fixed left-0 right-0 top-0 z-40 transition-all duration-500 ${
           scrolled
             ? "border-b border-line/40 bg-bg/80 py-2 backdrop-blur-xl"
             : "border-b border-transparent bg-transparent py-4"
@@ -35,37 +48,43 @@ export function Header() {
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
       >
-        <div className="mx-auto flex w-full max-w-7xl items-center justify-between px-5 md:px-8 lg:px-12">
+        <div className="page-container flex items-center justify-between">
           {/* Logo */}
-          <a href="/" className="relative font-heading text-lg font-bold tracking-[0.2em] text-text">
-            NR
-            <span className="absolute -bottom-0.5 left-0 h-[2px] w-full bg-accent opacity-60" />
-          </a>
+          <Link href="/" className="inline-flex items-center" aria-label="Home">
+            <BrandLoopIcon title={ownerName ? `${ownerName} icon` : "Brand icon"} />
+          </Link>
 
           {/* Desktop nav */}
           <nav className="hidden items-center gap-8 md:flex">
             {links.map((link) => (
-              <a
+              <Link
                 key={link.href}
                 href={link.href}
-                className="group relative text-sm font-medium text-muted transition-colors duration-300 hover:text-text"
+                className={`nav-link group relative text-sm font-medium transition-colors duration-300 hover:text-text ${
+                  pathname === link.href ? "text-text" : "text-muted"
+                }`}
               >
                 {link.label}
-                <span className="absolute -bottom-1 left-0 h-[1.5px] w-0 bg-accent transition-all duration-300 group-hover:w-full" />
-              </a>
+                <span
+                  className={`absolute -bottom-1 left-0 h-[1.5px] bg-accent transition-all duration-300 group-hover:w-full ${
+                    pathname === link.href ? "w-full" : "w-0"
+                  }`}
+                />
+              </Link>
             ))}
           </nav>
 
           {/* Right side */}
           <div className="flex items-center gap-3">
+            <LiveSyncIndicator />
             <ThemeSwitcher />
             <MagneticButton
-              className="hidden rounded-full border border-accent/40 bg-accent/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.12em] text-accent transition-all duration-300 hover:bg-accent hover:text-black hover:shadow-aura md:block"
+              className="control-button hidden rounded-full border border-accent/40 bg-accent/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.12em] text-accent transition-all duration-300 hover:bg-accent hover:text-black hover:shadow-aura md:block"
               onClick={() => {
-                window.location.href = "/admin/login"
+                router.push("/access")
               }}
             >
-              Admin
+              {theme === "dark" ? "Console" : "Control"}
             </MagneticButton>
 
             {/* Mobile hamburger */}
@@ -98,33 +117,36 @@ export function Header() {
       <AnimatePresence>
         {mobileOpen ? (
           <motion.div
-            className="fixed inset-0 z-30 flex flex-col items-center justify-center gap-8 bg-bg/95 backdrop-blur-xl md:hidden"
+            className="mobile-menu-shell fixed inset-0 z-30 flex flex-col items-center justify-center gap-8 bg-bg/95 backdrop-blur-xl md:hidden"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3 }}
           >
             {links.map((link, i) => (
-              <motion.a
+              <motion.div
                 key={link.href}
-                href={link.href}
                 className="font-heading text-2xl font-bold text-text transition-colors hover:text-accent"
-                onClick={() => setMobileOpen(false)}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.05 + i * 0.06 }}
               >
-                {link.label}
-              </motion.a>
+                <Link
+                  href={link.href}
+                  onClick={() => setMobileOpen(false)}
+                >
+                  {link.label}
+                </Link>
+              </motion.div>
             ))}
             <MagneticButton
-              className="mt-4 rounded-full border border-accent/40 bg-accent/10 px-6 py-3 text-sm font-bold uppercase tracking-[0.12em] text-accent"
+              className="control-button mt-4 rounded-full border border-accent/40 bg-accent/10 px-6 py-3 text-sm font-bold uppercase tracking-[0.12em] text-accent"
               onClick={() => {
                 setMobileOpen(false)
-                window.location.href = "/admin/login"
+                router.push("/access")
               }}
             >
-              Admin
+              {theme === "dark" ? "Console" : "Control"}
             </MagneticButton>
           </motion.div>
         ) : null}

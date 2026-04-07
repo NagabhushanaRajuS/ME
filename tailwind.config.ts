@@ -1,5 +1,15 @@
 import type { Config } from "tailwindcss"
 
+const varColor = (cssVarName: string) => {
+  return ({ opacityValue }: { opacityValue?: string }) => {
+    if (opacityValue === undefined) return `var(${cssVarName})`
+    const alpha = Number(opacityValue)
+    if (Number.isNaN(alpha)) return `var(${cssVarName})`
+    const pct = `${Math.round(alpha * 100)}%`
+    return `color-mix(in srgb, var(${cssVarName}) ${pct}, transparent)`
+  }
+}
+
 const config: Config = {
   content: [
     "./app/**/*.{ts,tsx}",
@@ -9,14 +19,14 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        bg: "var(--bg)",
-        surface: "var(--surface)",
-        text: "var(--text)",
-        muted: "var(--muted)",
-        line: "var(--line)",
-        accent: "var(--accent)",
-        accent2: "var(--accent-2)",
-        glow: "var(--glow)"
+        bg: varColor("--bg"),
+        surface: varColor("--surface"),
+        text: varColor("--text"),
+        muted: varColor("--muted"),
+        line: varColor("--line"),
+        accent: varColor("--accent"),
+        accent2: varColor("--accent-2"),
+        glow: varColor("--glow")
       },
       boxShadow: {
         aura: "0 0 40px var(--glow)",
