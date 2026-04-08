@@ -46,6 +46,8 @@ export function CursorGlow() {
         background: `radial-gradient(circle, ${GLOW_COLORS[theme]}, transparent 70%)`,
         willChange: "transform"
       }}
+      animate={{ opacity: [0.4, 0.72, 0.4], scale: [0.96, 1.04, 0.96] }}
+      transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
     />
   )
 }

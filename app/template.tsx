@@ -2,13 +2,15 @@
 
 import { motion } from "framer-motion"
 import type { ReactNode } from "react"
+import { pageTransition } from "@/lib/motion"
 
 export default function Template({ children }: { children: ReactNode }) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 18 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.55, ease: "easeOut" }}
+      initial={pageTransition.initial}
+      animate={pageTransition.animate}
+      transition={pageTransition.transition}
+      style={{ willChange: "transform, opacity, filter" }}
     >
       {children}
     </motion.div>
