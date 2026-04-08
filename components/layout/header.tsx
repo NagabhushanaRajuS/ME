@@ -1,11 +1,21 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import { usePathname } from "next/navigation"
 import { motion, AnimatePresence } from "framer-motion"
 import { ThemeSwitcher } from "@/components/ui/theme-switcher"
 import { MagneticButton } from "@/components/ui/magnetic-button"
 
-const links = [
+const homeLinks = [
+  { href: "#home", label: "Home" },
+  { href: "#about", label: "About" },
+  { href: "#experience", label: "Experience" },
+  { href: "#projects", label: "Projects" },
+  { href: "#skills", label: "Skills" },
+  { href: "#contact", label: "Contact" }
+]
+
+const pageLinks = [
   { href: "/", label: "Home" },
   { href: "/certificates", label: "Certificates" },
   { href: "/goals", label: "Goals" },
@@ -14,8 +24,10 @@ const links = [
 ]
 
 export function Header() {
+  const pathname = usePathname()
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
+  const links = pathname === "/" ? homeLinks : pageLinks
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40)

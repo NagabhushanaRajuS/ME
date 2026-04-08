@@ -5,7 +5,6 @@ import { useState, useRef } from "react"
 import { motion, useMotionValue, useTransform, useSpring } from "framer-motion"
 import { projects } from "@/lib/data"
 import { Reveal } from "@/components/ui/reveal"
-import { useThemeMode } from "@/components/providers/theme-provider"
 
 const ProjectModal = dynamic(
   () => import("@/components/ui/project-modal").then((m) => m.ProjectModal),
@@ -77,7 +76,6 @@ function TiltCard({
 }
 
 export function ProjectsSection() {
-  const { theme } = useThemeMode()
   const [activeIndex, setActiveIndex] = useState<number | null>(null)
 
   return (

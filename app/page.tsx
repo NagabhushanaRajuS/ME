@@ -4,12 +4,14 @@ import { ThemeBackground } from "@/components/effects/theme-background"
 import { CursorGlow } from "@/components/effects/cursor-glow"
 import { ParticleField } from "@/components/effects/particle-field"
 import { ScrollProgress } from "@/components/effects/scroll-progress"
-import { PortfolioHome } from "@/components/portfolio/portfolio-home"
-import { getPortfolioData } from "@/lib/portfolio-store"
+import { HeroSection } from "@/components/sections/hero-section"
+import { AboutSection } from "@/components/sections/about-section"
+import { ExperienceSection } from "@/components/sections/experience-section"
+import { ProjectsSection } from "@/components/sections/projects-section"
+import { SkillsSection } from "@/components/sections/skills-section"
+import { ContactSection } from "@/components/sections/contact-section"
 
-export default async function HomePage() {
-  const data = await getPortfolioData()
-
+export default function HomePage() {
   return (
     <main className="relative min-h-screen overflow-hidden bg-bg text-text">
       <ThemeBackground />
@@ -17,7 +19,12 @@ export default async function HomePage() {
       <CursorGlow />
       <ScrollProgress />
       <Header />
-      <PortfolioHome data={data} />
+      <HeroSection />
+      <AboutSection />
+      <ExperienceSection />
+      <ProjectsSection />
+      <SkillsSection />
+      <ContactSection />
       <Footer />
     </main>
   )

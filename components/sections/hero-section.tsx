@@ -38,6 +38,13 @@ export function HeroSection() {
   const parallaxY = useTransform(scrollYProgress, [0, 1], [0, -120])
   const parallaxOpacity = useTransform(scrollYProgress, [0, 0.6], [1, 0])
 
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id)
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" })
+    }
+  }
+
   return (
     <section
       ref={sectionRef}
@@ -101,7 +108,10 @@ export function HeroSection() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.8, duration: 0.5 }}
         >
-          <MagneticButton className="group relative overflow-hidden rounded-full bg-accent px-7 py-3.5 text-sm font-bold uppercase tracking-[0.14em] text-black shadow-aura transition-shadow hover:shadow-aura-lg">
+          <MagneticButton
+            className="group relative overflow-hidden rounded-full bg-accent px-7 py-3.5 text-sm font-bold uppercase tracking-[0.14em] text-black shadow-aura transition-shadow hover:shadow-aura-lg"
+            onClick={() => scrollToSection("contact")}
+          >
             <span className="relative z-10">Start a Project</span>
             <span className="absolute inset-0 -z-0 bg-accent2 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
           </MagneticButton>

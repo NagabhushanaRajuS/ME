@@ -1,7 +1,7 @@
 export const personalInfo = {
   name: "Nagabhushana Raju S",
   initials: "NR",
-  role: "Software Development Enthusiast & AI/ML Engineer",
+  role: "AI/ML Engineer & Software Developer",
   tagline: "Building intelligent systems with Machine Learning and crafting seamless web experiences.",
   bio: [
     "I'm a motivated and adaptable software development enthusiast with a foundation in Machine Learning and Data Visualization. I possess strong problem-solving abilities, effective communication skills, and a creative approach to leveraging AI.",
@@ -22,8 +22,8 @@ export const experience = [
     description: "My first internship was a transformative experience, offering both technical depth and collaborative exposure. Worked in a hybrid setup with weekly on-site visits and daily virtual meetings.",
     highlights: [
       "Engineered data pipelines for multimodal inputs, leveraging ResNet for medical imaging and BERT for clinical text",
-      "Implemented and benchmarked fusion models to optimize diagnostic precision across modalities",
-      "Successfully developed a multimodal ML system for early disease detection"
+      "Implemented and benchmarked fusion models to support multimodal disease detection workflows",
+      "Contributed to a multimodal ML system for early disease detection"
     ],
     tags: ["Python", "Machine Learning", "ResNet", "BERT", "Data Pipelines", "Healthcare AI"]
   }
@@ -49,7 +49,7 @@ export const projects = [
     title: "Multimodal AI for Early Disease Detection",
     number: "01",
     summary: "An AI-driven healthcare system leveraging multiple data types including medical images, EHRs, genetics, and symptoms. Applied deep learning and data fusion techniques to improve early-stage disease detection accuracy.",
-    impact: "Successfully designed fusion models that achieved 87% accuracy in early disease detection across multiple data modalities.",
+    impact: "Built a multimodal foundation for early disease detection across imaging and clinical text workflows.",
     stack: ["Python", "Deep Learning", "ResNet", "BERT", "Healthcare AI", "Data Fusion"],
     color: "#3af2d4",
     date: "Jun 2025 – Present",
@@ -59,7 +59,7 @@ export const projects = [
     title: "Real-Time Sign Language Interpreter",
     number: "02",
     summary: "Built a multi-modal AI perception system for real-time sign language interpretation. Streamed results to a JavaScript frontend with dynamic UI overlays and modular architecture.",
-    impact: "Achieved real-time processing of sign language with 85% accuracy, enabling seamless communication assistance.",
+    impact: "Delivered a real-time interpretation flow with responsive frontend feedback and modular processing.",
     stack: ["Python", "Computer Vision", "JavaScript", "Real-time Processing", "AI"],
     color: "#ff5a36",
     date: "Jun 2024 – Feb 2025",
@@ -69,7 +69,7 @@ export const projects = [
     title: "Expense Tracker Web App",
     number: "03",
     summary: "Built a responsive and interactive web application to manage income, expenses, and monthly budgets. Implemented transaction management with category tags, timestamps, and visual charts for spending distribution.",
-    impact: "Created an intuitive UI that helped users visualize spending patterns and manage budgets effectively.",
+    impact: "Simplified expense tracking with visual summaries and clear transaction management.",
     stack: ["React", "JavaScript", "Charts", "Responsive Design", "Local Storage"],
     color: "#7c3aed",
     date: "Mar 2025 – Apr 2025",
@@ -79,7 +79,7 @@ export const projects = [
     title: "Ola Electric Clone",
     number: "04",
     summary: "Created a full-stack web application inspired by Ola Electric's platform. Simulated features such as vehicle listings, test ride bookings, service scheduling, and charging station locators with an admin panel.",
-    impact: "Developed comprehensive full-stack solution demonstrating proficiency in both frontend and backend development.",
+    impact: "Demonstrated full-stack capability across listings, bookings, scheduling, and admin workflows.",
     stack: ["Full-Stack", "React", "Node.js", "MongoDB", "Admin Panel"],
     color: "#38d6ff",
     date: "Feb 2025",
@@ -95,7 +95,7 @@ export const socialLinks = [
 
 export const stats = [
   { value: "7.2", label: "Current GPA" },
-  { value: "15+", label: "Projects Built" },
-  { value: "10+", label: "Certifications" },
-  { value: "4", label: "Languages" }
+  { value: "4", label: "Featured Projects" },
+  { value: "1", label: "Internship" },
+  { value: "2026", label: "Graduation" }
 ]

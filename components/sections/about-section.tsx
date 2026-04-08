@@ -3,12 +3,10 @@
 import { motion, useScroll, useTransform } from "framer-motion"
 import { useRef } from "react"
 import { Reveal } from "@/components/ui/reveal"
-import { useThemeMode } from "@/components/providers/theme-provider"
-import { personalInfo, experience, stats } from "@/lib/data"
+import { personalInfo, stats } from "@/lib/data"
 import { staggerContainer, staggerItem } from "@/lib/motion"
 
 export function AboutSection() {
-  const { theme } = useThemeMode()
   const sectionRef = useRef<HTMLElement>(null)
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -74,7 +72,7 @@ export function AboutSection() {
             <div className="mt-5">
               <div className="glow-line" />
               <p className="mt-4 text-sm italic text-muted">
-                &ldquo;Eager to learn and contribute to innovative projects that make a real impact.&rdquo;
+                &ldquo;Focused on practical systems, thoughtful interfaces, and real-world outcomes.&rdquo;
               </p>
             </div>
             {/* Mini bar chart decorative */}
@@ -112,88 +110,6 @@ export function AboutSection() {
             <p className="mt-2 text-sm text-muted">{stat.label}</p>
           </motion.div>
         ))}
-      </motion.div>
-
-      {/* Experience Timeline */}
-      <Reveal className="mt-24">
-        <div className="flex items-center gap-4">
-          <span className="glow-dot" />
-          <p className="text-xs font-semibold uppercase tracking-[0.24em] text-accent">Experience</p>
-          <div className="glow-line flex-1" />
-        </div>
-      </Reveal>
-
-      <div className="mt-10 space-y-0">
-        {experience.map((exp, i) => (
-          <motion.div
-            key={exp.year}
-            className="group relative grid gap-4 border-l-2 border-line py-8 pl-8 md:grid-cols-12 md:gap-8"
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-5%" }}
-            transition={{ delay: i * 0.1, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          >
-            {/* Timeline dot */}
-            <div className="absolute -left-[7px] top-10 h-3 w-3 rounded-full border-2 border-accent bg-bg transition-shadow group-hover:shadow-aura" />
-
-            <div className="md:col-span-3">
-              <span className="text-xs font-semibold text-accent">{exp.year}</span>
-            </div>
-            <div className="md:col-span-9">
-              <h3 className="font-heading text-lg font-bold text-text">{exp.role}</h3>
-              <p className="mt-1 text-sm font-medium text-accent/70">{exp.company}</p>
-              <p className="mt-3 text-sm leading-relaxed text-muted">{exp.description}</p>
-              {exp.highlights && exp.highlights.length > 0 && (
-                <ul className="mt-3 space-y-2 text-sm text-muted">
-                  {exp.highlights.map((highlight, i) => (
-                    <li key={i} className="flex gap-3">
-                      <span className="mt-1.5 inline-block h-1.5 w-1.5 flex-shrink-0 rounded-full bg-accent" />
-                      {highlight}
-                    </li>
-                  ))}
-                </ul>
-              )}
-              {exp.tags && exp.tags.length > 0 && (
-                <div className="mt-4 flex flex-wrap gap-2">
-                  {exp.tags.map((tag) => (
-                    <span key={tag} className="inline-block rounded-full border border-accent/30 px-3 py-1 text-xs text-accent">
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              )}
-            </div>
-          </motion.div>
-        ))}
-      </div>
-
-      {/* Education Section */}
-      <Reveal className="mt-24">
-        <div className="flex items-center gap-4">
-          <span className="glow-dot" />
-          <p className="text-xs font-semibold uppercase tracking-[0.24em] text-accent">Education</p>
-          <div className="glow-line flex-1" />
-        </div>
-      </Reveal>
-
-      <motion.div
-        className="mt-10 glass-card p-8"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-5%" }}
-      >
-        <div className="grid gap-6 md:grid-cols-2">
-          <div>
-            <h3 className="font-heading text-lg font-bold text-text">B.E. Computer Science & Engineering (Data Science)</h3>
-            <p className="mt-2 text-sm text-accent/70">Maharaja Institute of Technology Mysuru (MITM)</p>
-            <p className="mt-3 text-sm text-muted">Expected Graduation: Jun 2026</p>
-            <p className="mt-2 text-sm text-muted">Current GPA: 7.2 (Improved from 6.6)</p>
-          </div>
-          <div className="flex flex-col justify-between">
-            <p className="text-sm text-muted">7th Semester Ongoing • Demonstrating consistent upward growth</p>
-            <p className="mt-4 text-xs text-accent">Location: {personalInfo.location}</p>
-          </div>
-        </div>
       </motion.div>
     </section>
   )
