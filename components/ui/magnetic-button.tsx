@@ -2,7 +2,7 @@
 
 import { motion, useMotionValue, useSpring } from "framer-motion"
 import { type ReactNode, useRef, useCallback, useState } from "react"
-import { prefersReducedMotion } from "@/lib/motion"
+import { prefersReducedMotion } from "@/lib/utils/performance"
 
 type MagneticButtonProps = {
   children: ReactNode

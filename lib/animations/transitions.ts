@@ -2,7 +2,8 @@
 
 import { type ReactNode } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { pageTransition, pageTransitionSlow, modalBackdrop, modalPanel, prefersReducedMotion } from "@/lib/motion"
+import { pageTransition, pageTransitionSlow, modalBackdrop, modalPanel } from "@/lib/motion"
+import { prefersReducedMotion } from "@/lib/utils/performance"
 
 export const pageEnterVariants = {
   hidden: pageTransition.initial,
@@ -37,6 +38,7 @@ interface PageTransitionProps {
 export function PageTransition({ children, variant = "default" }: PageTransitionProps) {
   const variants = variant === "slow" ? pageEnterVariantsSlower : pageEnterVariants
 
+  // eslint-disable-next-line react/jsx-no-useless-fragment
   if (prefersReducedMotion()) {
     return <>{children}</>
   }

@@ -1,12 +1,12 @@
 import { Header } from "@/components/layout/header"
 import { Footer } from "@/components/layout/footer"
 import { SidebarNav } from "@/components/layout/sidebar-nav"
-import { Breadcrumb } from "@/app/components/breadcrumb"
+import { Breadcrumb } from "@/components/layout/breadcrumb"
 import { ThemeBackground } from "@/components/effects/theme-background"
 import { CursorGlow } from "@/components/effects/cursor-glow"
 import { ParticleField } from "@/components/effects/particle-field"
 import { ScrollProgress } from "@/components/effects/scroll-progress"
-import { PageTransition } from "@/app/components/page-transition"
+import { PageTransition } from "@/components/layout/page-transition"
 
 export default function PortfolioLayout({
   children,

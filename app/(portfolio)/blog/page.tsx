@@ -18,7 +18,7 @@ export default function BlogPage() {
         <BookOpen className="h-12 w-12 text-accent mx-auto mb-4 opacity-50" />
         <h2 className="font-heading text-2xl font-bold text-text">More Content Coming Soon</h2>
         <p className="mt-3 text-muted max-w-2xl mx-auto">
-          I'm working on in-depth technical articles. Stay tuned!
+          I&apos;m working on in-depth technical articles. Stay tuned!
         </p>
       </div>
     </div>
