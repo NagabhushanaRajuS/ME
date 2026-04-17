@@ -3,6 +3,7 @@ import { Space_Grotesk, Sora } from "next/font/google"
 import type { ReactNode } from "react"
 import "./globals.css"
 import { ThemeProvider } from "@/components/providers/theme-provider"
+import { ToastProvider } from "@/components/ui/toast-system"
 
 const heading = Space_Grotesk({
   subsets: ["latin"],
@@ -25,7 +26,9 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
   return (
     <html lang="en" data-theme="dark">
       <body className={`${heading.variable} ${body.variable}`}>
-        <ThemeProvider>{children}</ThemeProvider>
+        <ThemeProvider>
+          <ToastProvider>{children}</ToastProvider>
+        </ThemeProvider>
       </body>
     </html>
   )
