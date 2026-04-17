@@ -2,7 +2,8 @@
 
 import { motion } from "framer-motion"
 import { useThemeMode } from "@/components/providers/theme-provider"
-import { ambientFloat, orbFloatSecondary, prefersReducedMotion } from "@/lib/motion"
+import { ambientFloat, orbFloatSecondary } from "@/lib/motion"
+import { prefersReducedMotion } from "@/lib/utils/performance"
 
 export function ThemeBackground() {
   const { theme } = useThemeMode()

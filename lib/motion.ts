@@ -1,4 +1,5 @@
 import { type ThemeMode } from "@/lib/themes"
+export { prefersReducedMotion } from "@/lib/utils/performance"
 
 export const sectionOffsets: Record<ThemeMode, number> = {
   light: 20,
@@ -57,6 +58,12 @@ export const pageTransition = {
   transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] }
 }
 
+export const pageTransitionSlow = {
+  initial: { opacity: 0, y: 26, scale: 0.988, filter: "blur(12px)" },
+  animate: { opacity: 1, y: 0, scale: 1, filter: "blur(0px)" },
+  transition: { duration: 0.92, ease: [0.22, 1, 0.36, 1] }
+}
+
 export const modalBackdrop = {
   hidden: { opacity: 0 },
   visible: { opacity: 1, transition: { duration: 0.2, ease: "easeOut" } },
@@ -79,6 +86,20 @@ export const ambientFloat = {
     duration: 10,
     repeat: Infinity,
     ease: "easeInOut"
+  }
+}
+
+export const orbFloatSecondary = {
+  animate: {
+    x: [0, -18, 0],
+    y: [0, 14, 0],
+    scale: [1, 1.08, 1]
+  },
+  transition: {
+    duration: 14,
+    repeat: Infinity,
+    ease: "easeInOut",
+    delay: 1.2
   }
 }
 

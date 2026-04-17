@@ -1,13 +1,11 @@
 "use client"
 
-import { motion, useMotionValue, useSpring } from "framer-motion"
+import { motion, useMotionValue, useSpring, type HTMLMotionProps } from "framer-motion"
 import { type ReactNode, useRef, useCallback, useState } from "react"
 import { prefersReducedMotion } from "@/lib/utils/performance"
 
-type MagneticButtonProps = {
+type MagneticButtonProps = HTMLMotionProps<"button"> & {
   children: ReactNode
-  className?: string
-  onClick?: () => void
   enableRipple?: boolean
 }
 
@@ -18,7 +16,14 @@ interface Ripple {
   y: number
 }
 
-export function MagneticButton({ children, className, onClick, enableRipple = true }: MagneticButtonProps) {
+export function MagneticButton({
+  children,
+  className,
+  onClick,
+  enableRipple = true,
+  disabled,
+  ...buttonProps
+}: MagneticButtonProps) {
   const ref = useRef<HTMLButtonElement>(null)
   const [ripples, setRipples] = useState<Ripple[]>([])
   const nextRippleIdRef = useRef(0)
@@ -30,7 +35,7 @@ export function MagneticButton({ children, className, onClick, enableRipple = tr
 
   const handleMove = useCallback(
     (event: React.MouseEvent<HTMLButtonElement>) => {
-      if (prefersReducedMotion() || !ref.current) return
+      if (disabled || prefersReducedMotion() || !ref.current) return
 
       const element = ref.current
       const rect = element.getBoundingClientRect()
@@ -40,7 +45,7 @@ export function MagneticButton({ children, className, onClick, enableRipple = tr
       x.set(moveX * 0.16)
       y.set(moveY * 0.2)
     },
-    [x, y]
+    [disabled, x, y]
   )
 
   const handleLeave = useCallback(() => {
@@ -50,7 +55,9 @@ export function MagneticButton({ children, className, onClick, enableRipple = tr
 
   const handleClick = useCallback(
     (event: React.MouseEvent<HTMLButtonElement>) => {
-      onClick?.()
+      if (disabled) return
+
+      onClick?.(event)
 
       if (enableRipple && !prefersReducedMotion() && ref.current) {
         const rect = ref.current.getBoundingClientRect()
@@ -68,22 +75,24 @@ export function MagneticButton({ children, className, onClick, enableRipple = tr
         }, 600)
       }
     },
-    [onClick, enableRipple]
+    [disabled, onClick, enableRipple]
   )
 
   return (
     <motion.button
       ref={ref}
+      disabled={disabled}
       onMouseMove={handleMove}
-      onMouseLeave={handleLeave}
+      onMouseLeave={disabled ? undefined : handleLeave}
       onClick={handleClick}
       className={className}
       style={{
         x: prefersReducedMotion() ? 0 : springX,
         y: prefersReducedMotion() ? 0 : springY
       }}
-      whileTap={{ scale: 0.96 }}
+      whileTap={disabled ? undefined : { scale: 0.96 }}
       transition={{ type: "spring", stiffness: 220, damping: 16 }}
+      {...buttonProps}
     >
       {children}
 

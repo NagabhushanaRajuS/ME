@@ -38,7 +38,6 @@ interface PageTransitionProps {
 export function PageTransition({ children, variant = "default" }: PageTransitionProps) {
   const variants = variant === "slow" ? pageEnterVariantsSlower : pageEnterVariants
 
-  // eslint-disable-next-line react/jsx-no-useless-fragment
   if (prefersReducedMotion()) {
     return <>{children}</>
   }
@@ -84,16 +83,16 @@ export function ModalTransition({ isOpen, onClose, children, className }: ModalT
 
 interface TabTransitionProps {
   children: ReactNode
-  key: string | number
+  transitionKey: string | number
 }
 
-export function TabTransition({ children, key }: TabTransitionProps) {
+export function TabTransition({ children, transitionKey }: TabTransitionProps) {
   if (prefersReducedMotion()) {
     return <>{children}</>
   }
 
   return (
-    <motion.div key={key} initial="hidden" animate="enter" exit="exit" variants={tabTransitionVariants}>
+    <motion.div key={transitionKey} initial="hidden" animate="enter" exit="exit" variants={tabTransitionVariants}>
       {children}
     </motion.div>
   )

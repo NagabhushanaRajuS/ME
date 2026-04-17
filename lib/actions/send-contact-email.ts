@@ -54,7 +54,7 @@ export async function sendContactEmail(formData: unknown): Promise<{ success: bo
     const validationResult = contactFormSchema.safeParse(formData)
 
     if (!validationResult.success) {
-      const errors = validationResult.error.errors
+      const errors = validationResult.error.issues
         .map((e) => `${e.path[0]}: ${e.message}`)
         .join(", ")
 

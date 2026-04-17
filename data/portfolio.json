@@ -1,20 +1,238 @@
 {
   "owner": {
-    "name": "Nagabhushana Raju",
-    "headline": "Frontend Engineer",
-    "shortIntro": "Coming Soon",
+    "name": "Nagabhushana Raju S",
+    "headline": "AI/ML Engineer & Software Developer",
+    "shortIntro": "Building intelligent systems with Machine Learning and crafting seamless web experiences.",
     "profilePhotoUrl": "",
     "introVideoUrl": "",
-    "geometricAvatarNote": "Wireframe geometric avatar - coming soon"
+    "geometricAvatarNote": "Interactive 3D avatar - CSS and motion driven"
   },
-  "projects": [],
-  "certificates": [],
-  "goals": [],
-  "education": [],
-  "channels": [],
+  "projects": [
+    {
+      "id": "01",
+      "title": "Multimodal AI for Early Disease Detection",
+      "number": "01",
+      "summary": "An AI-driven healthcare system leveraging multiple data types including medical images, EHRs, genetics, and symptoms. Applied deep learning and data fusion techniques to improve early-stage disease detection accuracy.",
+      "description": "A comprehensive healthcare solution that combines multiple data modalities to enable early disease detection with higher accuracy.",
+      "impact": "Built a multimodal foundation for early disease detection across imaging and clinical text workflows.",
+      "stack": ["Python", "Deep Learning", "ResNet", "BERT", "Healthcare AI", "Data Fusion"],
+      "color": "#3af2d4",
+      "date": "Jun 2025 – Present",
+      "github": "https://github.com/NagabhushanaRajuS",
+      "live": "",
+      "images": []
+    },
+    {
+      "id": "02",
+      "title": "Real-Time Sign Language Interpreter",
+      "number": "02",
+      "summary": "Built a multi-modal AI perception system for real-time sign language interpretation. Streamed results to a JavaScript frontend with dynamic UI overlays and modular architecture.",
+      "description": "Real-time AI system that interprets sign language using computer vision and streams results to an interactive web interface.",
+      "impact": "Delivered a real-time interpretation flow with responsive frontend feedback and modular processing.",
+      "stack": ["Python", "Computer Vision", "JavaScript", "Real-time Processing", "AI"],
+      "color": "#ff5a36",
+      "date": "Jun 2024 – Feb 2025",
+      "github": "https://github.com/NagabhushanaRajuS",
+      "live": "",
+      "images": []
+    },
+    {
+      "id": "03",
+      "title": "Expense Tracker Web App",
+      "number": "03",
+      "summary": "Built a responsive and interactive web application to manage income, expenses, and monthly budgets. Implemented transaction management with category tags, timestamps, and visual charts for spending distribution.",
+      "description": "Full-featured expense management application with real-time tracking and visual analytics.",
+      "impact": "Simplified expense tracking with visual summaries and clear transaction management.",
+      "stack": ["React", "JavaScript", "Charts", "Responsive Design", "Local Storage"],
+      "color": "#7c3aed",
+      "date": "Mar 2025 – Apr 2025",
+      "github": "https://github.com/NagabhushanaRajuS",
+      "live": "",
+      "images": []
+    },
+    {
+      "id": "04",
+      "title": "Ola Electric Clone",
+      "number": "04",
+      "summary": "Created a full-stack web application inspired by Ola Electric's platform. Simulated features such as vehicle listings, test ride bookings, service scheduling, and charging station locators with an admin panel.",
+      "description": "Full-stack e-mobility platform with comprehensive admin and user interfaces.",
+      "impact": "Demonstrated full-stack capability across listings, bookings, scheduling, and admin workflows.",
+      "stack": ["Full-Stack", "React", "Node.js", "MongoDB", "Admin Panel"],
+      "color": "#38d6ff",
+      "date": "Feb 2025",
+      "github": "https://github.com/NagabhushanaRajuS",
+      "live": "",
+      "images": []
+    }
+  ],
+  "certificates": [
+    {
+      "id": "cert-001",
+      "name": "Deep Learning Specialization",
+      "issuer": "Coursera - Andrew Ng",
+      "date": "2024",
+      "url": "",
+      "image": ""
+    },
+    {
+      "id": "cert-002",
+      "name": "Machine Learning Fundamentals",
+      "issuer": "Fast.ai",
+      "date": "2023",
+      "url": "",
+      "image": ""
+    }
+  ],
+  "education": [
+    {
+      "id": "edu-001",
+      "school": "Maharaja Institute of Technology Mysore (MITM)",
+      "degree": "B.E. Computer Science Engineering (Data Science Specialization)",
+      "fieldOfStudy": "Data Science & Artificial Intelligence",
+      "startDate": "2021-07",
+      "endDate": "2026-06",
+      "gpa": "7.2/10",
+      "description": "Final year student with focus on machine learning, data engineering, and full-stack development. Consistent upward growth in academics and practical skills.",
+      "activities": ["Data Science Club", "Coding Competitions", "Technical Projects"],
+      "skills": ["Python", "Machine Learning", "Data Analysis", "Full-Stack Development"]
+    }
+  ],
+  "experience": [
+    {
+      "id": "exp-001",
+      "role": "Software Development Intern",
+      "company": "Getskilled (A unit of GyaanKool Research labs)",
+      "location": "Remote/Hybrid",
+      "startDate": "2025-04",
+      "endDate": "2025-08",
+      "description": "My first internship was a transformative experience, offering both technical depth and collaborative exposure. Worked in a hybrid setup with weekly on-site visits and daily virtual meetings.",
+      "highlights": [
+        "Engineered data pipelines for multimodal inputs, leveraging ResNet for medical imaging and BERT for clinical text",
+        "Implemented and benchmarked fusion models to support multimodal disease detection workflows",
+        "Contributed to a multimodal ML system for early disease detection",
+        "Collaborated with cross-functional teams in agile environment"
+      ],
+      "technologies": ["Python", "Machine Learning", "ResNet", "BERT", "Data Pipelines", "Healthcare AI"],
+      "type": "Internship"
+    }
+  ],
+  "skills": [
+    {
+      "name": "Python",
+      "level": 90,
+      "category": "core",
+      "proficiency": "Expert"
+    },
+    {
+      "name": "JavaScript",
+      "level": 88,
+      "category": "core",
+      "proficiency": "Advanced"
+    },
+    {
+      "name": "React & Next.js",
+      "level": 85,
+      "category": "core",
+      "proficiency": "Advanced"
+    },
+    {
+      "name": "Machine Learning",
+      "level": 87,
+      "category": "backend",
+      "proficiency": "Advanced"
+    },
+    {
+      "name": "Deep Learning",
+      "level": 82,
+      "category": "backend",
+      "proficiency": "Advanced"
+    },
+    {
+      "name": "TailwindCSS",
+      "level": 86,
+      "category": "design",
+      "proficiency": "Advanced"
+    },
+    {
+      "name": "HTML & CSS",
+      "level": 90,
+      "category": "core",
+      "proficiency": "Expert"
+    },
+    {
+      "name": "MongoDB",
+      "level": 80,
+      "category": "backend",
+      "proficiency": "Advanced"
+    },
+    {
+      "name": "MySQL",
+      "level": 82,
+      "category": "backend",
+      "proficiency": "Advanced"
+    },
+    {
+      "name": "Data Visualization",
+      "level": 84,
+      "category": "design",
+      "proficiency": "Advanced"
+    },
+    {
+      "name": "Problem Solving",
+      "level": 92,
+      "category": "design",
+      "proficiency": "Expert"
+    },
+    {
+      "name": "Team Collaboration",
+      "level": 88,
+      "category": "design",
+      "proficiency": "Advanced"
+    }
+  ],
+  "channels": [
+    {
+      "id": "channel-1",
+      "name": "GitHub",
+      "url": "https://github.com/NagabhushanaRajuS",
+      "icon": "github"
+    },
+    {
+      "id": "channel-2",
+      "name": "LinkedIn",
+      "url": "https://linkedin.com/in/nagabhushanaraju",
+      "icon": "linkedin"
+    },
+    {
+      "id": "channel-3",
+      "name": "Email",
+      "url": "mailto:nagabhushana.raju@example.com",
+      "icon": "mail"
+    }
+  ],
+  "goals": [
+    {
+      "id": "goal-1",
+      "title": "Master Advanced ML/AI Systems",
+      "description": "Deepen expertise in deep learning, transformers, and production ML systems",
+      "status": "in-progress"
+    },
+    {
+      "id": "goal-2",
+      "title": "Build Impact-Driven Products",
+      "description": "Create technology solutions that solve real-world problems and help people",
+      "status": "in-progress"
+    },
+    {
+      "id": "goal-3",
+      "title": "Contribute to Open Source",
+      "description": "Build and maintain open-source libraries for ML/Web development",
+      "status": "planned"
+    }
+  ],
   "visitorContact": {
-    "email": "",
+    "email": "nagabhushana.raju@example.com",
     "phone": ""
   },
-  "updatedAt": "1970-01-01T00:00:00.000Z"
+  "updatedAt": "2026-04-17T05:30:00.000Z"
 }

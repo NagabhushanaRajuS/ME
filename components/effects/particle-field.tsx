@@ -3,7 +3,7 @@
 import { useEffect, useRef, useCallback, useState } from "react"
 import { useScroll } from "framer-motion"
 import { useThemeMode } from "@/components/providers/theme-provider"
-import { prefersReducedMotion } from "@/lib/motion"
+import { prefersReducedMotion } from "@/lib/utils/performance"
 
 interface Particle {
   x: number
