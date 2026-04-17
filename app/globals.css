@@ -204,6 +204,42 @@ body {
   );
 }
 
+.theme-orb {
+  position: fixed;
+  inset: auto;
+  width: clamp(18rem, 30vw, 34rem);
+  height: clamp(18rem, 30vw, 34rem);
+  border-radius: 9999px;
+  pointer-events: none;
+  z-index: -18;
+  filter: blur(34px);
+  opacity: 0.72;
+  mix-blend-mode: screen;
+  will-change: transform, opacity;
+}
+
+.theme-orb--primary {
+  top: 8%;
+  left: 8%;
+}
+
+.theme-orb--secondary {
+  right: 7%;
+  bottom: 12%;
+}
+
+.theme-orb--light {
+  background: radial-gradient(circle, rgba(123, 211, 255, 0.38), transparent 68%);
+}
+
+.theme-orb--medium {
+  background: radial-gradient(circle, rgba(255, 175, 70, 0.28), transparent 68%);
+}
+
+.theme-orb--dark {
+  background: radial-gradient(circle, rgba(24, 248, 154, 0.28), transparent 68%);
+}
+
 /* ═══════════════════ GLASS CARDS ═══════════════════ */
 
 .glass-card {
@@ -212,6 +248,8 @@ body {
   border-radius: 1.5rem;
   box-shadow: var(--card-shadow);
   backdrop-filter: blur(12px);
+  transform: translateY(0) scale(1);
+  will-change: transform, border-color, box-shadow;
   transition:
     border-color 300ms ease,
     box-shadow 300ms ease,
@@ -220,6 +258,7 @@ body {
 
 .glass-card:hover {
   border-color: var(--accent);
+  transform: translateY(-6px) scale(1.01);
 }
 
 [data-theme="dark"] .glass-card {
@@ -269,6 +308,7 @@ body {
   height: 1px;
   background: linear-gradient(90deg, transparent, var(--accent), transparent);
   opacity: 0.4;
+  animation: shimmerLine 4.5s ease-in-out infinite;
 }
 
 .glow-dot {
@@ -277,6 +317,7 @@ body {
   border-radius: 50%;
   background: var(--accent);
   box-shadow: 0 0 10px var(--glow), 0 0 20px var(--glow);
+  animation: pulse 2.8s ease-in-out infinite;
 }
 
 /* ═══════════════════ SCROLL PROGRESS ═══════════════════ */
@@ -310,6 +351,11 @@ body {
   font-family: var(--font-body);
   transition: border-color 300ms ease, box-shadow 300ms ease;
   outline: none;
+}
+
+.floating-input input:hover,
+.floating-input textarea:hover {
+  border-color: color-mix(in srgb, var(--accent) 48%, var(--line));
 }
 
 .floating-input input:focus,
@@ -368,6 +414,7 @@ body {
   background: linear-gradient(90deg, var(--accent), var(--accent-2));
   transform-origin: left;
   transition: transform 1s cubic-bezier(0.22, 1, 0.36, 1);
+  box-shadow: 0 0 16px var(--glow);
 }
 
 /* ═══════════════════ KEYFRAMES ═══════════════════ */
@@ -399,6 +446,11 @@ body {
 
 @keyframes rotateBorder {
   to { --border-angle: 360deg; }
+}
+
+@keyframes shimmerLine {
+  0%, 100% { opacity: 0.35; transform: scaleX(0.92); }
+  50% { opacity: 0.7; transform: scaleX(1); }
 }
 
 @keyframes float {

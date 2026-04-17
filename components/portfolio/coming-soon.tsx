@@ -1,3 +1,7 @@
+"use client"
+
+import { motion } from "framer-motion"
+
 type ComingSoonProps = {
   text?: string
   className?: string
@@ -5,8 +9,12 @@ type ComingSoonProps = {
 
 export function ComingSoon({ text = "Coming Soon", className = "" }: ComingSoonProps) {
   return (
-    <div className={`rounded-2xl border border-dashed border-line bg-surface/60 p-6 text-center text-sm text-muted ${className}`}>
+    <motion.div
+      className={`glass-card border-dashed p-6 text-center text-sm text-muted ${className}`}
+      animate={{ y: [0, -4, 0], scale: [1, 1.01, 1] }}
+      transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+    >
       {text}
-    </div>
+    </motion.div>
   )
 }

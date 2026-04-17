@@ -1,13 +1,14 @@
 export const personalInfo = {
-  name: "Nagabhushana Raju",
+  name: "Nagabhushana Raju S",
   initials: "NR",
-  role: "Senior Frontend Architect",
-  tagline: "Crafting interfaces that blur the line between art and engineering.",
+  role: "AI/ML Engineer & Software Developer",
+  tagline: "Building intelligent systems with Machine Learning and crafting seamless web experiences.",
   bio: [
-    "I architect premium digital experiences at the intersection of design, motion, and engineering. Over 7+ years, I\u2019ve shipped product interfaces across fintech, SaaS, and enterprise \u2014 each built with obsessive attention to craft, accessibility, and scale.",
-    "My work is defined by three principles: every pixel earns its place, every animation serves a purpose, and every interaction builds trust. I don\u2019t just write code \u2014 I compose experiences.",
-    "Currently focused on design systems, micro-interaction frameworks, and pushing the boundaries of what\u2019s possible with modern web technologies."
+    "I'm a motivated and adaptable software development enthusiast with a foundation in Machine Learning and Data Visualization. I possess strong problem-solving abilities, effective communication skills, and a creative approach to leveraging AI.",
+    "With experience in building multimodal AI systems, full-stack web applications, and data-driven solutions, I thrive in collaborative environments where I can continuously learn and grow. My technical journey spans from engineering data pipelines with ResNet and BERT to creating responsive web applications with modern frameworks.",
+    "I'm eager to learn new technologies, expand my knowledge base, and contribute to innovative projects that make a real impact. Currently in my final year of Computer Science Engineering (Data Science) at MITM with consistent upward growth."
   ],
+  location: "Mysuru, Karnataka, India",
   email: "nagabhushana.raju@example.com",
   github: "https://github.com/NagabhushanaRajuS",
   linkedin: "https://linkedin.com/in/nagabhushanaraju"
@@ -15,85 +16,86 @@ export const personalInfo = {
 
 export const experience = [
   {
-    year: "2022 \u2014 Present",
-    role: "Senior Frontend Architect",
-    company: "TechVista Labs",
-    description: "Leading frontend platform strategy across 4 product verticals. Introduced design token architecture and performance budgets that reduced bundle size by 38%."
-  },
-  {
-    year: "2020 \u2014 2022",
-    role: "Lead Frontend Engineer",
-    company: "FinScale Systems",
-    description: "Built real-time trading dashboards handling 50k+ concurrent WebSocket connections. Pioneered micro-frontend architecture for cross-team deployment."
-  },
-  {
-    year: "2018 \u2014 2020",
-    role: "Frontend Developer",
-    company: "Creative Nexus",
-    description: "Developed award-winning marketing platforms with cinematic scroll experiences. Reduced time-to-interactive by 60% through code splitting."
+    year: "Apr 2025 – Aug 2025",
+    role: "Software Development Intern",
+    company: "Getskilled (A unit of GyaanKool Research labs)",
+    description: "My first internship was a transformative experience, offering both technical depth and collaborative exposure. Worked in a hybrid setup with weekly on-site visits and daily virtual meetings.",
+    highlights: [
+      "Engineered data pipelines for multimodal inputs, leveraging ResNet for medical imaging and BERT for clinical text",
+      "Implemented and benchmarked fusion models to support multimodal disease detection workflows",
+      "Contributed to a multimodal ML system for early disease detection"
+    ],
+    tags: ["Python", "Machine Learning", "ResNet", "BERT", "Data Pipelines", "Healthcare AI"]
   }
 ]
 
 export const skills = [
-  { name: "TypeScript", level: 97, category: "core" },
-  { name: "React / Next.js", level: 96, category: "core" },
-  { name: "TailwindCSS", level: 95, category: "core" },
-  { name: "Framer Motion", level: 93, category: "motion" },
-  { name: "Node.js", level: 88, category: "backend" },
-  { name: "GraphQL", level: 85, category: "backend" },
-  { name: "Design Systems", level: 94, category: "design" },
-  { name: "Web Accessibility", level: 91, category: "design" },
-  { name: "Performance Eng.", level: 92, category: "core" },
-  { name: "Testing", level: 87, category: "core" },
-  { name: "CI/CD & DevOps", level: 82, category: "backend" },
-  { name: "WebGL / Three.js", level: 75, category: "motion" }
+  { name: "Python", level: 90, category: "core" },
+  { name: "JavaScript", level: 88, category: "core" },
+  { name: "React & Next.js", level: 85, category: "core" },
+  { name: "Machine Learning", level: 87, category: "backend" },
+  { name: "Deep Learning", level: 82, category: "backend" },
+  { name: "TailwindCSS", level: 86, category: "design" },
+  { name: "HTML & CSS", level: 90, category: "core" },
+  { name: "MongoDB", level: 80, category: "backend" },
+  { name: "MySQL", level: 82, category: "backend" },
+  { name: "Data Visualization", level: 84, category: "design" },
+  { name: "Problem Solving", level: 92, category: "design" },
+  { name: "Team Collaboration", level: 88, category: "design" }
 ]
 
 export const projects = [
   {
-    title: "Neural Commerce OS",
+    title: "Multimodal AI for Early Disease Detection",
     number: "01",
-    summary: "Next-gen composable storefront with edge personalization, realtime pricing overlays, and AI-driven product recommendations.",
-    impact: "Cut page load by 41%, raised conversion by 23%, and reduced cart abandonment by 18% within the first quarter.",
-    stack: ["Next.js 14", "TypeScript", "Edge Functions", "Framer Motion", "Stripe"],
-    color: "#3af2d4"
+    summary: "An AI-driven healthcare system leveraging multiple data types including medical images, EHRs, genetics, and symptoms. Applied deep learning and data fusion techniques to improve early-stage disease detection accuracy.",
+    impact: "Built a multimodal foundation for early disease detection across imaging and clinical text workflows.",
+    stack: ["Python", "Deep Learning", "ResNet", "BERT", "Healthcare AI", "Data Fusion"],
+    color: "#3af2d4",
+    date: "Jun 2025 – Present",
+    github: "https://github.com/NagabhushanaRajuS"
   },
   {
-    title: "Pulse Board",
+    title: "Real-Time Sign Language Interpreter",
     number: "02",
-    summary: "Immersive team analytics dashboard with kinetic data timelines, predictive signals, and real-time collaboration features.",
-    impact: "Reduced decision latency from days to minutes. Adopted by 12 enterprise clients within 6 months of launch.",
-    stack: ["React", "D3.js", "WebSockets", "PostgreSQL", "Redis"],
-    color: "#ff5a36"
+    summary: "Built a multi-modal AI perception system for real-time sign language interpretation. Streamed results to a JavaScript frontend with dynamic UI overlays and modular architecture.",
+    impact: "Delivered a real-time interpretation flow with responsive frontend feedback and modular processing.",
+    stack: ["Python", "Computer Vision", "JavaScript", "Real-time Processing", "AI"],
+    color: "#ff5a36",
+    date: "Jun 2024 – Feb 2025",
+    github: "https://github.com/NagabhushanaRajuS"
   },
   {
-    title: "Aurora Design Engine",
+    title: "Expense Tracker Web App",
     number: "03",
-    summary: "Token-driven design system platform powering live documentation, visual regression snapshots, and multi-brand rollout controls.",
-    impact: "Unified UI delivery across 9 product teams. Cut design-to-dev handoff time by 70%.",
-    stack: ["Monorepo", "Storybook", "Figma API", "CI/CD", "Chromatic"],
-    color: "#7c3aed"
+    summary: "Built a responsive and interactive web application to manage income, expenses, and monthly budgets. Implemented transaction management with category tags, timestamps, and visual charts for spending distribution.",
+    impact: "Simplified expense tracking with visual summaries and clear transaction management.",
+    stack: ["React", "JavaScript", "Charts", "Responsive Design", "Local Storage"],
+    color: "#7c3aed",
+    date: "Mar 2025 – Apr 2025",
+    github: "https://github.com/NagabhushanaRajuS"
   },
   {
-    title: "Meridian Weather",
+    title: "Ola Electric Clone",
     number: "04",
-    summary: "Cinematic weather visualization app with fluid animations, location-aware forecasting, and ambient sound integration.",
-    impact: "Featured in \u2018Best of Web\u2019 collections. 200k+ users in first month of public beta.",
-    stack: ["Next.js", "Three.js", "Weather API", "Geolocation", "Web Audio"],
-    color: "#38d6ff"
+    summary: "Created a full-stack web application inspired by Ola Electric's platform. Simulated features such as vehicle listings, test ride bookings, service scheduling, and charging station locators with an admin panel.",
+    impact: "Demonstrated full-stack capability across listings, bookings, scheduling, and admin workflows.",
+    stack: ["Full-Stack", "React", "Node.js", "MongoDB", "Admin Panel"],
+    color: "#38d6ff",
+    date: "Feb 2025",
+    github: "https://github.com/NagabhushanaRajuS"
   }
 ]
 
 export const socialLinks = [
   { label: "GitHub", href: "https://github.com/NagabhushanaRajuS" },
   { label: "LinkedIn", href: "https://linkedin.com/in/nagabhushanaraju" },
-  { label: "Twitter / X", href: "#" },
   { label: "Email", href: "mailto:nagabhushana.raju@example.com" }
 ]
 
 export const stats = [
-  { value: "7+", label: "Years Experience" },
-  { value: "40+", label: "Projects Shipped" },
-  { value: "9", label: "Design Systems Built" },
-  { value: "99", label: "Lighthouse Score" }
+  { value: "7.2", label: "Current GPA" },
+  { value: "4", label: "Featured Projects" },
+  { value: "1", label: "Internship" },
+  { value: "2026", label: "Graduation" }
 ]
