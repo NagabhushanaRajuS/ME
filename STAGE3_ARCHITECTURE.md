@@ -1,239 +1,285 @@
 # STAGE 3: Multi-Page Portfolio Architecture
 
-## Directory Structure
+**Date:** 2026-04-17  
+**Branch:** feature/stage3-paging  
+**Status:** Completed
+
+## Project Structure
 
 ```
-app/
-├── (portfolio)/                    # Route Group for portfolio pages
-│   ├── layout.tsx                 # Shared portfolio layout
-│   ├── projects/
-│   │   └── page.tsx              # Projects showcase with filtering
-│   ├── about/
-│   │   └── page.tsx              # Detailed about with skills & stats
-│   ├── experience/
-│   │   └── page.tsx              # Experience timeline
-│   ├── blog/
-│   │   └── page.tsx              # Blog section (stub)
-│   └── contact/
-│       └── page.tsx              # Contact form & info
+/workspaces/ME/
+├── app/
+│   ├── (portfolio)/                    # Route group for portfolio pages
+│   │   ├── layout.tsx                 # Shared layout with effects, header, breadcrumb
+│   │   ├── projects/
+│   │   │   └── page.tsx              # Projects showcase page
+│   │   ├── about/
+│   │   │   └── page.tsx              # About page with skills and stats
+│   │   ├── experience/
+│   │   │   └── page.tsx              # Experience timeline page
+│   │   ├── blog/
+│   │   │   └── page.tsx              # Blog section (stub)
+│   │   └── contact/
+│   │       └── page.tsx              # Contact form page
+│   ├── components/
+│   │   ├── page-transition.tsx       # Page transition wrapper
+│   │   ├── breadcrumb.tsx            # Breadcrumb navigation
+│   │   └── layout/
+│   │       └── sidebar-nav.tsx       # Mobile sidebar navigation
+│   ├── page.tsx                      # Homepage (unchanged - all 7 sections)
+│   ├── layout.tsx                    # Root layout
+│   ├── sitemap.ts                    # Dynamic sitemap generation
+│   └── globals.css
 ├── components/
-│   ├── page-transition.tsx       # Page transition component
-│   ├── breadcrumb.tsx            # Breadcrumb navigation
 │   └── layout/
-│       └── sidebar-nav.tsx       # Collapsible sidebar navigation
-├── page.tsx                      # Homepage (all 7 sections)
-├── layout.tsx                    # Root layout
-├── sitemap.ts                    # Dynamic sitemap generation
-└── globals.css
-middleware.ts                     # Route analytics middleware
-public/
-├── robots.txt                    # SEO robots configuration
+│       └── header.tsx                # Enhanced with new navigation links
+├── middleware.ts                     # Route analytics middleware
+├── public/
+│   └── robots.txt                    # SEO robots configuration
+└── STAGE3_ARCHITECTURE.md            # This file
 ```
 
 ## Routes Overview
 
 ### Public Routes
 
-| Route | Component | Description |
-|-------|-----------|-------------|
-| `/` | `app/page.tsx` | Homepage with all 7 sections (hero, about, experience, projects, skills, contact) |
-| `/projects` | `(portfolio)/projects/page.tsx` | Projects showcase with filtering by tech stack, sorting, and search |
-| `/about` | `(portfolio)/about/page.tsx` | Detailed biography, skills breakdown by category, stats grid |
-| `/experience` | `(portfolio)/experience/page.tsx` | Experience timeline with education and certifications |
-| `/blog` | `(portfolio)/blog/page.tsx` | Technical blog section (stub for future posts) |
-| `/contact` | `(portfolio)/contact/page.tsx` | Contact form with social links and contact info |
-| `/admin` | `app/admin/page.tsx` | Admin dashboard (enhanced) |
+| Path | Component | Description | Features |
+|------|-----------|-------------|----------|
+| `/` | `app/page.tsx` | Homepage | All 7 sections (hero, about, experience, projects, skills, contact) |
+| `/projects` | `(portfolio)/projects/page.tsx` | Projects Gallery | Grid layout, filtering, sorting, search |
+| `/about` | `(portfolio)/about/page.tsx` | About Page | Bio, skills, stats, career highlights |
+| `/experience` | `(portfolio)/experience/page.tsx` | Timeline | Experience, education, certifications |
+| `/blog` | `(portfolio)/blog/page.tsx` | Blog | Article stubs, coming soon |
+| `/contact` | `(portfolio)/contact/page.tsx` | Contact Form | Email form, contact info, social links |
 
 ### Admin Routes
+- `/admin/login` - Admin authentication
+- `/admin` - Admin dashboard
 
-| Route | Purpose |
-|-------|---------|
-| `/admin/login` | Admin authentication |
-| `/admin` | Admin dashboard |
-
-## Navigation Flow Diagram
+## Navigation Flow
 
 ```
-┌─────────────────────────────────────────────────────────────┐
-│                     ROOT LAYOUT                             │
-│  (Theme, Fonts, Error Boundary, Theme Provider)             │
-└─────────────┬───────────────────────────────────────────────┘
-              │
-        ┌─────┴─────┐
-        │           │
-        ▼           ▼
-    HOMEPAGE    (PORTFOLIO) LAYOUT
-    page.tsx    shared layout + breadcrumb + sidebar nav
-        │           │
-        │           ├─ /projects
-        │           │  └─ Projects Page (filtering, sorting, search)
-        │           │
-        │           ├─ /about
-        │           │  └─ About Page (skills, stats, bio)
-        │           │
-        │           ├─ /experience
-        │           │  └─ Experience Page (timeline)
-        │           │
-        │           ├─ /blog
-        │           │  └─ Blog Page (stub)
-        │           │
-        │           └─ /contact
-        │              └─ Contact Page (form + info)
-        │
-        └─ Full 7-section layout
-           - Header (with page indicator)
-           - Hero
-           - About
-           - Experience
-           - Projects
-           - Skills
-           - Contact
-           - Footer
+┌──────────────────────────────────────────────────┐
+│           ROOT LAYOUT (layout.tsx)              │
+│  - Fonts, Theme, Error Boundary, Providers      │
+└────────────┬─────────────────────────────────────┘
+             │
+      ┌──────┴──────┐
+      │             │
+    HOME        (PORTFOLIO)
+    /           LAYOUT
+                  │
+         ┌────┬───┼───┬────┬────┐
+         │    │   │   │    │    │
+        /  proj about exp blog contact
 ```
 
-## Component Hierarchy
+## New Components
 
-### Header Component (Enhanced)
-- Logo with home link
-- Navigation with active page indicator
-- Animated underline for current page
-- Mobile menu
-- Theme switcher
-- Admin button
+### PageTransition
+- **Location:** `app/components/page-transition.tsx`
+- **Purpose:** Wraps page content with fade/slide animations
+- **Features:**
+  - Fade in/out on route change
+  - Slide up animation
+  - Smooth 0.4s transitions
+  - Uses framer-motion with custom easing
 
-### Portfolio Pages Layout
-```
-(portfolio) Layout
-├── Theme & Effects (Background, Particles, Glow, Progress)
-├── Header (with nav indicator)
-├── SidebarNav (collapsible)
-├── Breadcrumb Navigation
-├── PageTransition Wrapper
-│   └── Page Content
-│       ├── Projects/About/Experience/Blog/Contact
-│       └── Custom content per page
-└── Footer
-```
+### Breadcrumb
+- **Location:** `app/components/breadcrumb.tsx`
+- **Purpose:** Shows current page hierarchy
+- **Features:**
+  - Hierarchical navigation path
+  - ChevronRight separators
+  - Active page highlighting
+  - Animated stagger entrance
+  - Click-through links
 
-### Page Transition Wrapper
-- Fade/slide animation on route change
-- Key-based re-mounting for fresh animations
-- Scroll-to-top on navigation
+### SidebarNav
+- **Location:** `app/components/layout/sidebar-nav.tsx`
+- **Purpose:** Mobile/desktop sidebar navigation
+- **Features:**
+  - Fixed on desktop, collapsible on mobile
+  - Bottom-right button trigger on mobile
+  - Active route indicator
+  - Smooth slide animations
+  - Backdrop dismiss
 
-### Breadcrumb Navigation
-- Shows page hierarchy
-- Animated stagger entrance
-- Active page highlighting
-- Only visible for non-root pages
+## Page Details
 
-### Sidebar Navigation
-- Collapsible on mobile
-- Fixed on desktop
-- Active route indicator
-- Smooth animations
-
-## Key Features
-
-### 1. Projects Page
-- Grid layout (responsive: 1-2 columns)
-- 3D tilt cards with hover effects
+### Projects Page (`/projects`)
+**Features:**
+- Grid layout (2-3 columns responsive)
+- 3D tilt cards (reused from homepage)
 - Search functionality
 - Filter by technology stack
 - Sort by date or impact
 - Result count display
+- Project count: 4 featured projects
 
-### 2. About Page
-- Expanded biography
-- Skills breakdown by category (Core, Backend, Design)
-- Skill progress bars with animation
-- Stats grid (GPA, Projects, Internships, Graduation year)
-- Inline experience section
-- CTA to contact page
+### About Page (`/about`)
+**Sections:**
+1. Hero intro with gradient text
+2. Expanded biography (3 paragraphs)
+3. Stats grid (GPA, Projects, Internships, Graduation year)
+4. Skills breakdown by category:
+   - Core Technologies (Python, JavaScript, React, etc.)
+   - Backend & ML (Python, ML, Deep Learning, Databases)
+   - Design & Soft Skills (CSS, Problem Solving, Collaboration)
+5. CTA to contact page
 
-### 3. Experience Page
-- Vertical timeline layout
-- Professional experience section
-- Education section
-- Certifications section
-- Animated timeline dots
-- Responsive for mobile
+### Experience Page (`/experience`)
+**Content:**
+- Professional experience timeline
+  - Job role, company, duration
+  - Job description
+  - Key responsibilities/highlights
+  - Technology tags
+- Education timeline
+  - Degree, institution, dates
+  - GPA and key achievements
+- Animated timeline indicators
+- Mobile-responsive layout
 
-### 4. Blog Page
-- Featured posts layout
-- Category tags
-- Publication dates
-- Call-to-action for subscription
-- Future blog posts placeholder
+### Contact Page (`/contact`)
+**Components:**
+- Contact information section
+  - Email (clickable link)
+  - Location display
+  - Social media links (GitHub, LinkedIn)
+- Contact form
+  - Name, Email, Subject, Message fields
+  - Form validation
+  - Submission handling
+  - Success/error messages
+- Responsive grid layout
 
-### 5. Contact Page
-- Full contact form with validation
-- Contact information cards
-- Social media links
-- Email and location display
-- Form submission feedback
-- Responsive layout
+### Blog Page (`/blog`)
+**Status:** Stub for future expansion
+- Coming soon message
+- 3 placeholder blog post cards
+- CTA for subscribing to updates
+- Placeholder categories
 
-## Navigation Enhancements
+## Enhanced Components
 
-### Header Updates
-- Uses Next.js Link component for smooth navigation
+### Header (Enhanced)
+**Location:** `components/layout/header.tsx`
+**Updates:**
+- New navigation links: Projects, About, Experience, Blog, Contact
 - Active page indicator with animated underline
-- Dynamic link selection based on current route
-- Mobile-responsive navigation
+- Uses Next.js Link component for smooth navigation
+- Logo is now a Link
+- Distinguishes between homepage (anchor links) and portfolio pages (page links)
 
-### Link Prefetching
-- Next.js Link components automatically prefetch routes
-- Smooth page transitions with no reload
-- Preserved scroll position intelligently
+**Navigation Logic:**
+```
+Homepage (/): Shows section anchor links (#about, #projects, etc.)
+Other pages: Shows page links with active state indicator
+- Active page: text-accent + full underline
+- Hover state: underline animation
+```
 
-## SEO & Analytics
+## Performance Features
 
-### Robots.txt
-- Allows all public routes
-- Blocks admin pages
-- Sitemap reference
-- Crawl delay specification
-
-### Sitemap Generation
-- Dynamic sitemap.ts for route discovery
-- Automatic route enumeration
-- Change frequency and priority settings
-- Last modified timestamps
-
-### Middleware
-- Route logging (development)
-- Security headers
-- Custom tracking headers
-- Path and timestamp tracking
+- Dynamic imports for heavy components
+- Page transitions with minimal re-rendering
+- CSS glass morphism effects
+- Lazy loading support
+- Code splitting per route
+- Framer Motion optimizations
 
 ## Mobile Responsiveness
 
-- All pages mobile-first designed
-- Sidebar nav collapses to bottom button on mobile
+- Sidebar nav collapses to button on <768px
+- All forms full-width with proper touch targets
+- Grid layouts: 1 column mobile, 2-3 columns desktop
 - Breadcrumb responsive
-- Forms full-width with proper spacing
-- Grid layouts adapt from 1-3 columns
-- Touch-friendly buttons and inputs
+- Header mobile menu with animated hamburger
+- Touch-friendly button and input sizes
 
-## Performance Optimizations
+## SEO Optimization
 
-- Dynamic imports for heavy components
-- Page transitions with framer-motion
-- CSS Glass morphism effects
-- Particle field performance optimization
-- Lazy loading for project images
-- Code splitting per page
+### Robots.txt Features
+- Allows all public routes
+- Blocks admin directory
+- Sets crawl delay
+- References sitemap
+
+### Sitemap (sitemap.ts)
+- Dynamic route enumeration
+- All 6 portfolio routes included
+- Change frequency per route:
+  - Homepage: weekly
+  - Projects: weekly
+  - About: monthly
+  - Experience: monthly
+  - Blog: weekly
+  - Contact: monthly
+- Last modified timestamps
+
+### Middleware
+- Route logging (development only)
+- Security headers:
+  - X-Content-Type-Options: nosniff
+  - X-Frame-Options: SAMEORIGIN
+  - X-XSS-Protection: 1; mode=block
+- Custom tracking headers
+
+## Reused Components
+
+From existing codebase:
+- `Header` - Enhanced with new links
+- `Footer` - Used in layout
+- `ThemeBackground` - Background effects
+- `CursorGlow` - Cursor effects
+- `ParticleField` - Particle effects
+- `ScrollProgress` - Scroll indicator
+- `Reveal` - Text reveal animations
+- `MagneticButton` - Button animations
+- `ThemeSwitcher` - Theme toggle
+
+## Data Integration
+
+Uses `lib/data.ts` exports:
+- `personalInfo` - Name, role, bio, social links
+- `experience` - Job experiences with highlights
+- `skills` - Skills with proficiency levels
+- `projects` - Project portfolio
+- `stats` - Career statistics
+- `socialLinks` - Social media links
 
 ## Browser Support
 
 - Modern browsers (Chrome, Firefox, Safari, Edge)
 - Mobile browsers (iOS Safari, Chrome Mobile)
-- Light/Dark theme support
-- CSS Grid and Flexbox layouts
-- Modern JavaScript (ES2020+)
+- CSS Grid and Flexbox
+- ES2020+ JavaScript
+- Framer Motion animations
 
----
+## File Statistics
 
-**Created:** 2026-04-17
-**Stage:** 3 - Multi-Page Portfolio Architecture
-**Status:** Complete
+- **New Files Created:** 9
+- **Enhanced Files:** 1 (header.tsx)
+- **Total Lines Added:** 436+
+- **Components:** 3 new
+- **Pages:** 6 new (5 portfolio + 1 layout)
+- **Routes:** 5 new public routes
+
+## Git Information
+
+- **Branch:** feature/stage3-paging
+- **Commit:** 43193a9
+- **Message:** feat(pages): build multi-page portfolio with projects, about, experience routes
+- **Files Changed:** 9 insertions, 436+ lines
+
+## Next Steps (STAGE 4+)
+
+- Add form submission handler
+- Implement actual blog posts
+- Add project modal/detail pages
+- PDF resume download
+- Email integration
+- Analytics dashboard
+- Dark mode enhancements
+- Performance monitoring

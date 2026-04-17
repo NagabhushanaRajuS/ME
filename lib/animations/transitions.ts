@@ -2,12 +2,7 @@
 
 import { type ReactNode } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { fadeInUp, pageTransition, pageTransitionSlow, modalBackdrop, modalPanel, scaleIn } from "@/lib/motion"
-import { prefersReducedMotion } from "@/lib/motion"
-
-// ============================================================================
-// TRANSITION ANIMATION VARIANTS
-// ============================================================================
+import { pageTransition, pageTransitionSlow, modalBackdrop, modalPanel, prefersReducedMotion } from "@/lib/motion"
 
 export const pageEnterVariants = {
   hidden: pageTransition.initial,
@@ -32,21 +27,7 @@ export const tabTransitionVariants = {
   exit: { opacity: 0, x: -20 }
 }
 
-// ============================================================================
-// THEME TRANSITION
-// ============================================================================
-
-export const themeTransitionVariants = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1 },
-  exit: { opacity: 0 }
-}
-
 export const themeTransitionDuration = 0.42
-
-// ============================================================================
-// PAGE TRANSITION COMPONENT
-// ============================================================================
 
 interface PageTransitionProps {
   children: ReactNode
@@ -66,10 +47,6 @@ export function PageTransition({ children, variant = "default" }: PageTransition
     </motion.div>
   )
 }
-
-// ============================================================================
-// MODAL TRANSITION COMPONENT
-// ============================================================================
 
 interface ModalTransitionProps {
   isOpen: boolean
@@ -103,10 +80,6 @@ export function ModalTransition({ isOpen, onClose, children, className }: ModalT
   )
 }
 
-// ============================================================================
-// TAB TRANSITION COMPONENT
-// ============================================================================
-
 interface TabTransitionProps {
   children: ReactNode
   key: string | number
@@ -124,35 +97,17 @@ export function TabTransition({ children, key }: TabTransitionProps) {
   )
 }
 
-// ============================================================================
-// DRAWER TRANSITION
-// ============================================================================
-
 export const drawerVariants = {
   hidden: { x: "-100%", opacity: 0 },
   visible: { x: 0, opacity: 1, transition: { type: "spring", stiffness: 200, damping: 20 } },
   exit: { x: "-100%", opacity: 0, transition: { duration: 0.3 } }
 }
 
-export const drawerBackdropVariants = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { duration: 0.2 } },
-  exit: { opacity: 0, transition: { duration: 0.15 } }
-}
-
-// ============================================================================
-// POPOVER / TOOLTIP TRANSITION
-// ============================================================================
-
 export const popoverVariants = {
   hidden: { opacity: 0, scale: 0.9, y: -10 },
   visible: { opacity: 1, scale: 1, y: 0, transition: { type: "spring", stiffness: 200, damping: 15 } },
   exit: { opacity: 0, scale: 0.9, y: -10, transition: { duration: 0.15 } }
 }
-
-// ============================================================================
-// COLLAPSE / EXPAND TRANSITION
-// ============================================================================
 
 export const expandVariants = {
   hidden: { height: 0, opacity: 0, overflow: "hidden" },
@@ -170,10 +125,6 @@ export const expandVariants = {
   }
 }
 
-// ============================================================================
-// STAGGER LIST TRANSITION
-// ============================================================================
-
 export const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
@@ -190,19 +141,11 @@ export const itemVariants = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.4 } }
 }
 
-// ============================================================================
-// FLIP CARD TRANSITION
-// ============================================================================
-
 export const flipVariants = {
   hidden: { rotateY: 90, opacity: 0 },
   visible: { rotateY: 0, opacity: 1, transition: { duration: 0.6, ease: "easeOut" } },
   exit: { rotateY: -90, opacity: 0, transition: { duration: 0.4 } }
 }
-
-// ============================================================================
-// SHARED LAYOUT ANIMATION
-// ============================================================================
 
 export const layoutTransitionConfig = {
   type: "spring" as const,

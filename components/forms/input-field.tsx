@@ -2,7 +2,7 @@
 
 import { motion, AnimatePresence } from "framer-motion"
 import { AlertCircle, Check } from "lucide-react"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 
 interface InputFieldProps {
   id: string
@@ -13,8 +13,6 @@ interface InputFieldProps {
   placeholder?: string
   error?: string
   touched?: boolean
-  maxLength?: number
-  showCharCount?: boolean
   required?: boolean
   autoComplete?: string
   disabled?: boolean
@@ -31,8 +29,6 @@ export function InputField({
   placeholder = " ",
   error,
   touched,
-  maxLength,
-  showCharCount,
   required,
   autoComplete,
   disabled,
@@ -40,40 +36,19 @@ export function InputField({
   onBlur,
 }: InputFieldProps) {
   const [isFocused, setIsFocused] = useState(false)
-  const [hasShaken, setHasShaken] = useState(false)
 
   const isError = touched && !!error
-  const charCount = value.length
-  const charPercent = maxLength ? (charCount / maxLength) * 100 : 0
-
-  // Trigger shake animation when error appears
-  useEffect(() => {
-    if (isError && !hasShaken) {
-      setHasShaken(true)
-      const timer = setTimeout(() => setHasShaken(false), 500)
-      return () => clearTimeout(timer)
-    }
-  }, [isError, hasShaken])
-
-  const hasValidValue = touched && charCount > 0 && !isError
+  const hasValidValue = touched && value.length > 0 && !isError
 
   return (
     <div className="relative w-full">
-      {/* Input wrapper with glow effect */}
-      <motion.div
-        className={`relative ${
-          isError ? "shake" : ""
-        }`}
-        animate={hasShaken ? { x: [0, -6, 6, -6, 6, 0] } : { x: 0 }}
-        transition={{ duration: 0.4, ease: "easeInOut" }}
-      >
+      <motion.div>
         <input
           id={id}
           name={name}
           type={type}
           value={value}
           placeholder={placeholder}
-          maxLength={maxLength}
           required={required}
           autoComplete={autoComplete}
           disabled={disabled}
@@ -94,13 +69,12 @@ export function InputField({
           `}
         />
 
-        {/* Floating label */}
         <motion.label
           htmlFor={id}
           className="absolute left-4 top-3.5 text-muted text-base pointer-events-none select-none font-body origin-left"
           animate={{
-            y: isFocused || charCount > 0 ? -28 : 0,
-            scale: isFocused || charCount > 0 ? 0.75 : 1,
+            y: isFocused || value.length > 0 ? -28 : 0,
+            scale: isFocused || value.length > 0 ? 0.75 : 1,
             color: isFocused || isError ? (isError ? "#ef4444" : "var(--accent)") : "var(--muted)",
           }}
           transition={{ duration: 0.2, ease: "easeOut" }}
@@ -109,7 +83,6 @@ export function InputField({
           {required && <span className="text-red-400 ml-0.5">*</span>}
         </motion.label>
 
-        {/* Status icons */}
         <AnimatePresence>
           {hasValidValue && (
             <motion.div
@@ -137,30 +110,6 @@ export function InputField({
         </AnimatePresence>
       </motion.div>
 
-      {/* Character counter */}
-      {showCharCount && maxLength && (
-        <div className="mt-2 flex items-center justify-between gap-3">
-          <div className="flex-1 h-1 rounded-full bg-line overflow-hidden">
-            <motion.div
-              className={`h-full transition-all duration-300 ${
-                charPercent > 90
-                  ? "bg-red-500"
-                  : charPercent > 75
-                    ? "bg-yellow-500"
-                    : "bg-accent"
-              }`}
-              initial={{ width: "0%" }}
-              animate={{ width: `${charPercent}%` }}
-              transition={{ duration: 0.3 }}
-            />
-          </div>
-          <span className="text-xs text-muted whitespace-nowrap">
-            {charCount}/{maxLength}
-          </span>
-        </div>
-      )}
-
-      {/* Error message */}
       <AnimatePresence>
         {isError && (
           <motion.div

@@ -103,7 +103,6 @@ export function ToastProvider({ children }: ToastProviderProps) {
   const removeToast = useCallback((id: string) => {
     setToasts((prev) => prev.filter((toast) => toast.id !== id))
 
-    // Clear timeout if exists
     const timeout = timeoutsRef.current.get(id)
     if (timeout) {
       clearTimeout(timeout)
@@ -117,7 +116,6 @@ export function ToastProvider({ children }: ToastProviderProps) {
 
       setToasts((prev) => [...prev, { id, message, type, duration }])
 
-      // Auto-dismiss after duration
       const timeout = setTimeout(() => {
         removeToast(id)
       }, duration)
@@ -147,4 +145,3 @@ export function ToastProvider({ children }: ToastProviderProps) {
     </ToastContext.Provider>
   )
 }
-

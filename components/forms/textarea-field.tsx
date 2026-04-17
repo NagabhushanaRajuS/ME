@@ -40,22 +40,18 @@ export function TextAreaField({
   onBlur,
 }: TextAreaFieldProps) {
   const [isFocused, setIsFocused] = useState(false)
-  const [hasShaken, setHasShaken] = useState(false)
   const textareaRef = useRef<HTMLTextAreaElement>(null)
 
   const isError = touched && !!error
   const charCount = value.length
   const charPercent = maxLength ? (charCount / maxLength) * 100 : 0
 
-  // Auto-expand textarea height as user types
   useEffect(() => {
     const textarea = textareaRef.current
     if (!textarea) return
 
-    // Reset height to auto to get the correct scrollHeight
     textarea.style.height = "auto"
 
-    // Calculate new height
     const lineHeight = parseInt(window.getComputedStyle(textarea).lineHeight)
     const minHeight = lineHeight * minRows
     const maxHeight = lineHeight * maxRows
@@ -66,24 +62,11 @@ export function TextAreaField({
     textarea.style.overflowY = scrollHeight > maxHeight ? "auto" : "hidden"
   }, [value, minRows, maxRows])
 
-  // Trigger shake animation when error appears
-  useEffect(() => {
-    if (isError && !hasShaken) {
-      setHasShaken(true)
-      const timer = setTimeout(() => setHasShaken(false), 500)
-      return () => clearTimeout(timer)
-    }
-  }, [isError, hasShaken])
-
   const hasValidValue = touched && charCount >= minLength && !isError
 
   return (
     <div className="relative w-full">
-      {/* Textarea wrapper with shake animation */}
-      <motion.div
-        animate={hasShaken ? { x: [0, -6, 6, -6, 6, 0] } : { x: 0 }}
-        transition={{ duration: 0.4, ease: "easeInOut" }}
-      >
+      <motion.div>
         <textarea
           ref={textareaRef}
           id={id}
@@ -94,9 +77,7 @@ export function TextAreaField({
           minLength={minLength}
           required={required}
           disabled={disabled}
-          onChange={(e) => {
-            onChange(e)
-          }}
+          onChange={onChange}
           onBlur={(e) => {
             setIsFocused(false)
             onBlur(e)
@@ -116,7 +97,6 @@ export function TextAreaField({
           }}
         />
 
-        {/* Floating label */}
         <motion.label
           htmlFor={id}
           className="absolute left-4 top-3.5 text-muted text-base pointer-events-none select-none font-body origin-left"
@@ -131,7 +111,6 @@ export function TextAreaField({
           {required && <span className="text-red-400 ml-0.5">*</span>}
         </motion.label>
 
-        {/* Status icons */}
         <AnimatePresence>
           {hasValidValue && (
             <motion.div
@@ -159,7 +138,6 @@ export function TextAreaField({
         </AnimatePresence>
       </motion.div>
 
-      {/* Character counter and progress bar */}
       <div className="mt-3 flex items-center justify-between gap-3">
         <div className="flex-1 h-1 rounded-full bg-line overflow-hidden">
           <motion.div
@@ -186,7 +164,6 @@ export function TextAreaField({
         </span>
       </div>
 
-      {/* Help text showing minimum requirements */}
       {touched && charCount > 0 && charCount < minLength && (
         <motion.p
           initial={{ opacity: 0, y: -8 }}
@@ -199,7 +176,6 @@ export function TextAreaField({
         </motion.p>
       )}
 
-      {/* Error message */}
       <AnimatePresence>
         {isError && (
           <motion.div

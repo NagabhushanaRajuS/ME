@@ -19,20 +19,6 @@ export function LoadingSpinner({ size = "md", className = "" }: LoadingSpinnerPr
 
   const config = sizeMap[size]
 
-  // Respect prefers-reduced-motion
-  const prefersReducedMotion = typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches
-
-  if (prefersReducedMotion) {
-    return (
-      <div className={`inline-flex items-center justify-center ${className}`}>
-        <div
-          className="rounded-full bg-gradient-to-r from-accent via-accent2 to-accent"
-          style={{ width: config.size, height: config.size }}
-        />
-      </div>
-    )
-  }
-
   return (
     <motion.div
       className={`inline-flex items-center justify-center ${className}`}
@@ -50,7 +36,6 @@ export function LoadingSpinner({ size = "md", className = "" }: LoadingSpinnerPr
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
       >
-        {/* Background circle */}
         <circle
           cx={config.size / 2}
           cy={config.size / 2}
@@ -60,7 +45,6 @@ export function LoadingSpinner({ size = "md", className = "" }: LoadingSpinnerPr
           opacity="0.1"
         />
 
-        {/* Animated gradient circle */}
         <defs>
           <linearGradient id="spinner-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
             <stop offset="0%" style={{ stopColor: "var(--accent)", stopOpacity: 1 }} />

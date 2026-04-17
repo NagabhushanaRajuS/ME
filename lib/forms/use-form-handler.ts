@@ -36,9 +36,6 @@ export function useFormHandler<T extends Record<string, any>>({
 
   const submitTimeoutRef = useRef<NodeJS.Timeout>()
 
-  /**
-   * Handle field changes
-   */
   const handleChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
       const { name, value } = e.target
@@ -49,7 +46,6 @@ export function useFormHandler<T extends Record<string, any>>({
           ...prev.values,
           [name]: value,
         },
-        // Clear error when user starts typing
         errors: {
           ...prev.errors,
           [name]: "",
@@ -59,9 +55,6 @@ export function useFormHandler<T extends Record<string, any>>({
     []
   )
 
-  /**
-   * Handle field blur - validate single field
-   */
   const handleBlur = useCallback(
     (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => {
       const { name } = e.target
@@ -75,7 +68,6 @@ export function useFormHandler<T extends Record<string, any>>({
         },
       }))
 
-      // Validate single field
       if (schema instanceof z.ZodObject) {
         const fieldSchema = (schema as z.ZodObject<any>).shape[name]
         if (fieldSchema) {
@@ -96,9 +88,6 @@ export function useFormHandler<T extends Record<string, any>>({
     [formState.values, schema]
   )
 
-  /**
-   * Validate entire form
-   */
   const validateForm = useCallback((): boolean => {
     const result = schema.safeParse(formState.values)
 
@@ -120,14 +109,10 @@ export function useFormHandler<T extends Record<string, any>>({
     return true
   }, [formState.values, schema])
 
-  /**
-   * Handle form submission
-   */
   const handleSubmit = useCallback(
     async (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault()
 
-      // Mark all fields as touched
       const allTouched = Object.keys(formState.values).reduce(
         (acc, key) => ({
           ...acc,
@@ -141,12 +126,10 @@ export function useFormHandler<T extends Record<string, any>>({
         touched: allTouched,
       }))
 
-      // Validate form
       if (!validateForm()) {
         return
       }
 
-      // Set loading state
       setFormState((prev) => ({
         ...prev,
         loading: true,
@@ -154,7 +137,6 @@ export function useFormHandler<T extends Record<string, any>>({
       }))
 
       try {
-        // Submit form
         const result = await onSubmit(formState.values as T)
 
         if (result.success) {
@@ -168,7 +150,6 @@ export function useFormHandler<T extends Record<string, any>>({
             touched: {},
           }))
 
-          // Clear success message after 5 seconds
           submitTimeoutRef.current = setTimeout(() => {
             setFormState((prev) => ({
               ...prev,
@@ -195,9 +176,6 @@ export function useFormHandler<T extends Record<string, any>>({
     [formState.values, validateForm, onSubmit, initialValues]
   )
 
-  /**
-   * Reset form to initial state
-   */
   const resetForm = useCallback(() => {
     if (submitTimeoutRef.current) {
       clearTimeout(submitTimeoutRef.current)
@@ -214,9 +192,6 @@ export function useFormHandler<T extends Record<string, any>>({
     })
   }, [initialValues])
 
-  /**
-   * Get field error if touched
-   */
   const getFieldError = useCallback(
     (fieldName: string): string => {
       if (formState.touched[fieldName]) {
@@ -227,9 +202,6 @@ export function useFormHandler<T extends Record<string, any>>({
     [formState.errors, formState.touched]
   )
 
-  /**
-   * Check if field has error and is touched
-   */
   const hasError = useCallback(
     (fieldName: string): boolean => {
       return formState.touched[fieldName] && !!formState.errors[fieldName]

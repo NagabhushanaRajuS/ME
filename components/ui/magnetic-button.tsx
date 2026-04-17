@@ -52,7 +52,6 @@ export function MagneticButton({ children, className, onClick, enableRipple = tr
     (event: React.MouseEvent<HTMLButtonElement>) => {
       onClick?.()
 
-      // Add ripple effect
       if (enableRipple && !prefersReducedMotion() && ref.current) {
         const rect = ref.current.getBoundingClientRect()
         const rippleX = event.clientX - rect.left
@@ -64,7 +63,6 @@ export function MagneticButton({ children, className, onClick, enableRipple = tr
         const newRipple: Ripple = { id, size, x: rippleX, y: rippleY }
         setRipples((prev) => [...prev, newRipple])
 
-        // Remove ripple after animation
         setTimeout(() => {
           setRipples((prev) => prev.filter((r) => r.id !== id))
         }, 600)
@@ -89,7 +87,6 @@ export function MagneticButton({ children, className, onClick, enableRipple = tr
     >
       {children}
 
-      {/* Ripple effects */}
       {ripples.map((ripple) => (
         <motion.span
           key={ripple.id}

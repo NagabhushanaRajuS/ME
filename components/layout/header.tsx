@@ -61,10 +61,10 @@ export function Header() {
           {/* Desktop nav */}
           <nav className="hidden items-center gap-8 md:flex">
             {links.map((link) => {
-              const isActive = !isHomepage && pathname === link.href
+              const isActive = pathname !== "/" && !homeLinks.includes(link) && pathname === link.href
               return (
                 <motion.div key={link.href}>
-                  {isHomepage ? (
+                  {homeLinks.includes(link) ? (
                     <a
                       href={link.href}
                       className="group relative text-sm font-medium text-muted transition-colors duration-300 hover:text-text"
@@ -145,7 +145,7 @@ export function Header() {
             transition={{ duration: 0.3 }}
           >
             {links.map((link, i) => {
-              const isActive = !isHomepage && pathname === link.href
+              const isActive = pathname !== "/" && !homeLinks.includes(link) && pathname === link.href
               return (
                 <motion.div
                   key={link.href}
@@ -153,7 +153,7 @@ export function Header() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.05 + i * 0.06 }}
                 >
-                  {isHomepage ? (
+                  {homeLinks.includes(link) ? (
                     <a
                       href={link.href}
                       className="font-heading text-2xl font-bold text-text transition-colors hover:text-accent"

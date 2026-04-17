@@ -21,7 +21,7 @@ const initialFormValues: ContactFormData = {
   subject: "",
   message: "",
   phone: "",
-  website: "", // Honeypot field
+  website: "",
 }
 
 export function ContactSection() {
@@ -42,20 +42,17 @@ export function ContactSection() {
     handleSubmit,
     resetForm,
     getFieldError,
-    hasError,
   } = useFormHandler({
     schema: contactFormSchema,
     initialValues: initialFormValues,
     onSubmit: async (data) => {
       try {
         const result = await sendContactEmail(data)
-
         if (result.success) {
           addToast(result.message, "success", 5000)
         } else {
           addToast(result.message, "error", 5000)
         }
-
         return result
       } catch (error) {
         const message = error instanceof Error ? error.message : "Failed to send message"
@@ -82,7 +79,6 @@ export function ContactSection() {
       </Reveal>
 
       <div className="mt-10 grid gap-10 lg:grid-cols-5 lg:gap-14">
-        {/* Left: CTA text */}
         <motion.div
           className="lg:col-span-2"
           variants={staggerContainer}
@@ -94,8 +90,7 @@ export function ContactSection() {
             className="font-heading text-3xl font-bold leading-tight text-text md:text-5xl"
             variants={staggerItem}
           >
-            Let&apos;s craft your next{" "}
-            <span className="gradient-text">category-defining</span> interface.
+            Let&apos;s craft your next <span className="gradient-text">category-defining</span> interface.
           </motion.h2>
           <motion.p
             className="mt-4 text-base leading-relaxed text-muted"
@@ -104,7 +99,6 @@ export function ContactSection() {
             Ready to push the boundaries of your product? I&apos;d love to hear about your vision and explore how we can bring it to life.
           </motion.p>
 
-          {/* Social links */}
           <motion.div className="mt-8 flex flex-wrap gap-3" variants={staggerItem}>
             {socialLinks.map((link) => (
               <a
@@ -131,7 +125,6 @@ export function ContactSection() {
           </motion.p>
         </motion.div>
 
-        {/* Right: Form */}
         <motion.div
           className="lg:col-span-3"
           initial={{ opacity: 0, y: 30 }}
@@ -175,7 +168,6 @@ export function ContactSection() {
                 </motion.div>
               ) : (
                 <form key="form" onSubmit={handleSubmit} className="space-y-6" noValidate>
-                  {/* Error message banner */}
                   <AnimatePresence>
                     {errorMessage && (
                       <motion.div
@@ -184,15 +176,12 @@ export function ContactSection() {
                         exit={{ opacity: 0, y: -10 }}
                         className="p-4 rounded-lg bg-red-500/10 border border-red-500/30 text-red-400 text-sm flex items-center gap-3"
                       >
-                        <svg className="h-5 w-5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
-                        </svg>
+                        <AlertCircle className="h-5 w-5 flex-shrink-0" />
                         {errorMessage}
                       </motion.div>
                     )}
                   </AnimatePresence>
 
-                  {/* Name and Email */}
                   <div className="grid gap-6 md:grid-cols-2">
                     <InputField
                       id="contact-name"
@@ -224,7 +213,6 @@ export function ContactSection() {
                     />
                   </div>
 
-                  {/* Subject */}
                   <InputField
                     id="contact-subject"
                     name="subject"
@@ -239,7 +227,6 @@ export function ContactSection() {
                     onBlur={handleBlur}
                   />
 
-                  {/* Message */}
                   <TextAreaField
                     id="contact-message"
                     name="message"
@@ -257,7 +244,6 @@ export function ContactSection() {
                     onBlur={handleBlur}
                   />
 
-                  {/* Phone (optional) */}
                   <InputField
                     id="contact-phone"
                     name="phone"
@@ -272,7 +258,6 @@ export function ContactSection() {
                     onBlur={handleBlur}
                   />
 
-                  {/* Honeypot field - hidden from users */}
                   <input
                     type="text"
                     name="website"
@@ -284,7 +269,6 @@ export function ContactSection() {
                     aria-hidden="true"
                   />
 
-                  {/* Submit Button */}
                   <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
@@ -307,7 +291,6 @@ export function ContactSection() {
                     </MagneticButton>
                   </motion.div>
 
-                  {/* Form helper text */}
                   <p className="text-xs text-muted text-center">
                     We respect your privacy. Your data will never be shared with third parties.
                   </p>
@@ -318,5 +301,19 @@ export function ContactSection() {
         </motion.div>
       </div>
     </section>
+  )
+}
+
+function AlertCircle(props: any) {
+  return (
+    <svg
+      {...props}
+      className={`h-5 w-5 ${props.className || ""}`}
+      viewBox="0 0 24 24"
+      fill="currentColor"
+    >
+      <circle cx="12" cy="12" r="10" opacity="0.3" />
+      <path d="M12 8v4m0 4v.01" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+    </svg>
   )
 }

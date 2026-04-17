@@ -4,11 +4,6 @@ import { useEffect, useRef, useState } from "react"
 import { useMotionValue, useTransform, useScroll } from "framer-motion"
 import { prefersReducedMotion } from "@/lib/motion"
 
-/**
- * useScrollReveal
- * Reveals elements on scroll with fade and transform effects.
- * Provides parallax-like motion as element scrolls into view.
- */
 export function useScrollReveal(options?: { offset?: number; delay?: number }) {
   const ref = useRef<HTMLDivElement>(null)
   const [isVisible, setIsVisible] = useState(false)
@@ -43,11 +38,6 @@ export function useScrollReveal(options?: { offset?: number; delay?: number }) {
   return { ref, isVisible }
 }
 
-/**
- * useScrollTrigger
- * Triggers animations when element reaches specific scroll thresholds.
- * Returns progress value from 0 to 1 for animation control.
- */
 export function useScrollTrigger(options?: { triggerOffset?: number; endOffset?: number }) {
   const ref = useRef<HTMLDivElement>(null)
   const { scrollY } = useScroll()
@@ -77,11 +67,6 @@ export function useScrollTrigger(options?: { triggerOffset?: number; endOffset?:
   return { ref, progress }
 }
 
-/**
- * useParallax
- * Creates parallax effect based on scroll position.
- * Offset increases Y position as user scrolls down for depth effect.
- */
 export function useParallax(speed: number = 0.5, options?: { maxOffset?: number }) {
   const ref = useRef<HTMLDivElement>(null)
   const { scrollY } = useScroll()
@@ -96,13 +81,8 @@ export function useParallax(speed: number = 0.5, options?: { maxOffset?: number 
   return { ref, y }
 }
 
-/**
- * useScrollProgress
- * Returns scroll progress as a motion value (0 to 1).
- * Useful for progress bars and scroll-based animations.
- */
 export function useScrollProgress(options?: { start?: number; end?: number }) {
-  const { scrollY, scrollYProgress } = useScroll()
+  const { scrollY } = useScroll()
   const { start = 0, end = typeof window !== "undefined" ? window.innerHeight * 3 : 1000 } = options || {}
 
   const progress = useTransform(scrollY, [start, end], [0, 1], { clamp: true })
@@ -110,11 +90,6 @@ export function useScrollProgress(options?: { start?: number; end?: number }) {
   return progress
 }
 
-/**
- * useInViewTrigger
- * More advanced version - triggers callback when element is in view
- * and provides visibility state for animations.
- */
 export function useInViewTrigger(
   callback?: (inView: boolean) => void,
   options?: { threshold?: number; rootMargin?: string }
@@ -148,11 +123,6 @@ export function useInViewTrigger(
   return { ref, inView }
 }
 
-/**
- * useScrollVelocity
- * Measures scroll velocity to detect fast scrolling.
- * Useful for triggering different animations based on scroll speed.
- */
 export function useScrollVelocity() {
   const { scrollY } = useScroll()
   const [velocity, setVelocity] = useState(0)
