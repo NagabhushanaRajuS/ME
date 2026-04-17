@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { usePathname } from "next/navigation"
+import Link from "next/link"
 import { motion, AnimatePresence } from "framer-motion"
 import { ThemeSwitcher } from "@/components/ui/theme-switcher"
 import { MagneticButton } from "@/components/ui/magnetic-button"
@@ -17,17 +18,20 @@ const homeLinks = [
 
 const pageLinks = [
   { href: "/", label: "Home" },
-  { href: "/certificates", label: "Certificates" },
-  { href: "/goals", label: "Goals" },
-  { href: "/education", label: "Education" },
-  { href: "/channels", label: "Channels" }
+  { href: "/projects", label: "Projects" },
+  { href: "/about", label: "About" },
+  { href: "/experience", label: "Experience" },
+  { href: "/blog", label: "Blog" },
+  { href: "/contact", label: "Contact" },
+  { href: "/admin", label: "Admin" }
 ]
 
 export function Header() {
   const pathname = usePathname()
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
-  const links = pathname === "/" ? homeLinks : pageLinks
+  const isHomepage = pathname === "/"
+  const links = isHomepage ? homeLinks : pageLinks
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40)
@@ -49,23 +53,47 @@ export function Header() {
       >
         <div className="mx-auto flex w-full max-w-7xl items-center justify-between px-5 md:px-8 lg:px-12">
           {/* Logo */}
-          <a href="/" className="relative font-heading text-lg font-bold tracking-[0.2em] text-text">
+          <Link href="/" className="relative font-heading text-lg font-bold tracking-[0.2em] text-text">
             NR
             <span className="absolute -bottom-0.5 left-0 h-[2px] w-full bg-accent opacity-60" />
-          </a>
+          </Link>
 
           {/* Desktop nav */}
           <nav className="hidden items-center gap-8 md:flex">
-            {links.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                className="group relative text-sm font-medium text-muted transition-colors duration-300 hover:text-text"
-              >
-                {link.label}
-                <span className="absolute -bottom-1 left-0 h-[1.5px] w-0 bg-accent transition-all duration-300 group-hover:w-full" />
-              </a>
-            ))}
+            {links.map((link) => {
+              const isActive = !isHomepage && pathname === link.href
+              return (
+                <motion.div key={link.href}>
+                  {isHomepage ? (
+                    <a
+                      href={link.href}
+                      className="group relative text-sm font-medium text-muted transition-colors duration-300 hover:text-text"
+                    >
+                      {link.label}
+                      <span className="absolute -bottom-1 left-0 h-[1.5px] w-0 bg-accent transition-all duration-300 group-hover:w-full" />
+                    </a>
+                  ) : (
+                    <Link
+                      href={link.href}
+                      className={`group relative text-sm font-medium transition-colors duration-300 ${
+                        isActive
+                          ? "text-accent"
+                          : "text-muted hover:text-text"
+                      }`}
+                    >
+                      {link.label}
+                      <motion.span
+                        className="absolute -bottom-1 left-0 h-[1.5px] bg-accent"
+                        initial={{ width: 0 }}
+                        animate={{ width: isActive ? "100%" : 0 }}
+                        whileHover={{ width: "100%" }}
+                        transition={{ duration: 0.3 }}
+                      />
+                    </Link>
+                  )}
+                </motion.div>
+              )
+            })}
           </nav>
 
           {/* Right side */}
@@ -116,19 +144,39 @@ export function Header() {
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3 }}
           >
-            {links.map((link, i) => (
-              <motion.a
-                key={link.href}
-                href={link.href}
-                className="font-heading text-2xl font-bold text-text transition-colors hover:text-accent"
-                onClick={() => setMobileOpen(false)}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.05 + i * 0.06 }}
-              >
-                {link.label}
-              </motion.a>
-            ))}
+            {links.map((link, i) => {
+              const isActive = !isHomepage && pathname === link.href
+              return (
+                <motion.div
+                  key={link.href}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.05 + i * 0.06 }}
+                >
+                  {isHomepage ? (
+                    <a
+                      href={link.href}
+                      className="font-heading text-2xl font-bold text-text transition-colors hover:text-accent"
+                      onClick={() => setMobileOpen(false)}
+                    >
+                      {link.label}
+                    </a>
+                  ) : (
+                    <Link
+                      href={link.href}
+                      className={`font-heading text-2xl font-bold transition-colors ${
+                        isActive
+                          ? "text-accent"
+                          : "text-text hover:text-accent"
+                      }`}
+                      onClick={() => setMobileOpen(false)}
+                    >
+                      {link.label}
+                    </Link>
+                  )}
+                </motion.div>
+              )
+            })}
             <MagneticButton
               className="mt-4 rounded-full border border-accent/40 bg-accent/10 px-6 py-3 text-sm font-bold uppercase tracking-[0.12em] text-accent"
               onClick={() => {

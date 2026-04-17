@@ -509,3 +509,116 @@ body {
   initial-value: 0deg;
   inherits: false;
 }
+
+/* ═══════════════════ FORM ANIMATIONS ═══════════════════ */
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-6px); }
+  20%, 40%, 60%, 80% { transform: translateX(6px); }
+}
+
+@keyframes slideInError {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes checkmark {
+  0% {
+    transform: scale(0.5) rotate(-45deg);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1) rotate(0);
+    opacity: 1;
+  }
+}
+
+.shake {
+  animation: shake 0.5s ease-in-out;
+}
+
+.animate-checkmark {
+  animation: checkmark 0.4s ease-out;
+}
+
+/* ═══════════════════ FORM INPUT FIELDS ═══════════════════ */
+
+.floating-input-field,
+.floating-textarea-field {
+  color: var(--text);
+  caret-color: var(--accent);
+}
+
+.floating-input-field::placeholder,
+.floating-textarea-field::placeholder {
+  color: transparent;
+}
+
+.floating-input-field:autofill,
+.floating-input-field:autofill:hover,
+.floating-input-field:autofill:focus {
+  -webkit-box-shadow: 0 0 0 1000px var(--surface) inset !important;
+  -webkit-text-fill-color: var(--text) !important;
+}
+
+/* Smooth transitions for focus states */
+.floating-input-field:focus,
+.floating-textarea-field:focus {
+  transition: all 200ms ease;
+}
+
+/* Success state styling */
+.floating-input-field.success,
+.floating-textarea-field.success {
+  border-color: #4ade80;
+  box-shadow: 0 0 0 3px rgba(74, 222, 128, 0.1);
+}
+
+/* Error state styling */
+.floating-input-field.error,
+.floating-textarea-field.error {
+  border-color: #ef4444;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+}
+
+/* ═══════════════════ FORM BUTTON ═══════════════════ */
+
+button:disabled {
+  transition: opacity 200ms ease;
+}
+
+/* ═══════════════════ REDUCED MOTION PREFERENCES ═══════════════════ */
+
+@media (prefers-reduced-motion: reduce) {
+  .floating-input-field,
+  .floating-textarea-field,
+  input:focus,
+  textarea:focus {
+    transition: none;
+  }
+
+  .shake {
+    animation: none;
+    transform: none;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 0.8; }
+    50% { opacity: 1; }
+  }
+
+  @keyframes float {
+    0%, 100% { transform: none; }
+    50% { transform: none; }
+  }
+}

@@ -2,10 +2,29 @@
 
 import { motion } from "framer-motion"
 import { useThemeMode } from "@/components/providers/theme-provider"
-import { ambientFloat } from "@/lib/motion"
+import { ambientFloat, orbFloatSecondary, prefersReducedMotion } from "@/lib/motion"
 
 export function ThemeBackground() {
   const { theme } = useThemeMode()
+
+  // Skip animations if user prefers reduced motion
+  if (prefersReducedMotion()) {
+    return (
+      <>
+        <div aria-hidden className={`theme-bg theme-bg--${theme}`} />
+        <div aria-hidden className="noise-overlay" />
+        <div aria-hidden className={`theme-orb theme-orb--${theme} theme-orb--primary`} />
+        <div aria-hidden className={`theme-orb theme-orb--${theme} theme-orb--secondary`} />
+        {theme === "dark" ? (
+          <>
+            <div aria-hidden className="grid-overlay" />
+            <div aria-hidden className="scanlines" />
+          </>
+        ) : null}
+        {theme === "medium" ? <div aria-hidden className="orb-field" /> : null}
+      </>
+    )
+  }
 
   return (
     <>
@@ -15,8 +34,7 @@ export function ThemeBackground() {
       <motion.div
         aria-hidden
         className={`theme-orb theme-orb--${theme} theme-orb--secondary`}
-        animate={{ x: [0, -18, 0], y: [0, 14, 0], scale: [1, 1.08, 1] }}
-        transition={{ duration: 14, repeat: Infinity, ease: "easeInOut", delay: 1.2 }}
+        {...orbFloatSecondary}
       />
       {theme === "dark" ? (
         <>
