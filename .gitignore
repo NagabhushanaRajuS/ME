@@ -7,3 +7,4 @@ extracted/
 .env
 .env.local
 data/inquiries.json
+tsconfig.tsbuildinfo
